@@ -1,3 +1,5 @@
+# Modeling domain
+
 Domain modeling is the primary way of determining the important aspects of a business
 DDD is the methodology used to bring that domain model to life in your day-to-day work.
 
@@ -84,3 +86,29 @@ classDiagram
     
     Policy *-- Claim    
 ```
+
+
+
+# Enhancing domain model
+with rich information
+- inheritance, subtypes
+- multiplicity
+
+## Define Inheritance
+
+**TV Show, Film**, and **Short** might be represented as subclasses of **Title**
+UML: generalization
+```mermaid
+classDiagram
+	Title -- Genre
+	Title *-- Season
+	Title *-- Review
+	Title o-- Actor
+	TV Show --|> Title
+	Short --|> Title
+	Film --|> Title
+	
+	Season *-- Episode
+```
+
+
