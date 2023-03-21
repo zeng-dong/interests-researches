@@ -1,3 +1,6 @@
+Domain modeling is the primary way of determining the important aspects of a business
+DDD is the methodology used to bring that domain model to life in your day-to-day work.
+
 ### Association 
 - for a relationship to be classed as an association, the entities must be able to exist dependently of one another and likely have their own life cycles
 - using: Furthermore, there is generally no “owner” of the relationship for associations
