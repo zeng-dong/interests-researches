@@ -112,3 +112,17 @@ classDiagram
 ```
 
 
+The entities Dog and Cat have the generalization Animal
+
+```mermaid
+classDiagram
+	Animal
+	Dog --|> Animal
+	Cat --|> Animal
+```
+
+```mermaid
+classDiagram
+	Animal <|-- Dog
+	Animal <|-- Cat
+```
