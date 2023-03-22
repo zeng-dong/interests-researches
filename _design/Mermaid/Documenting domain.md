@@ -148,4 +148,21 @@ classDiagram
 ## describing relationships
 **has**
 
+```mermaid
+classDiagram
+    Title -- Genre: is associated with
+    Title *-- Season: has
+    Title *-- Review: has
+    Title o-- Actor: features
+
+    TV Show --|> Title: implements
+    Short --|> Title: implements
+    Film --|> Title: implements
+
+    Viewer --> Title: watches
+
+    Season *-- Review: has
+    Season *-- Episode: contains
+
+    Episode *-- Review: has
 ```
