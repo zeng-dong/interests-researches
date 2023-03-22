@@ -116,13 +116,36 @@ The entities Dog and Cat have the generalization Animal
 
 ```mermaid
 classDiagram
-	Animal
+	%%Animal
 	Dog --|> Animal
 	Cat --|> Animal
 ```
+
 
 ```mermaid
 classDiagram
 	Animal <|-- Dog
 	Animal <|-- Cat
+```
+
+further enhanced:
+```mermaid
+classDiagram
+    Title -- Genre
+    Title *-- Season
+    Title *-- Review
+    Title o-- Actor
+
+    TV Show --|> Title
+    Short --|> Title
+    Film --|> Title
+
+    Season *-- Review
+    Season *-- Episode
+
+    Episode *-- Review
+```
+## describing relationships
+**has**
+
 ```
