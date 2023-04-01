@@ -148,7 +148,17 @@
   },
   "active": "76f7deefb962fc09",
   "lastOpenFiles": [
-    "Mermaid/Documenting domain.md",
-    "Mermaid"
+    "MotionCanvas/first-animation/src/scenes/example.tsx",
+    "MotionCanvas/first-animation/src/scenes",
+    "MotionCanvas/first-animation/src/project.ts",
+    "MotionCanvas/first-animation/src/motion-canvas.d.ts",
+    "MotionCanvas/first-animation/vite.config.ts",
+    "MotionCanvas/first-animation/tsconfig.json",
+    "MotionCanvas/first-animation/src",
+    "MotionCanvas/first-animation/public",
+    "MotionCanvas/first-animation/package.json",
+    "MotionCanvas/first-animation",
+    "MotionCanvas/FirstTry/first-animation/src/scenes/example.tsx",
+    "Mermaid/Documenting domain.md"
   ]
 }
