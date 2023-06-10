@@ -8,6 +8,7 @@ import { MessageService } from './hero/message.service';
 import { HeroService } from './hero/hero.service';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroComponent } from './hero/hero.component';
+import { StrengthPipe } from './strength/strength.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HeroComponent } from './hero/hero.component';
     CustomerComponent,
     HeroesComponent,
     HeroComponent,
+    StrengthPipe,
   ],
   imports: [BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [HeroService, MessageService],
