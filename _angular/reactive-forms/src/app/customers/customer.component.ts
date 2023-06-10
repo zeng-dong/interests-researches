@@ -43,4 +43,16 @@ export class CustomerComponent implements OnInit {
       sendCatalog: false,
     });
   }
+
+  setNotfication(notifyVia: string): void {
+    const phoneControl = this.customerForm.get('phone');
+    if(notifyVia === 'text'){
+      phoneControl?.setValidators(Validators.required);
+    }
+    else {
+      phoneControl?.clearValidators();
+    }
+
+    phoneControl?.updateValueAndValidity();
+  }
 }

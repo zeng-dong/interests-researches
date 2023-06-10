@@ -397,6 +397,7 @@
                 type="radio"
                 value="email"
                 formControlName="notification"
+                (click)="setNotfication('email')"
               />Email
             </label>
           </div>
@@ -407,6 +408,7 @@
                 type="radio"
                 value="text"
                 formControlName="notification"
+                (click)="setNotfication('text')"
               />Text
             </label>
           </div>
