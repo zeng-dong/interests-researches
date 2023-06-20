@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { Customer } from './customer';
+import { Subject, throwError } from 'rxjs';
+import {
+  catchError,
+  exhaustMap,
+  groupBy,
+  mergeMap,
+  take,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer',
@@ -11,6 +19,7 @@ import { Customer } from './customer';
 export class CustomerComponent implements OnInit {
   customer = new Customer();
   customerForm!: FormGroup;
+  clickMessage = 'wait for click';
 
   constructor(private fb: FormBuilder) {}
 
@@ -23,6 +32,25 @@ export class CustomerComponent implements OnInit {
       notification: 'email',
       sendCatalog: true,
     });
+
+    this.buttonClicked
+      .pipe(
+        groupBy((itemId) => itemId),
+        mergeMap((groupedItemIds) =>
+          groupedItemIds.pipe(
+            exhaustMap((itemId) => {
+              //The actual action that
+              //should be performed on click
+              return itemId + '__' + itemId;
+            }),
+            take(1),
+            catchError((error) => throwError(error))
+          )
+        )
+      )
+      .subscribe((itemId) => {
+        this.clickMessage = itemId + '+++' + itemId;
+      });
   }
 
   save(customerForm: NgForm): void {
@@ -46,13 +74,18 @@ export class CustomerComponent implements OnInit {
 
   setNotfication(notifyVia: string): void {
     const phoneControl = this.customerForm.get('phone');
-    if(notifyVia === 'text'){
+    if (notifyVia === 'text') {
       phoneControl?.setValidators(Validators.required);
-    }
-    else {
+    } else {
       phoneControl?.clearValidators();
     }
 
     phoneControl?.updateValueAndValidity();
+  }
+
+  private buttonClicked = new Subject<string>();
+
+  public singleDouble(itemId: string) {
+    this.buttonClicked.next(itemId);
   }
 }

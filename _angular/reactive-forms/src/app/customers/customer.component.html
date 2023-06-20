@@ -559,3 +559,14 @@
 <br />Dirty: {{ customerForm.dirty }} <br />Touched: {{ customerForm.touched }}
 <br />Valid: {{ customerForm.valid }} <br />Value:
 {{ customerForm.value | json }}
+
+<br />
+<button
+  class="btn btn-outline-secondary"
+  type="button"
+  (click)="singleDouble('5')"
+>
+  Single Click and Double Click
+</button>
+<br />
+{{ clickMessage }}
