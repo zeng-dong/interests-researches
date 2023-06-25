@@ -18,29 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "0ec1d498b976ab29",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.2.7"
-              }
-            }
-          },
-          {
-            "id": "03af2baf9edffa06",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.2.8"
-              }
-            }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -175,7 +154,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "03af2baf9edffa06",
+  "active": "76f7deefb962fc09",
   "lastOpenFiles": [
     "MotionCanvas/first-animation/node_modules/@types/unist/index.d.ts",
     "MotionCanvas/first-animation/node_modules/@types/hast/index.d.ts",

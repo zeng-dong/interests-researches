@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   preventBackButton() {
-    //history.pushState(null, String(null), location.href);
+    history.pushState(null, String(null), location.href);
     this.location.onPopState(() => {
       console.log('Back button pressed');
       history.pushState(null, String(null), location.href);
