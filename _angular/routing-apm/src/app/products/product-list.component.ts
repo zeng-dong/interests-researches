@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 import { Product } from './product';
 import { ProductService } from './product.service';
@@ -34,8 +34,37 @@ export class ProductListComponent implements OnInit {
     private location: LocationStrategy
   ) {}
 
+  @HostListener('window:beforeunload', ['$event']) unloadHandler(event: Event) {
+    event.returnValue = false;
+  }
+
   ngOnInit(): void {
     this.preventBackButton();
+
+    window.addEventListener('beforeunload', (event: BeforeUnloadEvent) => {
+      event.preventDefault(); // for Firefox
+      event.returnValue = ''; // for Chrome
+      return '';
+    });
+
+    // window.addEventListener('keyup', (e: any) => {
+    //   console.log('keyup detected');
+    //   if ((e.which || e.keyCode) == 116) e.preventDefault();
+    // });
+    // window.addEventListener('keydown', (e: any) => {
+    //   console.log('keydown detected');
+    //   if ((e.which || e.keyCode) == 116) e.preventDefault();
+    // });
+
+    // window.addEventListener('beforeunload', function (e) {
+    //   // var confirmationMessage = 'o/';
+    //   // console.log('cond');
+    //   // e.returnValue = confirmationMessage; // Gecko, Trident, Chrome 34+
+    //   // return confirmationMessage; // Gecko, WebKit, Chrome <34
+
+    //   e.preventDefault();
+    // });
+
     this.productService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
