@@ -1,0 +1,50 @@
+<main>
+  <form (submit)="onSubmit($event)" [formGroup]="form">
+    <div class="card">
+      <h1>Contact Us</h1>
+
+      <div>
+        <label>Name</label>
+        <input type="text" formControlName="name" required>
+        <div class="errors" role="alert" *ngFor="let error of showErrors('name')">{{ error }}</div>
+      </div>
+
+      <div>
+        <label>Email</label>
+        <input type="email" formControlName="email" required>
+        <div class="errors" role="alert" *ngFor="let error of showErrors('email')">{{ error }}</div>
+      </div>
+
+      <div>
+        <label>Phone <span class="optional">(Optional)</span></label>
+        <input type="tel" formControlName="phone">
+        <div class="errors" role="alert" *ngFor="let error of showErrors('phone')">{{ error }}</div>
+      </div>
+
+      <div>
+        <label>Message</label>
+        <textarea #message rows="5" formControlName="message" required></textarea>
+        <div class="hint-error">
+          <div class="errors" role="alert" *ngFor="let error of showErrors('message')">{{ error }}</div>
+          <div class="counter" [ngClass]="{
+                'success': message.value.length > 0,
+                'warn': message.value.length > 240,
+                'danger': message.value.length > 250 
+              }">{{ message.value.length }} / 250</div>
+        </div>
+      </div>
+
+
+      <div class="actions">
+        <button type="submit">
+          <mat-icon>send</mat-icon>
+          Send
+        </button>
+        <button type="reset" (click)="reset()">
+          <mat-icon>clear</mat-icon>
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+</main>
