@@ -15,18 +15,13 @@ describe('FormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        ReactiveFormsModule,
-        MaterialModule,
-        BrowserAnimationsModule,
-      ],
+      imports: [ReactiveFormsModule, MaterialModule, BrowserAnimationsModule],
       declarations: [FormComponent],
       providers: [
         MatSnackBar,
         { provide: FormService, useValue: mockFormService },
-      ]
-    })
-    .compileComponents();
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FormComponent);
     component = fixture.componentInstance;
@@ -35,5 +30,28 @@ describe('FormComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should reuqire an email', () => {
+    const email = component.form.get('email');
+    email?.patchValue(null);
+
+    fixture.detectChanges();
+
+    expect(email?.errors?.['required']).toBeTruthy();
+
+    //expect(email?.valid).toBeFalse();
+  });
+
+  it('should require a valid email', () => {
+    const email = component.form.get('email');
+    email?.patchValue('not an email');
+
+    fixture.detectChanges();
+
+    // email.errors is undefined now why?
+    //expect(email?.errors?.['required']).toBeFalse();
+
+    expect(email?.valid).toBeFalse();
   });
 });
