@@ -4,26 +4,42 @@ import { CalcService } from './calc.service';
 import { SharedService } from './shared.service';
 
 describe('CalcService', () => {
-  let service: CalcService;
+  let sharedService: SharedService;
+  let calcService: CalcService;
+
+  // beforeEach(() => {
+  //   // service = new CalcService(new SharedService()); // instead new up, we can use TestBed:
+  //   TestBed.configureTestingModule({
+  //     providers: [CalcService, SharedService],
+  //   });
+  //   sharedService = TestBed.inject(SharedService);
+  //   calcService = TestBed.inject(CalcService);
+  // });
+
+  beforeEach(() => {
+    sharedService = jasmine.createSpyObj('SharedService', ['mySharedFunction']);
+
+    TestBed.configureTestingModule({
+      providers: [
+        CalcService,
+        { provide: SharedService, useValue: sharedService },
+      ],
+    });
+
+    sharedService = TestBed.inject(SharedService);
+    calcService = TestBed.inject(CalcService);
+  });
 
   it('should multiply two numbers', () => {
-    service = new CalcService(new SharedService());
-    expect(service.mutiply(2, 3)).toBe(6);
+    expect(calcService.mutiply(2, 3)).toBe(6);
+  });
+
+  it('should add two numbers', () => {
+    expect(calcService.add(2, 3)).toBe(5);
   });
 
   it('should call the mySharedFunction function', () => {
-    //const sharedService = new SharedService();    // how can we avoid this? create a mock like this:
-
-    const sharedService = jasmine.createSpyObj('SharedService', [
-      'mySharedFunction',
-    ]);
-
-    //spyOn(sharedService, 'mySharedFunction'); // if we do not spy, we get an error: expect a spy, but got Function
-
-    //spyOn(sharedService, 'mySharedFunction').and.callThrough(); // then the function is called
-
-    const service = new CalcService(sharedService);
-    service.mutiply(2, 3);
+    calcService.mutiply(2, 3);
     expect(sharedService.mySharedFunction).toHaveBeenCalled();
   });
 });
