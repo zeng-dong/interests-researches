@@ -36,7 +36,6 @@ describe('DataService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(Object.values(USERS));
     //testingController.verify();
-
   });
 
   it('should get user by id', () => {
@@ -49,6 +48,21 @@ describe('DataService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(USERS[1]);
     //testingController.verify();
+  });
+
+  it('should update user by id', () => {
+    let changes = { age: 33 };
+    service.updateUser(1, changes).subscribe((user: any) => {
+      expect(user).toBeTruthy();
+      expect(user.id).toBe(1);
+    });
+
+    const req = testingController.expectOne('api/users/1');
+    expect(req.request.method).toBe('PUT');
+    let user = USERS[1];
+    user.age = 33;
+    expect(req.request.body.age).toEqual(changes.age);
+    req.flush(user);
   });
 
   afterEach(() => {

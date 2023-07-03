@@ -15,4 +15,8 @@ export class DataService {
   getUserById(id: number) {
     return this.htt.get('api/users/' + id);
   }
+
+  updateUser(id: number, user: any) {
+    return this.htt.put('api/users/' + id, user);
+  }
 }
