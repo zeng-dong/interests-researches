@@ -9,13 +9,15 @@ import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './components/nav/nav.component';
 import { FormComponent } from './components/form/form.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NavComponent,
-    FormComponent
+    FormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
