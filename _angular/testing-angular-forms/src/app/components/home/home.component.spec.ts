@@ -74,4 +74,9 @@ fdescribe('HomeComponent', () => {
     let texts = el.queryAll(By.css('.title'));
     expect(texts[0].nativeElement.textContent).toBe('angular unit testing!!');
   });
+
+  it('should have a for test div', () => {
+    const div = el.nativeElement.querySelector('div[test-id="abc"]');
+    expect(div.textContent).toBe('For test');
+  });
 });
