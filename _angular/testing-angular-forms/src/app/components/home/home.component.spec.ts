@@ -3,8 +3,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('HomeComponent', () => {
+describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
   let el: DebugElement;
@@ -36,6 +37,7 @@ fdescribe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [HomeComponent],
     })
       .compileComponents()
@@ -78,5 +80,29 @@ fdescribe('HomeComponent', () => {
   it('should have a for test div', () => {
     const div = el.nativeElement.querySelector('div[test-id="abc"]');
     expect(div.textContent).toBe('For test');
+  });
+
+  it('should render a button with text subscribe', () => {
+    const buttons = el.queryAll(By.css('.subscribe'));
+    component.btnText = 'Subscribe';
+    component.isSubscribed = false;
+    fixture.detectChanges();
+
+    expect(buttons[0].nativeElement.textContent).toContain('Subscribe');
+    expect(buttons[0].nativeElement.disabled).toBeFalse();
+  });
+
+  it('should render a button with text subscribed and button disabled after click', () => {
+    const buttons = el.queryAll(By.css('.subscribe'));
+    component.btnText = 'Subscribe';
+    component.isSubscribed = false;
+
+    const button = buttons[0];
+    button.nativeElement.click();
+
+    fixture.detectChanges();
+
+    expect(button.nativeElement.textContent).toContain('Subscribed');
+    expect(button.nativeElement.disabled).toBeTrue();
   });
 });

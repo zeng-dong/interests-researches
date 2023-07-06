@@ -3,3 +3,8 @@
 <img src="https://imagesrc.com/123" alt="" />
 <div class="title">{{ title }}</div>
 <div test-id="abc">For test</div>
+
+<button class="subscribe" (click)="subscribe()" [disabled]="isSubscribed">
+  {{ btnText }}
+</button>
+<router-outlet></router-outlet>

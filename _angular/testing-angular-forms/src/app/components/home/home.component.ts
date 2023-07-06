@@ -8,5 +8,13 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   title = 'angular unit testing';
 
+  btnText = 'Subscribe';
+  isSubscribed = false;
+
   constructor() {}
+
+  subscribe() {
+    this.isSubscribed = true;
+    this.btnText = 'Subscribed';
+  }
 }
