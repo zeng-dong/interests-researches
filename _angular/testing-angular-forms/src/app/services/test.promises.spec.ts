@@ -1,4 +1,4 @@
-import { fakeAsync, flush, tick } from '@angular/core/testing';
+import { fakeAsync, flush, flushMicrotasks, tick } from '@angular/core/testing';
 
 describe('testing promises', () => {
   /// this should fail because it is a async operation
@@ -46,7 +46,7 @@ describe('testing promises', () => {
   /// we can see this with the display orders of the console logs
   /// even if we set time to 0, promise is going to be executed first:
   ///  setTimeout(() => {       console.log('1st set timeout');      counter += 2;    }, 0);
-  it('should test the promise, timeouts - fail', fakeAsync(() => {
+  xit('should test the promise, timeouts - fail', fakeAsync(() => {
     let counter = 0;
 
     setTimeout(() => {
@@ -87,6 +87,9 @@ describe('testing promises', () => {
       counter++;
     });
 
+    flushMicrotasks();
+    expect(counter).toBe(1);
+
     tick(2000);
     expect(counter).toBe(3);
 
@@ -94,3 +97,5 @@ describe('testing promises', () => {
     expect(counter).toBe(6);
   }));
 });
+
+
