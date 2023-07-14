@@ -1,19 +1,18 @@
-<div>
-  <div>
+<div class="spinner-modal" *ngIf="busy">
+  <div class="spinner-content">
     <mat-spinner
       aria-label="spinner"
       color="primary"
       [diameter]="100"
-      mode="determinate"
       [value]="spinnerValue"
     >
     </mat-spinner>
-    <p>{{ spinnerValue }}</p>
+    <p class="spinner-val">{{ spinnerValue }}%</p>
   </div>
 </div>
 
 <bot-site-header></bot-site-header>
 <bot-home></bot-home>
 
-<hr />
-<bot-catalog></bot-catalog>
+<!-- <hr />
+<bot-catalog></bot-catalog> -->

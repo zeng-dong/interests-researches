@@ -119,5 +119,55 @@ input {
   color: #aaa;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.spinner-modal {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  .spinner-content {
+    position: absolute;
+    margin: 20% auto 0;
+    text-align: center;
+    width: 100%;
+    display: block;
+    z-index: 9999;
+
+    .mat-progress-spinner {
+      width: 100px !important;
+      height: 100 !important;
+      margin: 0 auto;
+      circle {
+        stroke: #00467f;
+      }
+      .mat-spinner circle {
+        stroke: #00467f;
+      }
+    }
+
+    .spinner-val {
+      position: relative;
+      top: -80px;
+      left: 3px;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #000000;
+      font-size: 20px;
+      line-height: 40px;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { META_INFO } from './meta.config';
+import { interval } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,17 +10,14 @@ import { META_INFO } from './meta.config';
 export class AppComponent implements OnInit {
   title = 'hi there';
   spinnerValue = 0;
-
+  busy = true;
 
   constructor(private meta: Meta) {}
 
   ngOnInit() {
-    this.meta.updateTag({ name: 'title', content: '' });
-    this.meta.updateTag({ name: 'description', content: 'Lorem ipsum dolor' });
-    this.meta.updateTag({ name: 'image', content: './assets/blog-image.jpg' });
-    this.meta.updateTag({ name: 'site', content: 'My Site' });
-
-    this.updateMeta('/about');
+    interval(1000).subscribe((x) => {
+      this.busy = !this.busy;
+    });
   }
 
   updateMeta(route: string) {
