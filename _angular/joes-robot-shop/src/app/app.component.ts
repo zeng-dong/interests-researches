@@ -8,6 +8,8 @@ import { META_INFO } from './meta.config';
 })
 export class AppComponent implements OnInit {
   title = 'hi there';
+  spinnerValue = 0;
+
 
   constructor(private meta: Meta) {}
 

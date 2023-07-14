@@ -1,1 +1,19 @@
-<h3>{{ title }}</h3>
+<div>
+  <div>
+    <mat-spinner
+      aria-label="spinner"
+      color="primary"
+      [diameter]="100"
+      mode="determinate"
+      [value]="spinnerValue"
+    >
+    </mat-spinner>
+    <p>{{ spinnerValue }}</p>
+  </div>
+</div>
+
+<bot-site-header></bot-site-header>
+<bot-home></bot-home>
+
+<hr />
+<bot-catalog></bot-catalog>
