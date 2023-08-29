@@ -2,5 +2,29 @@
   Simple Loading Service with RxJS and HttpInterceptor
 </mat-toolbar>
 
+<button mat-raised-button (click)="loader.show()">Show Loader</button>
 
-  <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+<button mat-raised-button (click)="loader.hide()">Hide Loader</button>
+
+<mat-progress-spinner
+  [mode]="'indeterminate'"
+  *ngIf="loading$ | async"
+></mat-progress-spinner>
+
+<div *ngIf="loadingChService.isLoading | async" class="loading-overlay"></div>
+
+<input
+  type="text"
+  cdkOverlayOrigin
+  #originOverlay="cdkOverlayOrigin"
+  (focus)="isOpen = true"
+  (blur)="isOpen = false"
+/>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="originOverlay"
+  [cdkConnectedOverlayOpen]="isOpen"
+>
+  <div>This is my tooltip</div>
+</ng-template>

@@ -1,0 +1,17 @@
+.demo-list > li {
+  list-style-type: none;
+  border-bottom: solid 2px #529e0a;
+  padding: 10px 0;
+}
+.demo-list {
+  width: 200px;
+  border: solid 1px rgb(134, 19, 19);
+  border-radius: 5px;
+  background: rgb(59, 18, 124);
+  text-align: center;
+  padding: 20px;
+  margin: 0;
+}
+.demo-list > li:last-child {
+  border-bottom: none;
+}

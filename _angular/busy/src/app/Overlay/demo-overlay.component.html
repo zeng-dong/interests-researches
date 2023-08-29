@@ -1,0 +1,20 @@
+<h5>
+  <u><i>Demo Overlay using Material !</i></u>
+</h5>
+<button (click)="isOverlayOpen = !isOverlayOpen" type="button" cdkOverlayOrigin>
+  {{ isOverlayOpen ? "Close Me" : "Open Me" }}
+</button>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="demotrigger"
+  [cdkConnectedOverlayOpen]="isOverlayOpen"
+>
+  <ul class="demo-list">
+    <li>Option 1</li>
+    <li>Option 2</li>
+    <li>Option 3</li>
+    <li>Option 4</li>
+    <li>Option 5</li>
+    <li>Option 6</li>
+  </ul>
+</ng-template>
