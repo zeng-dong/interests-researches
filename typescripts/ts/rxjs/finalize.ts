@@ -1,4 +1,4 @@
-import { interval, finalize, tap, noop, timer } from "rxjs";
+import { interval, finalize, tap, noop, timer, of } from "rxjs";
 
 let abc = false;
 const source = interval(100).pipe(
@@ -30,3 +30,23 @@ console.log("abc after sub: ", abc);
 // '[next] Called'
 // 0
 // '[finalize] Called'
+
+let returned: any;
+const aNumber = of(123);
+const result = aNumber
+    .pipe(
+        finalize(() => {
+            console.log("aNumber finalize Called");
+        }),
+    )
+    .subscribe({
+        next: (data) => {
+            console.log("aNumber data: ", data);
+            returned = data;
+        },
+        error: () => console.log("[error] Not called"),
+        complete: () => console.log("[tap complete] Not called"),
+    });
+
+result.unsubscribe();
+console.log("returned data is: ", returned);
