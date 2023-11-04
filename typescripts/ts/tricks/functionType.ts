@@ -38,3 +38,18 @@ y = (s: string, n: number) => {
 };
 
 console.log(y("fly with", 737));
+
+function doMore(
+    s: string,
+    n: number,
+    fn1: (chars: string, nums: number) => string,
+    fn2: (options: any) => void,
+) {
+    const r = fn1(s, n);
+    fn2({ name: s, id: n });
+    console.log("r: ", r);
+}
+
+console.log("========== passing two functions as parameters ===========");
+doMore("holly", 987, y, z);
+console.log("xyz: ", xyz);
