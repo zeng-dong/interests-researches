@@ -38,3 +38,34 @@ let mapresult = productArray.map((x) => "Hello " + x.productName);
 
 console.log(productArray);
 console.log(mapresult);
+
+const products = [
+    {
+        name: "Netflix",
+        id: 100,
+        good: true,
+    },
+    {
+        productName: "Amazon Video",
+        id: 1100,
+        good: true,
+    },
+    {
+        productName: "Some Subscriber",
+        id: 9100,
+        good: false,
+    },
+];
+
+console.log("--------------");
+const some = products.some((x) => x.good === true);
+console.log("some good: ", some);
+const includes = products.includes({
+    name: "Netflix",
+    id: 100,
+    good: true,
+});
+console.log("includes: ", includes);
+const item2 = products[1];
+const includes2 = products.includes(item2);
+console.log("includes 2: ", includes2);
