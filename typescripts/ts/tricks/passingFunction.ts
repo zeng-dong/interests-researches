@@ -42,3 +42,15 @@ const logger: LogFunction = (obj) => {
 };
 
 wrapper({ name: "Bobby", country: "Chile" }, logger);
+
+type NoParamFunction = () => void;
+function mylog() {
+    console.log("I am logging");
+}
+
+function usingNoParamFunction(name: string, func: NoParamFunction) {
+    console.log("name is ", name);
+    func();
+}
+
+usingNoParamFunction("world", mylog);``

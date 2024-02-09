@@ -25,6 +25,14 @@ x = 6;
 y = createMovieId;
 z = doThings;
 
+function noParameter(): void {
+    console.log("I am getting invoked");
+}
+
+let a: () => void;
+a = noParameter;
+a();
+
 // now we can invoke the function variable:
 const yResult = y("jedi", 11);
 console.log("y result:  ", yResult);
