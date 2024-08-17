@@ -1,15 +1,8 @@
-import { bootstrapApplication } from '@angular/platform-browser';
+//// bootstrap standalone component
+// import { bootstrapApplication } from '@angular/platform-browser';
+
 // import { appConfig } from './app/app.config';
 // import { AppComponent } from './app/app.component';
-
-//// bootstrap module: material module
-//import { appConfig } from './materialInDepth/app.config';
-import { AppModule } from './materialInDepth/app.module';
-//import { AppComponent } from './materialInDepth/app.component';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch((err) => console.log(err));
 
 // import { appConfig } from './app3/app.config';
 // import { AppComponent } from './app3/app.component';
@@ -24,3 +17,15 @@ platformBrowserDynamic()
 // bootstrapApplication(App2Component, app2Config).catch((err) =>
 //   console.error(err)
 // );
+
+///////////////////////////////////////
+//// bootstrap module: material module
+////////////////////////////////////////
+
+//import { appConfig } from './materialInDepth/app.config';             // do not need this
+import { AppModule } from './materialInDepth/app.module';
+//import { AppComponent } from './materialInDepth/app.component';             // do not need this
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err) => console.log(err));

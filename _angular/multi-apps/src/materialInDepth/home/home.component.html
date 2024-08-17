@@ -1,16 +1,19 @@
-
 <div class="courses-panel">
+    <div class="header">
+        <mat-slider
+            color="primary"
+            [max]="500"
+            [min]="1"
+            [step]="1"
+            value="100"
+        >
+            <input matSliderThumb />
+        </mat-slider>
 
-  <div class="header">
+        <h2 class="title">All Courses</h2>
 
-    <h2 class="title">All Courses</h2>
-
-    <button mat-mini-fab routerLink="/add-new-course">
-      <mat-icon class="add-course-btn">add</mat-icon>
-    </button>
-
-  </div>
-
-
+        <button mat-mini-fab routerLink="/add-new-course">
+            <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+    </div>
 </div>
-
