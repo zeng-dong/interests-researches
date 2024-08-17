@@ -22,10 +22,22 @@
 //// bootstrap module: material module
 ////////////////////////////////////////
 
-//import { appConfig } from './materialInDepth/app.config';             // do not need this
-import { AppModule } from './materialInDepth/app.module';
-//import { AppComponent } from './materialInDepth/app.component';             // do not need this
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch((err) => console.log(err));
+//////import { appConfig } from './materialInDepth/app.config';             // do not need this
+//import { AppModule } from './materialInDepth/app.module';
+////////////import { AppComponent } from './materialInDepth/app.component';             // do not need this
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// platformBrowserDynamic()
+//     .bootstrapModule(AppModule)
+//     .catch((err) => console.log(err));
+
+////////////////////////////////
+//// quiz, standalone
+////////////////////////////////
+import { bootstrapApplication } from '@angular/platform-browser';
+
+import { appConfig } from './quizSignals/app.config';
+import { AppComponent } from './quizSignals/app.component';
+
+bootstrapApplication(AppComponent, appConfig).catch((err) =>
+    console.error(err)
+);
