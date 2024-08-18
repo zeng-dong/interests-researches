@@ -18,6 +18,18 @@
 //   console.error(err)
 // );
 
+///////////////////////////////////
+//// bootstrap standalone component: app module
+////////////////////////////////////
+/*
+import { bootstrapApplication } from '@angular/platform-browser';
+
+import { appConfig } from './app/app.config';
+import { AppComponent } from './app/app.component';
+bootstrapApplication(AppComponent, appConfig).catch((err) =>
+    console.error(err)
+);*/
+
 ///////////////////////////////////////
 //// bootstrap module: material module
 ////////////////////////////////////////
@@ -33,6 +45,7 @@
 ////////////////////////////////
 //// quiz, standalone
 ////////////////////////////////
+/*
 import { bootstrapApplication } from '@angular/platform-browser';
 
 import { appConfig } from './quizSignals/app.config';
@@ -40,4 +53,13 @@ import { AppComponent } from './quizSignals/app.component';
 
 bootstrapApplication(AppComponent, appConfig).catch((err) =>
     console.error(err)
-);
+);*/
+
+///////////////////////////////////////
+//// bootstrap module: routing playbook module
+////////////////////////////////////////
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './routingPlaybook/app.module';
+platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err) => console.error(err));
