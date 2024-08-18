@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { QuestionComponent } from './components/question/question.component';
-import { AnswerComponent } from './components/answer/answer.component';
 
 @Component({
     selector: 'quiz',
     templateUrl: './quiz.component.html',
     styleUrl: './quiz.component.scss',
     standalone: true,
-    imports: [QuestionComponent, AnswerComponent]
+    imports: [QuestionComponent],
 })
 export class QuizComponent {}
