@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,29 +19,46 @@ import { MatButtonModule } from '@angular/material/button';
 import { BreadcrumbsComponent } from './shared-ui/breadcrumbs/breadcrumbs.component';
 import { ContactComponent } from './contact/contact.component';
 
+export const routes: Routes = [
+    {
+        path: 'home',
+        component: HomeComponent,
+    },
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+    },
+    {
+        path: '**',
+        component: HomeComponent,
+    },
+];
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ComboCardViewComponent,
-    SideMenuComponent,
-    DetailViewComponent,
-    SubHeroLogoComponent,
-    NotFoundComponent,
-    HeroSectionComponent,
-    SubSectionComponent,
-    CardComponent,
-    HeaderComponent,
-    BreadcrumbsComponent,
-    ContactComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        ComboCardViewComponent,
+        SideMenuComponent,
+        DetailViewComponent,
+        SubHeroLogoComponent,
+        NotFoundComponent,
+        HeroSectionComponent,
+        SubSectionComponent,
+        CardComponent,
+        HeaderComponent,
+        BreadcrumbsComponent,
+        ContactComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatMenuModule,
+        MatButtonModule,
+        RouterModule.forRoot(routes, { enableTracing: true }),
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

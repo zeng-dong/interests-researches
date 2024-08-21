@@ -5,5 +5,5 @@ import { runApp } from './runners/app';
 
 //runRoutingPlaybook();
 //runQuizSignals();
-//runMaterialInDepth();
-runApp();
+runMaterialInDepth();
+//runApp();
