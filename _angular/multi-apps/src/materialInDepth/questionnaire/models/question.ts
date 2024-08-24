@@ -34,6 +34,10 @@ export class Questionnair {
         this.name = name;
         this.groups = [];
     }
+
+    add(group: QuestionGroup): void {
+        this.groups.push(group);
+    }
 }
 
 export class Answer {

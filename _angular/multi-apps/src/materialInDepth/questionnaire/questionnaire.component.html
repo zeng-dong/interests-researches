@@ -1,1 +1,12 @@
-Questionnaire
+<h3>{{ qx.name }} Questionnaire</h3>
+
+<mat-tab-group>
+    <mat-tab *ngFor="let group of qx.groups">
+        <ng-template mat-tab-label>{{ group.name }}</ng-template>
+        <!-- <mat-selection-list >
+      <mat-list-option  *ngFor="let list of tabsData" >
+             {{list}}
+            </mat-list-option>
+        </mat-selection-list> -->
+    </mat-tab>
+</mat-tab-group>
