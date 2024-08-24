@@ -7,7 +7,8 @@ import { runApp3 } from './runners/app3';
 
 //runRoutingPlaybook();
 //runQuizSignals();
-//runApp2runMaterialInDepth();
+
+runMaterialInDepth();
 //runApp();
-runApp2();
+//runApp2();
 //runApp3();

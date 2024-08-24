@@ -13,18 +13,15 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
     title = 'this is the 2nd app';
 
-    users: any;
+    users: object | null = null;
 
     constructor(private usersService: UsersService) {
         this.getUsers();
     }
 
     async getUsers() {
-        console.log('getting users');
         try {
-            console.log('inside getUsers()');
             this.users = await this.usersService.getUsers();
-            console.log('users: ', this.users);
         } catch (e) {
             console.log(e);
         }
