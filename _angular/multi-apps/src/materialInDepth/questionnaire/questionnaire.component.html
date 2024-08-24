@@ -3,10 +3,9 @@
 <mat-tab-group>
     <mat-tab *ngFor="let group of qx.groups">
         <ng-template mat-tab-label>{{ group.name }}</ng-template>
-        <!-- <mat-selection-list >
-      <mat-list-option  *ngFor="let list of tabsData" >
-             {{list}}
-            </mat-list-option>
-        </mat-selection-list> -->
+
+        <div *ngFor="let q of group.questions">
+            <qx-q [question]="q"></qx-q>
+        </div>
     </mat-tab>
 </mat-tab-group>

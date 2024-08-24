@@ -43,9 +43,9 @@ export class Questionnair {
 export class Answer {
     result: string | boolean | undefined;
     type: AnswerDataType;
-    maxLength: number;
+    maxLength: number | undefined;
 
-    constructor(type: AnswerDataType, maxLength: number) {
+    constructor(type: AnswerDataType, maxLength?: number) {
         this.type = type;
         this.maxLength = maxLength;
         this.result = undefined;
@@ -53,9 +53,9 @@ export class Answer {
 }
 
 export enum AnswerDataType {
-    boolean = '0',
-    longText = '1',
-    shortText = '2',
-    multipleText = '3',
+    boolean,
+    longText,
+    shortText,
+    multipleText,
 
 }

@@ -3,7 +3,7 @@ import { QuestionnaireService } from './models/questionnaire.service';
 import { Questionnair } from './models/question';
 
 @Component({
-    selector: 'home',
+    selector: 'qx-qx',
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss'],
 })

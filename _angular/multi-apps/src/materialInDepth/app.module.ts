@@ -13,6 +13,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material-module';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { QuestionComponent } from './questionnaire/question/question.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
         HomeComponent,
         AboutComponent,
         QuestionnaireComponent,
+        QuestionComponent,
     ],
     bootstrap: [AppComponent],
     imports: [
