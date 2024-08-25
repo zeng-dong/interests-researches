@@ -2,27 +2,30 @@
     <div *ngSwitchCase="1">
         <mat-form-field>
             <mat-label>Please explain</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput [(ngModel)]="answer.value"></textarea>
         </mat-form-field>
+        <mat-error *ngIf="collecting && !answer.value">Required</mat-error>
     </div>
 
     <div *ngSwitchCase="2">
         <mat-form-field>
             <mat-label>Prompt goes here</mat-label>
-            <input matInput />
+            <input matInput [(ngModel)]="answer.value" />
         </mat-form-field>
+
+        <mat-error *ngIf="collecting && !answer.value">Required</mat-error>
     </div>
 
     <div *ngSwitchDefault>
-        <mat-radio-group
-            (change)="selected($event)">
+        <mat-radio-group (change)="selected($event)">
             <mat-radio-button value="1">Yes</mat-radio-button>
             <mat-radio-button value="2">No</mat-radio-button>
         </mat-radio-group>
-
     </div>
 </ng-container>
 
 <p>
     {{ answer | json }}
 </p>
+
+<p>Collecting = {{ collecting }}</p>

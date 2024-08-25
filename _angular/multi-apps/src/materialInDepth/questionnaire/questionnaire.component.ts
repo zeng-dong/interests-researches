@@ -3,12 +3,14 @@ import { QuestionnaireService } from './models/questionnaire.service';
 import { Questionnair } from './models/question';
 
 @Component({
-    selector: 'qx-qx',
+    selector: 'qx-questionnaire',
     templateUrl: './questionnaire.component.html',
     styleUrls: ['./questionnaire.component.scss'],
 })
 export class QuestionnaireComponent implements OnInit {
     qx!: Questionnair;
+    noToAll: boolean | undefined;
+    collectAnswers: boolean = false;
 
     constructor(private qxService: QuestionnaireService) {}
 
@@ -19,5 +21,9 @@ export class QuestionnaireComponent implements OnInit {
     payload: any;
     displayPayload() {
         this.payload = this.qxService.getPaperWork(this.qx);
+    }
+
+    collect() {
+        this.collectAnswers = true;
     }
 }

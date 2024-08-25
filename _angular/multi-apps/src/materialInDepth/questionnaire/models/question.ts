@@ -1,21 +1,23 @@
+import { Answer } from './answer';
+
 export class Question {
     id: string;
     displayOrder: number;
     text: string;
-    answer: Answer | undefined;
+    answer: Answer;
     child: Question | undefined;
 
     constructor(
         id: string,
         displayOrder: number,
         text: string,
-        answer?: Answer,
-        child?: Question) {
-
+        answer: Answer,
+        child?: Question
+    ) {
         this.id = id;
         this.displayOrder = displayOrder;
         this.text = text;
-        this.answer = answer ? answer : undefined;
+        this.answer = answer;
         this.child = child ? child : undefined;
     }
 
@@ -36,6 +38,14 @@ export class QuestionGroup {
     }
 }
 
+export class QuestionnairOperation {
+    type: QuestionnairOperationType;
+
+    constructor(type: QuestionnairOperationType) {
+        this.type = type;
+    }
+}
+
 export class Questionnair {
     groups: QuestionGroup[];
     name: string;
@@ -50,29 +60,8 @@ export class Questionnair {
     }
 }
 
-export class Answer {
-    value: string | boolean | undefined;
-    config: AnswerConfiguration;
-
-    constructor(config: AnswerConfiguration) {
-        this.config = config;
-        this.value = undefined;
-    }
-}
-
-export class AnswerConfiguration {
-    type: AnswerDataType;
-    maxLength: number | undefined;
-
-    constructor(type: AnswerDataType, maxLength?: number) {
-        this.type = type;
-        this.maxLength = maxLength ? maxLength : undefined;
-    }
-}
-
-export enum AnswerDataType {
-    boolean,
-    longText,
-    shortText,
-    multipleText,
+export enum QuestionnairOperationType {
+    none,
+    changeToNextGroup,
+    changeToPreviousGroup,
 }

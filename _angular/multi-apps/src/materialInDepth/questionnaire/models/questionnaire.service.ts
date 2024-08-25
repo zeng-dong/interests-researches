@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
-    Answer,
-    AnswerConfiguration,
-    AnswerDataType,
     Question,
     QuestionGroup,
     Questionnair,
+    QuestionnairOperation,
+    QuestionnairOperationType,
 } from './question';
+import { Answer } from './answer';
+import { AnswerDataType } from './answer';
+import { AnswerConfiguration } from './answer';
 
 @Injectable({
     providedIn: 'root',
@@ -32,6 +34,12 @@ export class QuestionnaireService {
 
         return flattened;
     }
+
+    createChangeToNextGroupOperation = (): QuestionnairOperation =>
+        new QuestionnairOperation(QuestionnairOperationType.changeToNextGroup);
+
+    createIdlingOperation = (): QuestionnairOperation =>
+        new QuestionnairOperation(QuestionnairOperationType.none);
 }
 
 const acord130: QuestionGroup = {

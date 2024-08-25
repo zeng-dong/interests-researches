@@ -1,11 +1,14 @@
 <mat-card appearance="outlined">
     <mat-card-header>
-        {{ question?.displayOrder }}. {{ question?.text }}
+        {{ question.displayOrder }}. {{ question.text }}
     </mat-card-header>
 
     <mat-card-content>
         <mat-radio-group aria-label="Select an option">
-            <qx-a [answer]="question?.answer"></qx-a>
+            <qx-answer
+                [answer]="question.answer"
+                [collectAnswer]="collectAnswer"
+            ></qx-answer>
         </mat-radio-group>
     </mat-card-content>
 </mat-card>

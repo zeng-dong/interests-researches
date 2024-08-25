@@ -11,6 +11,7 @@ import {
     withInterceptorsFromDi,
 } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material-module';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { QuestionComponent } from './questionnaire/question/question.component';
@@ -32,6 +33,7 @@ import { AnswerComponent } from './questionnaire/answer/answer.component';
         AppRoutingModule,
         MaterialModule,
         ReactiveFormsModule,
+        FormsModule,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())],
 })
