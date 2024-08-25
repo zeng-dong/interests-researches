@@ -44,6 +44,9 @@ export class QuestionnairOperation {
     constructor(type: QuestionnairOperationType) {
         this.type = type;
     }
+
+    isChangeToNextGroup = (): boolean =>
+        this.type === QuestionnairOperationType.changeToNextGroup;
 }
 
 export class Questionnair {

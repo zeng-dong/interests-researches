@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './models/questionnaire.service';
-import { Questionnair } from './models/question';
+import { Questionnair, QuestionnairOperation } from './models/question';
 
 @Component({
     selector: 'qx-questionnaire',
@@ -10,9 +10,11 @@ import { Questionnair } from './models/question';
 export class QuestionnaireComponent implements OnInit {
     qx!: Questionnair;
     noToAll: boolean | undefined;
-    collectAnswers: boolean = false;
+    operation: QuestionnairOperation;
 
-    constructor(private qxService: QuestionnaireService) {}
+    constructor(private qxService: QuestionnaireService) {
+        this.operation = qxService.createIdlingOperation();
+    }
 
     ngOnInit() {
         this.qx = this.qxService.getQuestionnaire();
@@ -24,6 +26,6 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     collect() {
-        this.collectAnswers = true;
+        this.operation = this.qxService.createChangeToNextGroupOperation();
     }
 }

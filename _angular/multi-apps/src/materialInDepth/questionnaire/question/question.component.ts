@@ -1,5 +1,9 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Question } from '../models/question';
+import {
+    Question,
+    QuestionnairOperation,
+    QuestionnairOperationType,
+} from '../models/question';
 
 @Component({
     selector: 'qx-question',
@@ -9,7 +13,7 @@ import { Question } from '../models/question';
 export class QuestionComponent implements OnInit {
     @Input() question!: Question;
     @Input() setNo: boolean | undefined;
-    @Input() collectAnswers: boolean = false;
+    @Input() operation!: QuestionnairOperation;
 
     collectAnswer: boolean = false;
 
@@ -23,19 +27,12 @@ export class QuestionComponent implements OnInit {
         for (const propName in changes) {
             console.log('received ', propName);
 
-            if (propName === 'collectAnswers') {
+            if (propName === 'operation') {
                 const change = changes[propName];
-                if (change.currentValue && !change.previousValue) {
+                if (change.currentValue.isChangeToNextGroup()) {
                     this.collectAnswer = true;
                 }
             }
-
-            //const cur = JSON.stringify(chng.currentValue);
-
-            //const prev = JSON.stringify(chng.previousValue);
-            // this.changeLog.push(
-            //     `${propName}: currentValue = ${cur}, previousValue = ${prev}`
-            // );
         }
     }
 }
