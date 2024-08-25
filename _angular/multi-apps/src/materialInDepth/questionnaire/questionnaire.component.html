@@ -4,8 +4,15 @@
     <mat-tab *ngFor="let group of qx.groups">
         <ng-template mat-tab-label>{{ group.name }}</ng-template>
 
+        <section class="example-section">
+            <mat-checkbox class="example-margin">No to all</mat-checkbox>
+        </section>
+
         <div *ngFor="let q of group.questions">
             <qx-q [question]="q"></qx-q>
         </div>
     </mat-tab>
 </mat-tab-group>
+
+<h3>Questionnair details</h3>
+{{ qx | json }}

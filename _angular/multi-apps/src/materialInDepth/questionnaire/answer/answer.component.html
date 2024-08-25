@@ -1,0 +1,28 @@
+<ng-container [ngSwitch]="answer?.type">
+    <div *ngSwitchCase="1">
+        <mat-form-field>
+            <mat-label>Please explain</mat-label>
+            <textarea matInput></textarea>
+        </mat-form-field>
+    </div>
+
+    <div *ngSwitchCase="2">
+        <mat-form-field>
+            <mat-label>Prompt goes here</mat-label>
+            <input matInput />
+        </mat-form-field>
+    </div>
+
+    <div *ngSwitchDefault>
+        <mat-radio-group
+            (change)="selected($event)">
+            <mat-radio-button value="1">Yes</mat-radio-button>
+            <mat-radio-button value="2">No</mat-radio-button>
+        </mat-radio-group>
+
+    </div>
+</ng-container>
+
+<p>
+    {{ answer | json }}
+</p>
