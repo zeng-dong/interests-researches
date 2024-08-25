@@ -14,5 +14,10 @@
     </mat-tab>
 </mat-tab-group>
 
-<h3>Questionnair details</h3>
-{{ qx | json }}
+<h3>Questionnair api contract</h3>
+<button mat-button color="primary" (click)="displayPayload()">
+    Show API payload
+</button>
+<div>
+    {{ payload | json }}
+</div>

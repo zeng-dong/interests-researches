@@ -17,6 +17,6 @@ export class AnswerComponent implements OnInit {
     selected($event: MatRadioChange) {
         console.log($event.value);
 
-        this.answer.result = $event.value;
+        this.answer.value = $event.value;
     }
 }

@@ -15,4 +15,9 @@ export class QuestionnaireComponent implements OnInit {
     ngOnInit() {
         this.qx = this.qxService.getQuestionnaire();
     }
+
+    payload: any;
+    displayPayload() {
+        this.payload = this.qxService.getPaperWork(this.qx);
+    }
 }

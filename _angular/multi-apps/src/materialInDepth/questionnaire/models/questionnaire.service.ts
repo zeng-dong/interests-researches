@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
     Answer,
+    AnswerConfiguration,
     AnswerDataType,
+    Question,
     QuestionGroup,
     Questionnair,
 } from './question';
@@ -20,44 +22,46 @@ export class QuestionnaireService {
 
         return qx;
     }
+
+    getPaperWork(qx: Questionnair) {
+        const flattened: any = {};
+
+        qx.groups.forEach((g) => {
+            g.questions.forEach((q) => q.reportAnswer(flattened));
+        });
+
+        return flattened;
+    }
 }
 
 const acord130: QuestionGroup = {
     displayOrder: 0,
     name: 'General Questions',
     questions: [
-        {
-            id: 'qus1',
-            displayOrder: 1,
-            name: 'qus1',
-            text: 'Is your company in Texas',
-            answer: new Answer(AnswerDataType.boolean),
-            child: undefined,
-        },
-        {
-            id: 'qus2',
-            displayOrder: 2,
-            name: 'qus2',
-            text: 'Is your company doing well',
-            answer: new Answer(AnswerDataType.boolean),
-            child: undefined,
-        },
-        {
-            id: 'qus3',
-            displayOrder: 3,
-            name: 'qus3',
-            text: 'Please write down your explanation',
-            answer: new Answer(AnswerDataType.longText),
-            child: undefined,
-        },
-        {
-            id: 'qus4',
-            displayOrder: 4,
-            name: 'qus4',
-            text: 'Give us a short value',
-            answer: new Answer(AnswerDataType.shortText),
-            child: undefined,
-        },
+        new Question(
+            'qus1',
+            1,
+            'Is your company in Texas',
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+        ),
+        new Question(
+            'qus2',
+            2,
+            'Is your company doing well',
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+        ),
+        new Question(
+            'qus3',
+            3,
+            'Please write down your explanation',
+            new Answer(new AnswerConfiguration(AnswerDataType.longText))
+        ),
+        new Question(
+            'qus4',
+            4,
+            'Give us a short value',
+            new Answer(new AnswerConfiguration(AnswerDataType.shortText))
+        ),
     ],
 };
 
@@ -65,30 +69,24 @@ const acord125: QuestionGroup = {
     displayOrder: 1,
     name: 'Special Questions',
     questions: [
-        {
-            id: 'qus21',
-            displayOrder: 1,
-            name: 'qus21',
-            text: 'Is your company doing nice business',
-            answer: new Answer(AnswerDataType.boolean),
-            child: undefined,
-        },
-        {
-            id: 'qus22',
-            displayOrder: 2,
-            name: 'qus22',
-            text: 'Is your company making bad money',
-            answer: new Answer(AnswerDataType.boolean),
-            child: undefined,
-        },
-        {
-            id: 'qus23',
-            displayOrder: 3,
-            name: 'qus23',
-            text: 'Pick all the possible types of customers',
-            answer: new Answer(AnswerDataType.multipleText),
-            child: undefined,
-        },
+        new Question(
+            'qus21',
+            1,
+            'Is your company doing nice business',
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+        ),
+        new Question(
+            'qus22',
+            2,
+            'Is your company making bad money',
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+        ),
+        new Question(
+            'qus23',
+            3,
+            'Pick all the possible types of customers',
+            new Answer(new AnswerConfiguration(AnswerDataType.multipleText))
+        ),
     ],
 };
 
@@ -96,21 +94,17 @@ const supplemental: QuestionGroup = {
     displayOrder: 2,
     name: 'Supplemental Questions',
     questions: [
-        {
-            id: 'qus31',
-            displayOrder: 1,
-            name: 'qus31',
-            text: 'Are all your trucks in red color',
-            answer: new Answer(AnswerDataType.boolean),
-            child: undefined,
-        },
-        {
-            id: 'qus32',
-            displayOrder: 2,
-            name: 'qus32',
-            text: 'Are all your trucks faster',
-            answer: new Answer(AnswerDataType.boolean),
-            child: undefined,
-        },
+        new Question(
+            'qus31',
+            1,
+            'Are all your trucks in red color',
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+        ),
+        new Question(
+            'qus32',
+            2,
+            'Are all your trucks faster',
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+        ),
     ],
 };

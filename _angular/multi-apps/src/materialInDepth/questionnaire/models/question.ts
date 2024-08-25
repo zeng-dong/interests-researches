@@ -1,16 +1,26 @@
 export class Question {
     id: string;
     displayOrder: number;
-    name: string;
     text: string;
     answer: Answer | undefined;
     child: Question | undefined;
 
-    constructor(id: string, displayOrder: number, name: string, text: string) {
+    constructor(
+        id: string,
+        displayOrder: number,
+        text: string,
+        answer?: Answer,
+        child?: Question) {
+
         this.id = id;
         this.displayOrder = displayOrder;
-        this.name = name;
         this.text = text;
+        this.answer = answer ? answer : undefined;
+        this.child = child ? child : undefined;
+    }
+
+    reportAnswer(report: any) {
+        Reflect.set(report, this.id, this.answer?.value);
     }
 }
 
@@ -41,14 +51,22 @@ export class Questionnair {
 }
 
 export class Answer {
-    result: string | boolean | undefined;
+    value: string | boolean | undefined;
+    config: AnswerConfiguration;
+
+    constructor(config: AnswerConfiguration) {
+        this.config = config;
+        this.value = undefined;
+    }
+}
+
+export class AnswerConfiguration {
     type: AnswerDataType;
     maxLength: number | undefined;
 
     constructor(type: AnswerDataType, maxLength?: number) {
         this.type = type;
-        this.maxLength = maxLength;
-        this.result = undefined;
+        this.maxLength = maxLength ? maxLength : undefined;
     }
 }
 
@@ -57,5 +75,4 @@ export enum AnswerDataType {
     longText,
     shortText,
     multipleText,
-
 }
