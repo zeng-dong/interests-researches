@@ -2,7 +2,13 @@
     <div *ngSwitchCase="1">
         <mat-form-field>
             <mat-label>Please explain</mat-label>
-            <textarea matInput [(ngModel)]="answer.value"></textarea>
+            <textarea
+                matInput
+                name="{{ question.id }}"
+                [(ngModel)]="answer.value"
+                (ngModelChange)="valueChanged($event)"
+                required="{{ answer.config.isRequired }}"
+            ></textarea>
         </mat-form-field>
         <mat-error *ngIf="collecting && !answer.value">Required</mat-error>
     </div>
@@ -10,16 +16,25 @@
     <div *ngSwitchCase="2">
         <mat-form-field>
             <mat-label>Prompt goes here</mat-label>
-            <input matInput [(ngModel)]="answer.value" />
+            <input
+                name="{{ question.id }}"
+                matInput
+                [(ngModel)]="answer.value"
+                required="{{ answer.config.isRequired }}"
+            />
         </mat-form-field>
 
         <mat-error *ngIf="collecting && !answer.value">Required</mat-error>
     </div>
 
     <div *ngSwitchDefault>
-        <mat-radio-group (change)="selected($event)">
-            <mat-radio-button value="1">Yes</mat-radio-button>
-            <mat-radio-button value="2">No</mat-radio-button>
+        <mat-radio-group
+            name="{{ question.id }}"
+            (change)="selected($event)"
+            required="{{ answer.config.isRequired }}"
+        >
+            <mat-radio-button value="Y">Yes</mat-radio-button>
+            <mat-radio-button value="N">No</mat-radio-button>
         </mat-radio-group>
     </div>
 </ng-container>

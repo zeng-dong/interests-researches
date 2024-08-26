@@ -3,7 +3,7 @@ import {
     Question,
     QuestionnairOperation,
     QuestionnairOperationType,
-} from '../models/question';
+} from '../models/question.model';
 
 @Component({
     selector: 'qx-question',

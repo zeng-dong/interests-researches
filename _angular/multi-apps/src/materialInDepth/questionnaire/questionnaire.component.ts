@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './models/questionnaire.service';
-import { Questionnair, QuestionnairOperation } from './models/question';
+import { Questionnair, QuestionnairOperation } from './models/question.model';
 
 @Component({
     selector: 'qx-questionnaire',

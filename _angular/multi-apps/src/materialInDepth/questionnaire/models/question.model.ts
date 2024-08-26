@@ -1,4 +1,4 @@
-import { Answer } from './answer';
+import { Answer } from './answer.model';
 
 export class Question {
     id: string;
@@ -24,6 +24,8 @@ export class Question {
     reportAnswer(report: any) {
         Reflect.set(report, this.id, this.answer?.value);
     }
+
+    hasAnswer = (): boolean => this.answer.hasValue();
 }
 
 export class QuestionGroup {
@@ -36,6 +38,8 @@ export class QuestionGroup {
         this.name = name;
         this.questions = [];
     }
+
+    ////allQuestionsAnswered = (): boolean => this.questions.every(x => x.hasAnswer());
 }
 
 export class QuestionnairOperation {

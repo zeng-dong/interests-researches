@@ -1,6 +1,7 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Answer } from '../models/answer';
+import { Answer } from '../models/answer.model';
 import { MatRadioChange } from '@angular/material/radio';
+import { Question } from '../models/question.model';
 
 @Component({
     selector: 'qx-answer',
@@ -10,6 +11,7 @@ import { MatRadioChange } from '@angular/material/radio';
 export class AnswerComponent implements OnInit {
     @Input() answer!: Answer;
     @Input() collectAnswer: boolean = false;
+    @Input() question!: Question;
     collecting = false;
 
     constructor() {}
@@ -33,5 +35,9 @@ export class AnswerComponent implements OnInit {
                 }
             }
         }
+    }
+
+    valueChanged($event: any) {
+        console.log('in Answer value changed: ', $event);
     }
 }

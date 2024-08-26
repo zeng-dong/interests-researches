@@ -5,10 +5,10 @@ import {
     Questionnair,
     QuestionnairOperation,
     QuestionnairOperationType,
-} from './question';
-import { Answer } from './answer';
-import { AnswerDataType } from './answer';
-import { AnswerConfiguration } from './answer';
+} from './question.model';
+import { Answer } from './answer.model';
+import { AnswerDataType } from './answer.model';
+import { AnswerConfiguration } from './answer.model';
 
 @Injectable({
     providedIn: 'root',
@@ -50,25 +50,25 @@ const acord130: QuestionGroup = {
             'qus1',
             1,
             'Is your company in Texas',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
         ),
         new Question(
             'qus2',
             2,
             'Is your company doing well',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, false))
         ),
         new Question(
             'qus3',
             3,
             'Please write down your explanation',
-            new Answer(new AnswerConfiguration(AnswerDataType.longText))
+            new Answer(new AnswerConfiguration(AnswerDataType.longText, false))
         ),
         new Question(
             'qus4',
             4,
             'Give us a short value',
-            new Answer(new AnswerConfiguration(AnswerDataType.shortText))
+            new Answer(new AnswerConfiguration(AnswerDataType.shortText, true))
         ),
     ],
 };
@@ -81,19 +81,21 @@ const acord125: QuestionGroup = {
             'qus21',
             1,
             'Is your company doing nice business',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
         ),
         new Question(
             'qus22',
             2,
             'Is your company making bad money',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
         ),
         new Question(
             'qus23',
             3,
             'Pick all the possible types of customers',
-            new Answer(new AnswerConfiguration(AnswerDataType.multipleText))
+            new Answer(
+                new AnswerConfiguration(AnswerDataType.multipleText, true)
+            )
         ),
     ],
 };
@@ -106,13 +108,13 @@ const supplemental: QuestionGroup = {
             'qus31',
             1,
             'Are all your trucks in red color',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
         ),
         new Question(
             'qus32',
             2,
             'Are all your trucks faster',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
         ),
     ],
 };
