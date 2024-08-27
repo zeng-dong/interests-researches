@@ -5,14 +5,14 @@ export class Question {
     displayOrder: number;
     text: string;
     answer: Answer;
-    child: Question | undefined;
+    child: Question | CompositeQuestion | undefined;
 
     constructor(
         id: string,
         displayOrder: number,
         text: string,
         answer: Answer,
-        child?: Question
+        child?: Question | CompositeQuestion
     ) {
         this.id = id;
         this.displayOrder = displayOrder;
@@ -26,6 +26,33 @@ export class Question {
     }
 
     hasAnswer = (): boolean => this.answer.hasValue();
+    isCompositeQuestion = (): boolean => false;
+    isSimpleQuestion = (): boolean => true;
+}
+
+export class CompositeQuestion {
+    id: string;
+    text: string;
+    questions: Question[];
+
+    constructor(id: string, text: string, questions: Question[]) {
+        this.id = id;
+        this.text = text;
+        this.questions = questions;
+    }
+
+    reportAnswer(report: any) {
+        const value = {};
+
+        this.questions.forEach((q) => {
+            q.reportAnswer(value);
+        });
+        Reflect.set(report, this.id, value);
+    }
+
+    hasAnswer = (): boolean => this.questions.every((q) => q.hasAnswer());
+    isCompositeQuestion = (): boolean => true;
+    isSimpleQuestion = (): boolean => false;
 }
 
 export class QuestionGroup {
