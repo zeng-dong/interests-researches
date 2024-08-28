@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import {
-    Question,
-    QuestionnairePage,
-    Questionnair,
-    QuestionnairOperation,
-    QuestionnairOperationType,
-} from './question.model';
+import { Question } from './question.model';
+import { Questionnair } from './questionnaire.model';
+import { QuestionnairOperationType } from './questionnaire.model';
+import { QuestionnairOperation } from './questionnaire.model';
+import { QuestionnairePage } from './questionnaire.model';
 import { Answer } from './answer.model';
 import { AnswerDataType } from './answer.model';
 import { AnswerConfiguration } from './answer.model';
@@ -28,7 +26,7 @@ export class QuestionnaireService {
     getPaperWork(qx: Questionnair) {
         const flattened: any = {};
 
-        qx.groups.forEach((g) => {
+        qx.pages.forEach((g) => {
             g.questions.forEach((q) => q.reportAnswer(flattened));
         });
 

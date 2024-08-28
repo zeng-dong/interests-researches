@@ -63,20 +63,6 @@ export class CompositeQuestion {
     isSimpleQuestion = (): boolean => false;
 }
 
-export class QuestionnairePage {
-    displayOrder: number;
-    name: string;
-    questions: Question[];
-
-    constructor(displayOrder: number, name: string) {
-        this.displayOrder = displayOrder;
-        this.name = name;
-        this.questions = [];
-    }
-
-    ////allQuestionsAnswered = (): boolean => this.questions.every(x => x.hasAnswer());
-}
-
 export class SecondaryQuestion {
     id: string | undefined;
     text: string;
@@ -94,37 +80,6 @@ export class SecondaryQuestion {
         this.questions = questions;
         this.type = type;
     }
-}
-
-export class QuestionnairOperation {
-    type: QuestionnairOperationType;
-
-    constructor(type: QuestionnairOperationType) {
-        this.type = type;
-    }
-
-    isChangeToNextGroup = (): boolean =>
-        this.type === QuestionnairOperationType.changeToNextGroup;
-}
-
-export class Questionnair {
-    groups: QuestionnairePage[];
-    name: string;
-
-    constructor(name: string) {
-        this.name = name;
-        this.groups = [];
-    }
-
-    add(group: QuestionnairePage): void {
-        this.groups.push(group);
-    }
-}
-
-export enum QuestionnairOperationType {
-    none,
-    changeToNextGroup,
-    changeToPreviousGroup,
 }
 
 export enum SecondaryQuestionType {

@@ -1,9 +1,7 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
-import {
-    Question,
-    QuestionnairOperation,
-    QuestionnairOperationType,
-} from '../models/question.model';
+import { Question } from '../models/question.model';
+import { QuestionnairOperationType } from '../models/questionnaire.model';
+import { QuestionnairOperation } from '../models/questionnaire.model';
 
 @Component({
     selector: 'qx-question',
