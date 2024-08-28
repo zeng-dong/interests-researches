@@ -5,29 +5,37 @@ export class Question {
     displayOrder: number;
     text: string;
     answer: Answer;
-    child: Question | CompositeQuestion | undefined;
+    child: Question | undefined;
+    childCompositeQuestion: CompositeQuestion | undefined;
 
     constructor(
         id: string,
         displayOrder: number,
         text: string,
         answer: Answer,
-        child?: Question | CompositeQuestion
+        child: Question | undefined,
+        compositeChild: CompositeQuestion | undefined
     ) {
         this.id = id;
         this.displayOrder = displayOrder;
         this.text = text;
         this.answer = answer;
-        this.child = child ? child : undefined;
+        this.child = child;
+        this.childCompositeQuestion = compositeChild;
     }
 
     reportAnswer(report: any) {
         Reflect.set(report, this.id, this.answer?.value);
     }
 
+    hasChildQuestion = () =>
+        this.child != undefined || this.childCompositeQuestion != null;
+
     hasAnswer = (): boolean => this.answer.hasValue();
-    isCompositeQuestion = (): boolean => false;
-    isSimpleQuestion = (): boolean => true;
+
+    isCompositeQuestion = (): boolean => !!this.childCompositeQuestion;
+
+    isSimpleQuestion = (): boolean => !!this.child;
 }
 
 export class CompositeQuestion {
@@ -55,7 +63,7 @@ export class CompositeQuestion {
     isSimpleQuestion = (): boolean => false;
 }
 
-export class QuestionGroup {
+export class QuestionnairePage {
     displayOrder: number;
     name: string;
     questions: Question[];
@@ -67,6 +75,25 @@ export class QuestionGroup {
     }
 
     ////allQuestionsAnswered = (): boolean => this.questions.every(x => x.hasAnswer());
+}
+
+export class SecondaryQuestion {
+    id: string | undefined;
+    text: string;
+    questions: Question[];
+    type: SecondaryQuestionType;
+
+    constructor(
+        id: string | undefined,
+        text: string,
+        questions: Question[],
+        type: SecondaryQuestionType
+    ) {
+        this.id = id;
+        this.text = text;
+        this.questions = questions;
+        this.type = type;
+    }
 }
 
 export class QuestionnairOperation {
@@ -81,7 +108,7 @@ export class QuestionnairOperation {
 }
 
 export class Questionnair {
-    groups: QuestionGroup[];
+    groups: QuestionnairePage[];
     name: string;
 
     constructor(name: string) {
@@ -89,7 +116,7 @@ export class Questionnair {
         this.groups = [];
     }
 
-    add(group: QuestionGroup): void {
+    add(group: QuestionnairePage): void {
         this.groups.push(group);
     }
 }
@@ -98,4 +125,9 @@ export enum QuestionnairOperationType {
     none,
     changeToNextGroup,
     changeToPreviousGroup,
+}
+
+export enum SecondaryQuestionType {
+    simple,
+    composite,
 }

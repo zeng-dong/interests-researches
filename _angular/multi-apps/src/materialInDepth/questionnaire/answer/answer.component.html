@@ -36,6 +36,18 @@
             <mat-radio-button value="Y">Yes</mat-radio-button>
             <mat-radio-button value="N">No</mat-radio-button>
         </mat-radio-group>
+
+        <div *ngIf="answer.value === 'Y'">
+            <mat-form-field>
+                <mat-label>{{ question.child?.text }}</mat-label>
+                <input
+                    *ngIf="question.child && question.child.isSimpleQuestion()"
+                    name="{{ question.child.id }}"
+                    matInput
+                    [(ngModel)]="question.child.answer.value"
+                />
+            </mat-form-field>
+        </div>
     </div>
 </ng-container>
 

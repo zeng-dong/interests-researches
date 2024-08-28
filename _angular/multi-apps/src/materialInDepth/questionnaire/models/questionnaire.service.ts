@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
     Question,
-    QuestionGroup,
+    QuestionnairePage,
     Questionnair,
     QuestionnairOperation,
     QuestionnairOperationType,
@@ -42,7 +42,7 @@ export class QuestionnaireService {
         new QuestionnairOperation(QuestionnairOperationType.none);
 }
 
-const acord130: QuestionGroup = {
+const acord130: QuestionnairePage = {
     displayOrder: 0,
     name: 'General Questions',
     questions: [
@@ -50,7 +50,15 @@ const acord130: QuestionGroup = {
             'qus1',
             1,
             'Is your company in Texas',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
+            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true)),
+            new Question(
+                'qus1_explain',
+                0,
+                'Please explain',
+                new Answer(
+                    new AnswerConfiguration(AnswerDataType.longText, true)
+                )
+            )
         ),
         new Question(
             'qus2',
@@ -73,7 +81,7 @@ const acord130: QuestionGroup = {
     ],
 };
 
-const acord125: QuestionGroup = {
+const acord125: QuestionnairePage = {
     displayOrder: 1,
     name: 'Special Questions',
     questions: [
@@ -100,7 +108,7 @@ const acord125: QuestionGroup = {
     ],
 };
 
-const supplemental: QuestionGroup = {
+const supplemental: QuestionnairePage = {
     displayOrder: 2,
     name: 'Supplemental Questions',
     questions: [
