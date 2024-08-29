@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Question } from './question.model';
+import {
+    Question,
+    SecondaryQuestion,
+    SecondaryQuestionType,
+} from './question.model';
 import { Questionnair } from './questionnaire.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
@@ -49,33 +53,44 @@ const acord130: QuestionnairePage = {
             1,
             'Is your company in Texas',
             new Answer(new AnswerConfiguration(AnswerDataType.boolean, true)),
-            new Question(
+            new SecondaryQuestion(
                 'qus1_explain',
-                0,
                 'Please explain',
-                new Answer(
-                    new AnswerConfiguration(AnswerDataType.longText, true)
-                )
+                [
+                    new Question(
+                        'qus1_explain',
+                        1,
+                        'Please explain',
+                        new Answer(
+                            new AnswerConfiguration(
+                                AnswerDataType.shortText,
+                                true
+                            )
+                        ),
+                        undefined
+                    ),
+                ],
+                SecondaryQuestionType.simple
             )
         ),
-        new Question(
-            'qus2',
-            2,
-            'Is your company doing well',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, false))
-        ),
-        new Question(
-            'qus3',
-            3,
-            'Please write down your explanation',
-            new Answer(new AnswerConfiguration(AnswerDataType.longText, false))
-        ),
-        new Question(
-            'qus4',
-            4,
-            'Give us a short value',
-            new Answer(new AnswerConfiguration(AnswerDataType.shortText, true))
-        ),
+        // new Question(
+        //     'qus2',
+        //     2,
+        //     'Is your company doing well',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, false))
+        // ),
+        // new Question(
+        //     'qus3',
+        //     3,
+        //     'Please write down your explanation',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.longText, false))
+        // ),
+        // new Question(
+        //     'qus4',
+        //     4,
+        //     'Give us a short value',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.shortText, true))
+        // ),
     ],
 };
 
@@ -83,26 +98,26 @@ const acord125: QuestionnairePage = {
     displayOrder: 1,
     name: 'Special Questions',
     questions: [
-        new Question(
-            'qus21',
-            1,
-            'Is your company doing nice business',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
-        ),
-        new Question(
-            'qus22',
-            2,
-            'Is your company making bad money',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
-        ),
-        new Question(
-            'qus23',
-            3,
-            'Pick all the possible types of customers',
-            new Answer(
-                new AnswerConfiguration(AnswerDataType.multipleText, true)
-            )
-        ),
+        // new Question(
+        //     'qus21',
+        //     1,
+        //     'Is your company doing nice business',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
+        // ),
+        // new Question(
+        //     'qus22',
+        //     2,
+        //     'Is your company making bad money',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
+        // ),
+        // new Question(
+        //     'qus23',
+        //     3,
+        //     'Pick all the possible types of customers',
+        //     new Answer(
+        //         new AnswerConfiguration(AnswerDataType.multipleText, true)
+        //     )
+        // ),
     ],
 };
 
@@ -110,17 +125,17 @@ const supplemental: QuestionnairePage = {
     displayOrder: 2,
     name: 'Supplemental Questions',
     questions: [
-        new Question(
-            'qus31',
-            1,
-            'Are all your trucks in red color',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
-        ),
-        new Question(
-            'qus32',
-            2,
-            'Are all your trucks faster',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
-        ),
+        // new Question(
+        //     'qus31',
+        //     1,
+        //     'Are all your trucks in red color',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
+        // ),
+        // new Question(
+        //     'qus32',
+        //     2,
+        //     'Are all your trucks faster',
+        //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, true))
+        // ),
     ],
 };

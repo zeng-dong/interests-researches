@@ -1,7 +1,7 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Answer } from '../models/answer.model';
 import { MatRadioChange } from '@angular/material/radio';
-import { CompositeQuestion, Question } from '../models/question.model';
+import { Question } from '../models/question.model';
 
 @Component({
     selector: 'qx-answer',
@@ -14,20 +14,10 @@ export class AnswerComponent implements OnInit {
     @Input() question!: Question;
     collecting = false;
 
-    simpleChildQuestin: Question | undefined;
-    compositeChildQuestion: CompositeQuestion | undefined;
-
-
     constructor() {}
 
     ngOnInit() {
         console.log('ngOnInit, get question: ', this.question);
-        if ( this.question.hasChildQuestion() ){
-            if ( this.question.secondary?.isCompositeQuestion ){
-                this.compositeChildQuestion = this.question.secondary as unknown as CompositeQuestion;
-            }
-            else if ( this.question.secondary)
-        }
     }
 
     selected($event: MatRadioChange) {
