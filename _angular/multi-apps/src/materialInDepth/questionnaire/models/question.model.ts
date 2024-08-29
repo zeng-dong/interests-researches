@@ -5,62 +5,29 @@ export class Question {
     displayOrder: number;
     text: string;
     answer: Answer;
-    child: Question | undefined;
-    childCompositeQuestion: CompositeQuestion | undefined;
+    secondary: SecondaryQuestion | undefined;
 
     constructor(
         id: string,
         displayOrder: number,
         text: string,
         answer: Answer,
-        child: Question | undefined,
-        compositeChild: CompositeQuestion | undefined
+        secondary: SecondaryQuestion | undefined
     ) {
         this.id = id;
         this.displayOrder = displayOrder;
         this.text = text;
         this.answer = answer;
-        this.child = child;
-        this.childCompositeQuestion = compositeChild;
+        this.secondary = secondary;
     }
 
     reportAnswer(report: any) {
         Reflect.set(report, this.id, this.answer?.value);
     }
 
-    hasChildQuestion = () =>
-        this.child != undefined || this.childCompositeQuestion != null;
+    hasSecondaryQuestion = () => this.secondary != undefined;
 
     hasAnswer = (): boolean => this.answer.hasValue();
-
-    isCompositeQuestion = (): boolean => !!this.childCompositeQuestion;
-
-    isSimpleQuestion = (): boolean => !!this.child;
-}
-
-export class CompositeQuestion {
-    id: string;
-    text: string;
-    questions: Question[];
-
-    constructor(id: string, text: string, questions: Question[]) {
-        this.id = id;
-        this.text = text;
-        this.questions = questions;
-    }
-
-    reportAnswer(report: any) {
-        const value = {};
-
-        this.questions.forEach((q) => {
-            q.reportAnswer(value);
-        });
-        Reflect.set(report, this.id, value);
-    }
-
-    hasAnswer = (): boolean => this.questions.every((q) => q.hasAnswer());
-    isCompositeQuestion = (): boolean => true;
-    isSimpleQuestion = (): boolean => false;
 }
 
 export class SecondaryQuestion {

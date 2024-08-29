@@ -23,10 +23,10 @@ export class AnswerComponent implements OnInit {
     ngOnInit() {
         console.log('ngOnInit, get question: ', this.question);
         if ( this.question.hasChildQuestion() ){
-            if ( this.question.child?.isCompositeQuestion ){
-                this.compositeChildQuestion = this.question.child as unknown as CompositeQuestion;
+            if ( this.question.secondary?.isCompositeQuestion ){
+                this.compositeChildQuestion = this.question.secondary as unknown as CompositeQuestion;
             }
-            else if ( this.question.child)
+            else if ( this.question.secondary)
         }
     }
 
