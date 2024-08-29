@@ -10,7 +10,6 @@ import { QuestionnairOperation } from './models/questionnaire.model';
 })
 export class QuestionnaireComponent implements OnInit {
     qx!: Questionnair;
-    noToAll: boolean | undefined;
     operation: QuestionnairOperation;
 
     constructor(private qxService: QuestionnaireService) {

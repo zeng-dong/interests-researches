@@ -1,22 +1,11 @@
 <h3>{{ qx.name }} Questionnaire</h3>
 
 <mat-tab-group>
-    <mat-tab *ngFor="let page of qx.pages">
-        <ng-template mat-tab-label>{{ page.name }}</ng-template>
+    <mat-tab *ngFor="let section of qx.sections">
+        <ng-template mat-tab-label>{{ section.name }}</ng-template>
 
-        <section class="example-section">
-            <mat-checkbox class="example-margin" [(ngModel)]="noToAll"
-                >No to all</mat-checkbox
-            >
-        </section>
-
-        <div *ngFor="let q of page.questions">
-            <qx-question
-                [question]="q"
-                [setNo]="noToAll"
-                [operation]="operation"
-            ></qx-question>
-        </div>
+        <qx-questionnaire-section
+            [section]="section" />
     </mat-tab>
 </mat-tab-group>
 

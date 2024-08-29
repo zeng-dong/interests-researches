@@ -1,0 +1,13 @@
+<section class="example-section">
+    <mat-checkbox class="example-margin" [(ngModel)]="noToAll"
+        >No to all</mat-checkbox
+    >
+</section>
+
+<div *ngFor="let q of section.questions">
+    <qx-question
+        [question]="q"
+        [setNo]="noToAll"
+        [operation]="operation"
+    ></qx-question>
+</div>

@@ -1,6 +1,6 @@
 import { Question } from './question.model';
 
-export class QuestionnairePage {
+export class QuestionnaireSection {
     displayOrder: number;
     name: string;
     questions: Question[];
@@ -30,15 +30,15 @@ export enum QuestionnairOperationType {
 }
 
 export class Questionnair {
-    pages: QuestionnairePage[];
+    sections: QuestionnaireSection[];
     name: string;
 
     constructor(name: string) {
         this.name = name;
-        this.pages = [];
+        this.sections = [];
     }
 
-    add(page: QuestionnairePage): void {
-        this.pages.push(page);
+    add(section: QuestionnaireSection): void {
+        this.sections.push(section);
     }
 }

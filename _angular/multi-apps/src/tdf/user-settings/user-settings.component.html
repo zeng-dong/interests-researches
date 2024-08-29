@@ -1,10 +1,11 @@
 <div class="container">
     <h2>User Settings</h2>
 
-    <form>
+    <form #form="ngForm">
         <div class="form-group">
             <label for="name">Name</label>
             <input
+                ngModel
                 id="name"
                 name="name"
                 class="form-control"
@@ -12,22 +13,27 @@
             />
         </div>
 
-        <div class="form-check form-group">
-            <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="emailOffers"
-            />
-            <label class="form-check-label" for="emailOffers">
-                Email Special Offers
-            </label>
+        <div class="form-group">
+            <div class="form-check">
+                <input
+                    ngModel
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="emailOffers"
+                    name="email"
+                />
+                <label class="form-check-label" for="emailOffers">
+                    Email Special Offers
+                </label>
+            </div>
         </div>
 
         <h5>User Interface Style</h5>
         <div class="form-group">
             <div class="form-check">
                 <input
+                    ngModel
                     class="form-check-input"
                     type="radio"
                     name="interfaceStyle"
@@ -42,6 +48,7 @@
 
             <div class="form-check">
                 <input
+                    ngModel
                     class="form-check-input"
                     type="radio"
                     name="interfaceStyle"
@@ -55,6 +62,7 @@
 
             <div class="form-check">
                 <input
+                    ngModel
                     class="form-check-input"
                     type="radio"
                     name="interfaceStyle"
@@ -67,6 +75,49 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="subscriptionType"> Subscription Type </label>
+
+            <select
+                ngModel
+                class="form-select"
+                id="subscriptionType"
+                aria-label="subscription type"
+                name="subscriptionType"
+            >
+                <option selected>Monthly</option>
+                <option>Annual</option>
+                <option>Lifetime</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea
+                ngModel
+                id="notes"
+                name="notes"
+                class="form-control"
+                rows="3"
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                ngModel
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+            />
+        </div>
+
         <button class="btn btn-primary">Send</button>
     </form>
+</div>
+
+<div>
+    FORM:
+    {{ form.value | json }}
 </div>

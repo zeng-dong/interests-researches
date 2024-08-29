@@ -7,7 +7,7 @@ import {
 import { Questionnair } from './questionnaire.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
-import { QuestionnairePage } from './questionnaire.model';
+import { QuestionnaireSection } from './questionnaire.model';
 import { Answer } from './answer.model';
 import { AnswerDataType } from './answer.model';
 import { AnswerConfiguration } from './answer.model';
@@ -30,7 +30,7 @@ export class QuestionnaireService {
     getPaperWork(qx: Questionnair) {
         const flattened: any = {};
 
-        qx.pages.forEach((g) => {
+        qx.sections.forEach((g) => {
             g.questions.forEach((q) => q.reportAnswer(flattened));
         });
 
@@ -44,7 +44,7 @@ export class QuestionnaireService {
         new QuestionnairOperation(QuestionnairOperationType.none);
 }
 
-const acord130: QuestionnairePage = {
+const acord130: QuestionnaireSection = {
     displayOrder: 0,
     name: 'General Questions',
     questions: [
@@ -94,7 +94,7 @@ const acord130: QuestionnairePage = {
     ],
 };
 
-const acord125: QuestionnairePage = {
+const acord125: QuestionnaireSection = {
     displayOrder: 1,
     name: 'Special Questions',
     questions: [
@@ -121,7 +121,7 @@ const acord125: QuestionnairePage = {
     ],
 };
 
-const supplemental: QuestionnairePage = {
+const supplemental: QuestionnaireSection = {
     displayOrder: 2,
     name: 'Supplemental Questions',
     questions: [
