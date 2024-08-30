@@ -2,7 +2,7 @@ export class AnswerConfiguration {
     type: AnswerDataType;
     maxLength: number | undefined;
     isRequired: boolean;
-    validators = 'req email xyz';
+    ////validators = 'req email xyz';
 
     constructor(type: AnswerDataType, isRequired: boolean, maxLength?: number) {
         this.type = type;
@@ -28,4 +28,6 @@ export class Answer {
     }
 
     hasValue = (): boolean => this.value != undefined;
+
+    hasAffirmativeValue = (): boolean => 'Y' === this.value;
 }

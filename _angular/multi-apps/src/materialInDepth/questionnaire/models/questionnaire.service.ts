@@ -44,55 +44,78 @@ export class QuestionnaireService {
         new QuestionnairOperation(QuestionnairOperationType.none);
 }
 
-const acord130: QuestionnaireSection = {
-    displayOrder: 0,
-    name: 'General Questions',
-    questions: [
-        new Question(
-            'qus1',
-            1,
-            'Is your company in Texas',
-            new Answer(new AnswerConfiguration(AnswerDataType.boolean, true)),
-            new SecondaryQuestion(
-                'qus1_explain',
-                'Please explain',
-                [
-                    new Question(
-                        'qus1_explain',
-                        1,
-                        'Please explain',
-                        new Answer(
-                            new AnswerConfiguration(
-                                AnswerDataType.shortText,
-                                true
-                            )
-                        ),
-                        undefined
-                    ),
-                ],
-                SecondaryQuestionType.simple
-            )
-        ),
-        // new Question(
-        //     'qus2',
-        //     2,
-        //     'Is your company doing well',
-        //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, false))
-        // ),
-        // new Question(
-        //     'qus3',
-        //     3,
-        //     'Please write down your explanation',
-        //     new Answer(new AnswerConfiguration(AnswerDataType.longText, false))
-        // ),
-        // new Question(
-        //     'qus4',
-        //     4,
-        //     'Give us a short value',
-        //     new Answer(new AnswerConfiguration(AnswerDataType.shortText, true))
-        // ),
-    ],
-};
+function createQuestionnaireSectionOne(): QuestionnaireSection {
+    const section: QuestionnaireSection = {
+        displayOrder: 0,
+        name: 'General Questions',
+        questions: [],
+    };
+
+    let questionDisplayOrder = 1;
+    section.questions.push(
+        createStandardTopLevelQuestion(
+            'quss1',
+            'Iss your company in Texas?',
+            questionDisplayOrder++,
+            'qus1_explain',
+            'Please explain'
+        )
+    );
+
+    section.questions.push(
+        createStandardTopLevelQuestion(
+            'quss2',
+            'Iss your company in Texas and doing well?',
+            questionDisplayOrder++,
+            'qus2_explain',
+            'Please explain'
+        )
+    );
+
+    return section;
+}
+
+const acord130 = createQuestionnaireSectionOne();
+
+// const acord130: QuestionnaireSection = {
+//     displayOrder: 0,
+//     name: 'General Questions',
+//     questions: [
+//         createStandardTopLevelQuestion(
+//             'quss1',
+//             'Iss your company in Texas?',
+//             questionDisplayOrder,
+//             'qus1_explain',
+//             'Please explain'
+//         ),
+
+//         new Question(
+//             'qus1',
+//             questionDisplayOrder++,
+//             'Is your company in Texas',
+//             new Answer(new AnswerConfiguration(AnswerDataType.boolean, true)),
+//             createStandardExplain('qus1_explain', 'Please explain')
+//         ),
+//         // new Question(
+//         //     'qus2',
+//         //     2,
+//         //     'Is your company doing well',
+//         //     new Answer(new AnswerConfiguration(AnswerDataType.boolean, false))
+//         // ),
+//         // new Question(
+//         //     'qus3',
+//         //     3,
+//         //     'Please write down your explanation',
+//         //     new Answer(new AnswerConfiguration(AnswerDataType.longText, false))
+//         // ),
+//         // new Question(
+//         //     'qus4',
+//         //     4,
+//         //     'Give us a short value',
+//         //     new Answer(new AnswerConfiguration(AnswerDataType.shortText, true))
+//         // ),
+//     ],
+// };
 
 const acord125: QuestionnaireSection = {
     displayOrder: 1,
@@ -139,3 +162,44 @@ const supplemental: QuestionnaireSection = {
         // ),
     ],
 };
+
+function createStandardTopLevelQuestion(
+    id: string,
+    text: string,
+    displayOrder: number,
+    secondaryId?: string,
+    secondaryText?: string
+): Question {
+    const q = new Question(
+        id,
+        displayOrder++,
+        text,
+        new Answer(new AnswerConfiguration(AnswerDataType.boolean, true)),
+        undefined
+    );
+
+    if (secondaryId && secondaryText) {
+        q.secondary = createStandardExplain(secondaryId, secondaryText);
+    }
+
+    return q;
+}
+
+function createStandardExplain(id: string, text: string): SecondaryQuestion {
+    return new SecondaryQuestion(
+        id,
+        text,
+        [
+            new Question(
+                id,
+                1,
+                text,
+                new Answer(
+                    new AnswerConfiguration(AnswerDataType.longText, true, 500)
+                ),
+                undefined
+            ),
+        ],
+        SecondaryQuestionType.simple
+    );
+}

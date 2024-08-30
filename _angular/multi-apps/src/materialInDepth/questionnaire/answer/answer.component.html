@@ -1,16 +1,18 @@
-<ng-container [ngSwitch]="answer.config.type">
+<ng-container [ngSwitch]="question.answer.config.type">
     <div *ngSwitchCase="1">
         <mat-form-field>
             <mat-label>Please explain</mat-label>
             <textarea
                 matInput
                 name="{{ question.id }}"
-                [(ngModel)]="answer.value"
+                [(ngModel)]="question.answer.value"
                 (ngModelChange)="valueChanged($event)"
-                required="{{ answer.config.isRequired }}"
+                required="{{ question.answer.config.isRequired }}"
             ></textarea>
         </mat-form-field>
-        <mat-error *ngIf="collecting && !answer.value">Required</mat-error>
+        <mat-error *ngIf="collecting && !question.answer.value"
+            >Required</mat-error
+        >
     </div>
 
     <div *ngSwitchCase="2">
@@ -19,26 +21,33 @@
             <input
                 name="{{ question.id }}"
                 matInput
-                [(ngModel)]="answer.value"
-                required="{{ answer.config.isRequired }}"
+                [(ngModel)]="question.answer.value"
+                required="{{ question.answer.config.isRequired }}"
             />
         </mat-form-field>
 
-        <mat-error *ngIf="collecting && !answer.value">Required</mat-error>
+        <mat-error *ngIf="collecting && !question.answer.value"
+            >Required</mat-error
+        >
     </div>
 
     <div *ngSwitchDefault>
         <mat-radio-group
             name="{{ question.id }}"
             (change)="selected($event)"
-            required="{{ answer.config.isRequired }}"
+            [(ngModel)]="question.answer.value"
+            required="{{ question.answer.config.isRequired }}"
         >
             <mat-radio-button value="Y">Yes</mat-radio-button>
             <mat-radio-button value="N">No</mat-radio-button>
         </mat-radio-group>
+
+        <p color="accent" *ngIf="collecting && !question.answer.value">
+            Required
+        </p>
     </div>
 </ng-container>
 
 <p>
-    {{ answer | json }}
+    {{ question.answer | json }}
 </p>

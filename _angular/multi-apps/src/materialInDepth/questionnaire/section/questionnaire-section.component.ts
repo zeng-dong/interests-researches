@@ -1,9 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    Component,
+    Input,
+    OnInit,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
 import {
     QuestionnaireSection,
     QuestionnairOperation,
 } from '../models/questionnaire.model';
-import { QuestionnaireService } from '../models/questionnaire.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'qx-questionnaire-section',
@@ -13,17 +19,33 @@ import { QuestionnaireService } from '../models/questionnaire.service';
 export class QuestionnaireSectionComponent implements OnInit {
     @Input() section!: QuestionnaireSection;
     noToAll: boolean | undefined;
-    operation: QuestionnairOperation;
+    @Input() operation!: QuestionnairOperation;
 
-    constructor(private qxService: QuestionnaireService) {
-        this.operation = qxService.createIdlingOperation();
-    }
+    constructor() {}
 
     ngOnInit(): void {
-        throw new Error('Method not implemented.');
+        console.log(
+            'in QuestionnaireSectionComponent received operation: ',
+            this.operation
+        );
     }
 
-    collect() {
-        this.operation = this.qxService.createChangeToNextGroupOperation();
+    ngOnChanges(changes: SimpleChanges) {
+        for (const propName in changes) {
+            if (propName === 'operation') {
+                const change = changes[propName];
+
+                console.log(
+                    'operation changed, received by QuestionnaireSectionComponent: ',
+                    this.operation
+                );
+
+                // if (change.currentValue.isChangeToNextGroup()) {
+                //     this.collectAnswer = true;
+                // }
+            }
+        }
     }
+
+    collect() {}
 }

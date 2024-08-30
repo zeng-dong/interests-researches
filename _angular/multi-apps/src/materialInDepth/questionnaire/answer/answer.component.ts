@@ -2,6 +2,7 @@ import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Answer } from '../models/answer.model';
 import { MatRadioChange } from '@angular/material/radio';
 import { Question } from '../models/question.model';
+import { QuestionnairOperation } from '../models/questionnaire.model';
 
 @Component({
     selector: 'qx-answer',
@@ -9,9 +10,9 @@ import { Question } from '../models/question.model';
     styleUrls: ['./answer.component.scss'],
 })
 export class AnswerComponent implements OnInit {
-    @Input() answer!: Answer;
     @Input() collectAnswer: boolean = false;
     @Input() question!: Question;
+    @Input() operation!: QuestionnairOperation;
     collecting = false;
 
     constructor() {}
@@ -23,16 +24,16 @@ export class AnswerComponent implements OnInit {
     selected($event: MatRadioChange) {
         console.log($event.value);
 
-        if (this.answer) this.answer.value = $event.value;
+        if (this.question.answer) this.question.answer.value = $event.value;
     }
 
     ngOnChanges(changes: SimpleChanges) {
         console.log('AnswerComponent received: ', changes);
 
         for (const propName in changes) {
-            if (propName === 'collectAnswer') {
+            if (propName === 'operation') {
                 const change = changes[propName];
-                if (!change.previousValue && change.currentValue) {
+                if (change.currentValue.isChangeToNextGroup()) {
                     this.collecting = true;
                 }
             }

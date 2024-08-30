@@ -17,16 +17,21 @@ export class QuestionComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(
+            'in QuestionComponent received operation: ',
+            this.operation
+        );
+    }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
-
         for (const propName in changes) {
-            console.log('received ', propName);
-
             if (propName === 'operation') {
                 const change = changes[propName];
+                console.log(
+                    'operation changed, received by QuestionnaireSectionComponent: ',
+                    this.operation
+                );
                 if (change.currentValue.isChangeToNextGroup()) {
                     this.collectAnswer = true;
                 }

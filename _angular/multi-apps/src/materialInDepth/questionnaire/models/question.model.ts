@@ -28,6 +28,8 @@ export class Question {
     hasSecondaryQuestion = () => this.secondary != undefined;
 
     hasAnswer = (): boolean => this.answer.hasValue();
+
+    isSecondaryTriggered = (): boolean => this.hasSecondaryQuestion() && this.answer.hasAffirmativeValue();
 }
 
 export class SecondaryQuestion {

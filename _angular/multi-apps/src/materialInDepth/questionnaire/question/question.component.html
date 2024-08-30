@@ -4,12 +4,10 @@
     </mat-card-header>
 
     <mat-card-content>
-        <mat-radio-group aria-label="Select an option">
-            <qx-answer
-                [answer]="question.answer"
-                [collectAnswer]="collectAnswer"
-                [question]="question"
-            ></qx-answer>
-        </mat-radio-group>
+        <qx-answer
+            [collectAnswer]="collectAnswer"
+            [question]="question"
+            [operation]="operation"
+        ></qx-answer>
     </mat-card-content>
 </mat-card>

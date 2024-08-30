@@ -5,7 +5,7 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input
-                ngModel
+                [(ngModel)]="userSettings.name"
                 id="name"
                 name="name"
                 class="form-control"
@@ -16,7 +16,7 @@
         <div class="form-group">
             <div class="form-check">
                 <input
-                    ngModel
+                    [(ngModel)]="userSettings.emailOffers"
                     class="form-check-input"
                     type="checkbox"
                     value=""
@@ -33,7 +33,7 @@
         <div class="form-group">
             <div class="form-check">
                 <input
-                    ngModel
+                    [(ngModel)]="userSettings.interfaceStyle"
                     class="form-check-input"
                     type="radio"
                     name="interfaceStyle"
@@ -48,7 +48,7 @@
 
             <div class="form-check">
                 <input
-                    ngModel
+                    [(ngModel)]="userSettings.interfaceStyle"
                     class="form-check-input"
                     type="radio"
                     name="interfaceStyle"
@@ -62,7 +62,7 @@
 
             <div class="form-check">
                 <input
-                    ngModel
+                    [(ngModel)]="userSettings.interfaceStyle"
                     class="form-check-input"
                     type="radio"
                     name="interfaceStyle"
@@ -79,7 +79,7 @@
             <label for="subscriptionType"> Subscription Type </label>
 
             <select
-                ngModel
+                [(ngModel)]="userSettings.subscriptionType"
                 class="form-select"
                 id="subscriptionType"
                 aria-label="subscription type"
@@ -94,7 +94,7 @@
         <div class="form-group">
             <label for="notes">Notes</label>
             <textarea
-                ngModel
+                [(ngModel)]="userSettings.notes"
                 id="notes"
                 name="notes"
                 class="form-control"
