@@ -2,7 +2,7 @@ import { Answer } from './answer.model';
 
 export class Question {
     id: string;
-    displayOrder: number;
+    number: number;
     text: string;
     answer: Answer;
     secondary: SecondaryQuestion | undefined;
@@ -15,7 +15,7 @@ export class Question {
         secondary: SecondaryQuestion | undefined
     ) {
         this.id = id;
-        this.displayOrder = displayOrder;
+        this.number = displayOrder;
         this.text = text;
         this.answer = answer;
         this.secondary = secondary;
@@ -29,20 +29,21 @@ export class Question {
 
     hasAnswer = (): boolean => this.answer.hasValue();
 
-    isSecondaryTriggered = (): boolean => this.hasSecondaryQuestion() && this.answer.hasAffirmativeValue();
+    isSecondaryTriggered = (): boolean =>
+        this.hasSecondaryQuestion() && this.answer.hasAffirmativeValue();
 }
 
 export class SecondaryQuestion {
     id: string | undefined;
     text: string;
     questions: Question[];
-    type: SecondaryQuestionType;
+    type: QuestionType;
 
     constructor(
         id: string | undefined,
         text: string,
         questions: Question[],
-        type: SecondaryQuestionType
+        type: QuestionType
     ) {
         this.id = id;
         this.text = text;
@@ -51,7 +52,52 @@ export class SecondaryQuestion {
     }
 }
 
-export enum SecondaryQuestionType {
+export class UniversalQuestion {
+    id: string | undefined;
+    displayIndex: string | undefined;
+    text: string | undefined;
+    children: Question[];
+    type: QuestionType;
+    answer: Answer;
+    isChildQuestionTrigger: boolean = false;
+
+    constructor(
+        id: string | undefined,
+        displayIndex: string | undefined,
+        text: string,
+        questions: Question[],
+        type: QuestionType,
+        answer: Answer,
+        isTrigger?: boolean
+    ) {
+        this.id = id;
+        this.displayIndex = displayIndex;
+        this.text = text;
+        this.children = questions;
+        this.type = type;
+        this.answer = answer;
+        if ( isTrigger ) this.isChildQuestionTrigger = true;
+    }
+
+    reportAnswer(report: any) {
+        if (this.id) {
+            Reflect.set(report, this.id, this.answer.value);
+        }
+        //// set children
+    }
+
+    hasChildQuestions = () =>
+        this.children != undefined && this.children.length > 0;
+
+    hasAnswer = (): boolean => this.answer.hasValue();
+
+    isChildQuestionsTriggered = (): boolean =>
+        this.hasChildQuestions() && this.answer.hasAffirmativeValue();
+}
+
+export enum QuestionType {
     simple,
     composite,
+    single,
+    group
 }

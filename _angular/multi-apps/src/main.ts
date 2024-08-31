@@ -9,9 +9,9 @@ import { runTemplateDrivenForms } from './runners/templateDrivenForm';
 //runRoutingPlaybook();
 //runQuizSignals();
 
-//runMaterialInDepth();
+runMaterialInDepth();
 //runApp();
 //runApp2();
 //runApp3();
 
-runTemplateDrivenForms();
+//runTemplateDrivenForms();
