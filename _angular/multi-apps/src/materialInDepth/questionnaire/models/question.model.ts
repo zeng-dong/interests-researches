@@ -60,6 +60,9 @@ export class UniversalQuestion {
     type: QuestionType;
     answer: Answer;
     isChildQuestionTrigger: boolean = false;
+    sharedIds: string[] = []; /// or akas. some question answer pair in api contract are duplicated with different keys
+
+    /// "no to all" can be recorded in the api contract as a key value.
 
     constructor(
         id: string | undefined,
@@ -76,7 +79,7 @@ export class UniversalQuestion {
         this.children = questions;
         this.type = type;
         this.answer = answer;
-        if ( isTrigger ) this.isChildQuestionTrigger = true;
+        if (isTrigger) this.isChildQuestionTrigger = true;
     }
 
     reportAnswer(report: any) {
@@ -99,5 +102,7 @@ export enum QuestionType {
     simple,
     composite,
     single,
-    group
+    group,
+
+    //// question/single (with id), group (of questions, each with an id) , composite (one question with id, however without direct answer, with a group of questions , each with an id)
 }

@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-    Question,
-    SecondaryQuestion,
-    SecondaryQuestionType,
-} from './question.model';
+import { Question, SecondaryQuestion, QuestionType } from './question.model';
 import { Questionnair } from './questionnaire.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
@@ -200,6 +196,6 @@ function createStandardExplain(id: string, text: string): SecondaryQuestion {
                 undefined
             ),
         ],
-        SecondaryQuestionType.simple
+        QuestionType.simple
     );
 }
