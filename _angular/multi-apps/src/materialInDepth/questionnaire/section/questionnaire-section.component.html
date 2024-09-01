@@ -4,10 +4,15 @@
     </mat-checkbox>
 </section>
 
-<div *ngFor="let q of section.questions">
-    <qx-question
-        [question]="q"
-        [setNo]="noToAll"
-        [operation]="operation"
-    ></qx-question>
-</div>
+<form #myform="ngForm">
+    <div *ngFor="let q of section.questions">
+        <qx-question
+            [question]="q"
+            [setNo]="noToAll"
+            [operation]="operation"
+        ></qx-question>
+    </div>
+</form>
+
+<h3>form value:</h3>
+{{ myform.value | json }}

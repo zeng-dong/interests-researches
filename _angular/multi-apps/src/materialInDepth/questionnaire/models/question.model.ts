@@ -1,11 +1,15 @@
 import { Answer } from './answer.model';
 
+
+export type childQuestionTriggerFunc = (question: Question) => boolean;
+
 export class Question {
     id: string;
     number: number;
     text: string;
     answer: Answer;
     secondary: SecondaryQuestion | undefined;
+    trigger: childQuestionTriggerFunc | undefined;
 
     constructor(
         id: string,
@@ -19,6 +23,10 @@ export class Question {
         this.text = text;
         this.answer = answer;
         this.secondary = secondary;
+    }
+
+    getTrigger(): childQuestionTriggerFunc {
+        return () => this.answer.hasAffirmativeValue();
     }
 
     reportAnswer(report: any) {
@@ -106,3 +114,6 @@ export enum QuestionType {
 
     //// question/single (with id), group (of questions, each with an id) , composite (one question with id, however without direct answer, with a group of questions , each with an id)
 }
+
+
+

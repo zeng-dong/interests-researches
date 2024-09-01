@@ -3,11 +3,14 @@ import { Answer } from '../models/answer.model';
 import { MatRadioChange } from '@angular/material/radio';
 import { Question } from '../models/question.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
     selector: 'qx-answer',
     templateUrl: './answer.component.html',
     styleUrls: ['./answer.component.scss'],
+
+    viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class AnswerComponent implements OnInit {
     @Input() collectAnswer: boolean = false;

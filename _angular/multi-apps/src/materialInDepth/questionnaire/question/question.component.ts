@@ -2,6 +2,7 @@ import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Question } from '../models/question.model';
 import { QuestionnairOperationType } from '../models/questionnaire.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
     selector: 'qx-question',
