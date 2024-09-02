@@ -21,25 +21,34 @@ export class QuestionComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
-        console.log(
-            'in QuestionComponent received operation: ',
-            this.operation
-        );
-    }
+    ngOnInit() {}
 
     ngOnChanges(changes: SimpleChanges) {
         for (const propName in changes) {
             if (propName === 'operation') {
                 const change = changes[propName];
-                console.log(
-                    'operation changed, received by QuestionnaireSectionComponent: ',
-                    this.operation
-                );
+
                 if (change.currentValue.isChangeToNextGroup()) {
                     this.collectAnswer = true;
                 }
+                this.testTrigger();
             }
         }
+    }
+
+    get triggered(): boolean {
+        const trigger = this.question.trigger;
+        if (!trigger) return false;
+
+        return trigger(this.question);
+    }
+
+    testTrigger(): void {
+        const trigger = this.question.trigger;
+        if (trigger)
+            console.log(
+                'invoking trigger func and the result: ',
+                trigger(this.question)
+            );
     }
 }

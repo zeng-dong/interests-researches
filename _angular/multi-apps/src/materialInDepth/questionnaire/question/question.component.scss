@@ -1,7 +1,3 @@
-.question-card {
-    margin: 20px 10px;
-    max-width: 650px;
-}
 
 .content {
     display: inline-flex;
@@ -13,4 +9,22 @@
 
 .negative {
     background-color: red($color: #000000);
+}
+
+.mat-slide-toggle.mat-disabled {
+    opacity: 1 !important;
+}
+
+mat-slide-toggle.my-slide {
+    --mdc-switch-selected-handle-color: lightgreen;
+    --mdc-switch-selected-pressed-handle-color: lightgreen;
+    --mdc-switch-selected-pressed-state-layer-color: green;
+    --mdc-switch-selected-hover-state-layer-color: lightgreen;
+    --mdc-switch-selected-hover-handle-color: lightgreen;
+    --mdc-switch-selected-focus-state-layer-color: lightgreen;
+    --mdc-switch-selected-focus-handle-color: lightgreen;
+    --mdc-switch-selected-track-color: green;
+    --mdc-switch-selected-pressed-track-color: green;
+    --mdc-switch-selected-hover-track-color: green;
+    --mdc-switch-selected-focus-track-color: green;
 }

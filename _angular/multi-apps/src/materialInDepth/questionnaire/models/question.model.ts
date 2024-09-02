@@ -71,6 +71,8 @@ export class UniversalQuestion {
 
     /// "no to all" can be recorded in the api contract as a key value.
 
+    ////trigger: childQuestionTriggerFunc | undefined;
+
     constructor(
         id: string | undefined,
         number: string | undefined,

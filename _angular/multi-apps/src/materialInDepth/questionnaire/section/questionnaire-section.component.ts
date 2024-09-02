@@ -25,26 +25,14 @@ export class QuestionnaireSectionComponent implements OnInit, AfterViewInit {
     @ViewChild('myform') myform: NgForm | undefined;
 
     constructor() {}
-    ngAfterViewInit(): void {
-        console.log('myform is after view init: ', this.myform);
-    }
+    ngAfterViewInit(): void {}
 
-    ngOnInit(): void {
-        console.log(
-            'in QuestionnaireSectionComponent received operation: ',
-            this.operation
-        );
-    }
+    ngOnInit(): void {}
 
     ngOnChanges(changes: SimpleChanges) {
         for (const propName in changes) {
             if (propName === 'operation') {
                 const change = changes[propName];
-
-                console.log(
-                    'operation changed, received by QuestionnaireSectionComponent: ',
-                    this.operation
-                );
 
                 if (change.currentValue.isChangeToNextGroup()) {
                     //this.collectAnswer = true;

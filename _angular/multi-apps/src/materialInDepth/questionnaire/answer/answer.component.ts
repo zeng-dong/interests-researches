@@ -20,9 +20,7 @@ export class AnswerComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {
-        console.log('ngOnInit, get question: ', this.question);
-    }
+    ngOnInit() {}
 
     selected($event: MatRadioChange) {
         console.log($event.value);
@@ -31,8 +29,6 @@ export class AnswerComponent implements OnInit {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log('AnswerComponent received: ', changes);
-
         for (const propName in changes) {
             if (propName === 'operation') {
                 const change = changes[propName];

@@ -53,15 +53,15 @@ function createQuestionnaireSectionOne(): QuestionnaireSection {
     };
 
     let questionDisplayOrder = 1;
-    section.questions.push(
-        createStandardTopLevelQuestion(
-            'quss1',
-            'Iss your company in Texas?',
-            questionDisplayOrder++,
-            'qus1_explain',
-            'Please explain'
-        )
+    const q1 = createStandardTopLevelQuestion(
+        'quss1',
+        'Iss your company in Texas?',
+        questionDisplayOrder++,
+        'qus1_explain',
+        'Please explain'
     );
+    q1.trigger = (q) => q.answer.hasAffirmativeValue();
+    section.questions.push(q1);
 
     section.questions.push(
         createStandardTopLevelQuestion(
@@ -207,6 +207,11 @@ function createStandardTopLevelQuestion(
     if (secondaryId && secondaryText) {
         q.secondary = createStandardExplain(secondaryId, secondaryText);
     }
+
+    // q.trigger = (q) => {
+    //     console.log('returning the trigger func');
+    //     return q.answer.hasAffirmativeValue();
+    // };
 
     return q;
 }

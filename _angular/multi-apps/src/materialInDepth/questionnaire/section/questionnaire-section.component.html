@@ -6,11 +6,13 @@
 
 <form #myform="ngForm">
     <div *ngFor="let q of section.questions">
-        <qx-question
-            [question]="q"
-            [setNo]="noToAll"
-            [operation]="operation"
-        ></qx-question>
+        <mat-card class="question-card mat-elevation-z24">
+            <qx-question
+                [question]="q"
+                [setNo]="noToAll"
+                [operation]="operation"
+            ></qx-question>
+        </mat-card>
     </div>
 </form>
 
