@@ -12,10 +12,12 @@ export class AnswerConfiguration {
 }
 
 export enum AnswerDataType {
-    boolean,
+    boolean,                /// boolean is for checkbox,
     longText,
     shortText,
     multipleText,
+
+    /// for yes/no radio group, type: yesOrNo
 }
 
 export class Answer {

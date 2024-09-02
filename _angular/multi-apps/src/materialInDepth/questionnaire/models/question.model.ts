@@ -1,6 +1,5 @@
 import { Answer } from './answer.model';
 
-
 export type childQuestionTriggerFunc = (question: Question) => boolean;
 
 export class Question {
@@ -62,9 +61,9 @@ export class SecondaryQuestion {
 
 export class UniversalQuestion {
     id: string | undefined;
-    displayIndex: string | undefined;
+    number: string | undefined;
     text: string | undefined;
-    children: Question[];
+    children: UniversalQuestion[];
     type: QuestionType;
     answer: Answer;
     isChildQuestionTrigger: boolean = false;
@@ -74,15 +73,15 @@ export class UniversalQuestion {
 
     constructor(
         id: string | undefined,
-        displayIndex: string | undefined,
+        number: string | undefined,
         text: string,
-        questions: Question[],
+        questions: UniversalQuestion[],
         type: QuestionType,
         answer: Answer,
         isTrigger?: boolean
     ) {
         this.id = id;
-        this.displayIndex = displayIndex;
+        this.number = number;
         this.text = text;
         this.children = questions;
         this.type = type;
@@ -107,13 +106,10 @@ export class UniversalQuestion {
 }
 
 export enum QuestionType {
-    simple,
-    composite,
     single,
+    composite,
+    //single,
     group,
 
     //// question/single (with id), group (of questions, each with an id) , composite (one question with id, however without direct answer, with a group of questions , each with an id)
 }
-
-
-

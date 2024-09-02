@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Question, SecondaryQuestion, QuestionType } from './question.model';
+import {
+    Question,
+    SecondaryQuestion,
+    QuestionType,
+    UniversalQuestion,
+} from './question.model';
 import { Questionnair } from './questionnaire.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
@@ -159,6 +164,31 @@ const supplemental: QuestionnaireSection = {
     ],
 };
 
+const q1: UniversalQuestion = new UniversalQuestion(
+    'cComapnay',
+    '1',
+    'How are you doing?',
+    [
+        new UniversalQuestion(
+            'cCompany_Explain',
+            undefined,
+            'Please explain',
+            [],
+            QuestionType.single,
+            new Answer(
+                new AnswerConfiguration(AnswerDataType.shortText, true, 500)
+            ),
+            false
+        ),
+    ],
+    QuestionType.single,
+    new Answer(new AnswerConfiguration(AnswerDataType.boolean, true)),
+    true
+);
+
+//// createStandardYesNoAnswer (yesNo, requried)
+////
+
 function createStandardTopLevelQuestion(
     id: string,
     text: string,
@@ -196,6 +226,6 @@ function createStandardExplain(id: string, text: string): SecondaryQuestion {
                 undefined
             ),
         ],
-        QuestionType.simple
+        QuestionType.single
     );
 }
