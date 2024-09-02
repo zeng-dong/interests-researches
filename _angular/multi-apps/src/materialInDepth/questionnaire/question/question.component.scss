@@ -1,0 +1,16 @@
+.question-card {
+    margin: 20px 10px;
+    max-width: 650px;
+}
+
+.content {
+    display: inline-flex;
+}
+
+.positive {
+    background-color: green($color: #000000);
+}
+
+.negative {
+    background-color: red($color: #000000);
+}

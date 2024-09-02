@@ -3,6 +3,7 @@ import { Question } from '../models/question.model';
 import { QuestionnairOperationType } from '../models/questionnaire.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
     selector: 'qx-question',
@@ -13,6 +14,8 @@ export class QuestionComponent implements OnInit {
     @Input() question!: Question;
     @Input() setNo: boolean | undefined;
     @Input() operation!: QuestionnairOperation;
+
+    color: ThemePalette = this.question?.hasAnswer() ? 'primary' : 'accent';
 
     collectAnswer: boolean = false;
 
