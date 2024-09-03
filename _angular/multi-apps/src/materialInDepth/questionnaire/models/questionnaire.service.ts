@@ -223,7 +223,7 @@ function createStandardExplain(id: string, text: string): SecondaryQuestion {
         [
             new Question(
                 id,
-                1,
+                0,
                 text,
                 new Answer(
                     new AnswerConfiguration(AnswerDataType.longText, true, 500)

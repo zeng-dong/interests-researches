@@ -1,36 +1,32 @@
-<mat-card-header> xyz. {{ question.text }} </mat-card-header>
+<p *ngIf="question.number">{{ question.number }}. {{ question.text }}</p>
 
-<mat-card-content>
-    <mat-grid-list cols="4" rowHeight="100px">
-        <mat-grid-tile [colspan]="3">
-            <qx-answer
-                [collectAnswer]="collectAnswer"
-                [question]="question"
-                [operation]="operation"
-            ></qx-answer>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <mat-slide-toggle
-                class="my-slide"
-                color="primary"
-                [disabled]="true"
-                [checked]="question.hasAnswer()"
-            >
-                <p *ngIf="question.hasAnswer()">Answered</p>
-                <p *ngIf="!question.hasAnswer()">To be answerede</p>
-            </mat-slide-toggle>
-        </mat-grid-tile>
-    </mat-grid-list>
-
-    <div *ngIf="triggered">
-        trigger is true, render child
-
-        <qx-question
-            [question]="(question?.secondary)!.questions[0]!"
+<mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile [colspan]="3">
+        <qx-answer
+            [collectAnswer]="collectAnswer"
+            [question]="question"
             [operation]="operation"
-        ></qx-question>
+        ></qx-answer>
+    </mat-grid-tile>
 
-        {{ (question?.secondary)!.questions[0]! | json }}
-    </div>
-</mat-card-content>
+    <mat-grid-tile>
+        <mat-slide-toggle
+            class="my-slide"
+            color="primary"
+            [disabled]="true"
+            [checked]="question.hasAnswer()"
+        >
+            <p *ngIf="question.hasAnswer()">Answered</p>
+            <p *ngIf="!question.hasAnswer()">Need answer</p>
+        </mat-slide-toggle>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<div *ngIf="triggered" class="child">
+    <p>{{ question.secondary!.questions[0]!.text }}</p>
+    <qx-question
+        class="child"
+        [question]="question.secondary!.questions[0]!"
+        [operation]="operation"
+    ></qx-question>
+</div>

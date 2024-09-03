@@ -1,6 +1,9 @@
 import { Answer } from './answer.model';
 
 export type childQuestionTriggerFunc = (question: Question) => boolean;
+export type ChildQuestionTriggeredFunc = (
+    question: UniversalQuestion
+) => boolean;
 
 export class Question {
     id: string;
@@ -71,7 +74,7 @@ export class UniversalQuestion {
 
     /// "no to all" can be recorded in the api contract as a key value.
 
-    ////trigger: childQuestionTriggerFunc | undefined;
+    trigger: ChildQuestionTriggeredFunc = (q: UniversalQuestion) => false; // default func returns false
 
     constructor(
         id: string | undefined,

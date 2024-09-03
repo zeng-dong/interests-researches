@@ -11,6 +11,11 @@ import { QuestionnairOperation } from './models/questionnaire.model';
 export class QuestionnaireComponent implements OnInit {
     qx!: Questionnair;
     operation: QuestionnairOperation;
+    config: any = {
+        canngen: false,
+        riskState: false,
+        more: false,
+    };
 
     constructor(private qxService: QuestionnaireService) {
         this.operation = qxService.createIdlingOperation();

@@ -9,3 +9,9 @@ body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+@for $i from 0 through 24 {
+    .mat-mdc-card.mat-elevation-z#{$i} {
+        @include mat.elevation($i);
+    }
+}

@@ -1,5 +1,20 @@
 <h3>{{ qx.name }} Questionnaire</h3>
 
+<section class="config-section">
+    <mat-checkbox class="config-item-margin" [(ngModel)]="config.canngen"
+        >I am Canngen</mat-checkbox
+    >
+    <mat-checkbox class="config-item-margin" [(ngModel)]="config.riskState"
+        >I am sole MO</mat-checkbox
+    >
+    <mat-checkbox class="config-item-margin" [(ngModel)]="config.more"
+        >I am even more special</mat-checkbox
+    >
+    <p>
+        {{ config | json }}
+    </p>
+</section>
+<mat-divider></mat-divider>
 <mat-tab-group>
     <mat-tab *ngFor="let section of qx.sections">
         <ng-template mat-tab-label>{{ section.name }}</ng-template>

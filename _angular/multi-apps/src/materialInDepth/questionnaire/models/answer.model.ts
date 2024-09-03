@@ -12,7 +12,7 @@ export class AnswerConfiguration {
 }
 
 export enum AnswerDataType {
-    boolean,                /// boolean is for checkbox,
+    boolean, /// boolean is for checkbox,
     longText,
     shortText,
     multipleText,
@@ -29,7 +29,19 @@ export class Answer {
         this.value = undefined;
     }
 
-    hasValue = (): boolean => this.value != undefined;
+    hasValue = (): boolean =>
+        this.value != undefined &&
+        this.value.toString().trim() !== AnswerConstants.empty;
 
     hasAffirmativeValue = (): boolean => 'Y' === this.value;
+}
+
+export abstract class AnswerConstants {
+    static readonly empty = '';
+    static readonly shortTextMaxLength = 50;
+    static readonly longTextMaxLength = 3000;
+    static readonly affirmativeYes = 'Yes';
+    static readonly negativeNo = 'No';
+    static readonly trueString = 'Y';
+    static readonly falseString = 'N';
 }
