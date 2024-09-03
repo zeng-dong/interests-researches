@@ -1,11 +1,11 @@
 import { Answer } from './answer.model';
 
-export type childQuestionTriggerFunc = (question: Question) => boolean;
+export type childQuestionTriggerFunc = (question: QuestionV1) => boolean;
 export type ChildQuestionTriggeredFunc = (
     question: UniversalQuestion
 ) => boolean;
 
-export class Question {
+export class QuestionV1 {
     id: string;
     number: number;
     text: string;
@@ -46,13 +46,13 @@ export class Question {
 export class SecondaryQuestion {
     id: string | undefined;
     text: string;
-    questions: Question[];
+    questions: QuestionV1[];
     type: QuestionType;
 
     constructor(
         id: string | undefined,
         text: string,
-        questions: Question[],
+        questions: QuestionV1[],
         type: QuestionType
     ) {
         this.id = id;

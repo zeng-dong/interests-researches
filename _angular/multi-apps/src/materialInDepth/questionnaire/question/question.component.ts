@@ -1,5 +1,5 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Question } from '../models/question.model';
+import { QuestionV1 } from '../models/question.model';
 import { QuestionnairOperationType } from '../models/questionnaire.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
 import { ControlContainer, NgForm } from '@angular/forms';
@@ -11,7 +11,7 @@ import { ThemePalette } from '@angular/material/core';
     styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit {
-    @Input() question!: Question;
+    @Input() question!: QuestionV1;
     @Input() setNo: boolean | undefined;
     @Input() operation!: QuestionnairOperation;
 

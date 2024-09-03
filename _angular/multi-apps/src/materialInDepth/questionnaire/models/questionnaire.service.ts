@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-    Question,
+    QuestionV1,
     SecondaryQuestion,
     QuestionType,
     UniversalQuestion,
@@ -195,8 +195,8 @@ function createStandardTopLevelQuestion(
     displayOrder: number,
     secondaryId?: string,
     secondaryText?: string
-): Question {
-    const q = new Question(
+): QuestionV1 {
+    const q = new QuestionV1(
         id,
         displayOrder++,
         text,
@@ -221,7 +221,7 @@ function createStandardExplain(id: string, text: string): SecondaryQuestion {
         id,
         text,
         [
-            new Question(
+            new QuestionV1(
                 id,
                 0,
                 text,
