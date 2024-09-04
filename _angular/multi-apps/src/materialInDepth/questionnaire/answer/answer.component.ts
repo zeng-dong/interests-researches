@@ -1,7 +1,7 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Answer } from '../models/answer.model';
 import { MatRadioChange } from '@angular/material/radio';
-import { QuestionV1 } from '../models/question.model';
+import { Question } from '../models/question.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
 import { ControlContainer, NgForm } from '@angular/forms';
 
@@ -14,7 +14,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class AnswerComponent implements OnInit {
     @Input() collectAnswer: boolean = false;
-    @Input() question!: QuestionV1;
+    @Input() question!: Question;
     @Input() operation!: QuestionnairOperation;
     collecting = false;
 

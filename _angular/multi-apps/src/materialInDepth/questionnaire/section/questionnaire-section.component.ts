@@ -10,7 +10,7 @@ import {
     QuestionnaireSection,
     QuestionnairOperation,
 } from '../models/questionnaire.model';
-import { ControlContainer, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'qx-questionnaire-section',

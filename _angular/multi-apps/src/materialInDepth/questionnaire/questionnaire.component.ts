@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionnaireService } from './models/questionnaire.service';
 import { Questionnair } from './models/questionnaire.model';
 import { QuestionnairOperation } from './models/questionnaire.model';
+import { QuestionnaireConfig } from './models/question.model';
 
 @Component({
     selector: 'qx-questionnaire',
@@ -11,10 +12,10 @@ import { QuestionnairOperation } from './models/questionnaire.model';
 export class QuestionnaireComponent implements OnInit {
     qx!: Questionnair;
     operation: QuestionnairOperation;
-    config: any = {
-        canngen: false,
-        riskState: false,
-        more: false,
+    config: QuestionnaireConfig = {
+        isCanngen: false,
+        isMissourri: false,
+        isEvenMoreSpecial: false,
     };
 
     constructor(private qxService: QuestionnaireService) {
@@ -22,7 +23,7 @@ export class QuestionnaireComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.qx = this.qxService.getQuestionnaire();
+        this.qx = this.load(this.config);
     }
 
     payload: any;
@@ -33,4 +34,9 @@ export class QuestionnaireComponent implements OnInit {
     collect() {
         this.operation = this.qxService.createChangeToNextGroupOperation();
     }
+
+    reload = () => (this.qx = this.load(this.config));
+
+    load = (config: QuestionnaireConfig): Questionnair =>
+        this.qxService.getQuestionnaire(config);
 }

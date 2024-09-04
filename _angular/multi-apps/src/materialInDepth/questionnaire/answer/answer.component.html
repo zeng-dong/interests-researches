@@ -33,6 +33,7 @@
 
     <div *ngSwitchDefault>
         <mat-radio-group
+            [disabled]="!question.applicable"
             name="{{ question.id }}"
             (change)="selected($event)"
             [(ngModel)]="question.answer.value"

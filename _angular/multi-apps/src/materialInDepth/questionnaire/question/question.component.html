@@ -11,22 +11,21 @@
 
     <mat-grid-tile>
         <mat-slide-toggle
-            class="my-slide"
-            color="warn"
             [disabled]="true"
             [checked]="question.hasAnswer()"
+            [labelPosition]="question.hasAnswer() ? 'after' : 'before'"
         >
-            <p *ngIf="question.hasAnswer()">Answered</p>
-            <p *ngIf="!question.hasAnswer()">Need answer</p>
+            <!-- <span *ngIf="question.hasAnswer()">Answered</span>
+            <span *ngIf="!question.hasAnswer()">Need answer</span> -->
         </mat-slide-toggle>
     </mat-grid-tile>
 </mat-grid-list>
 
 <div *ngIf="triggered" class="child">
-    <p>{{ question.secondary!.questions[0]!.text }}</p>
+    <p>{{ question.children[0]!.text }}</p>
     <qx-question
         class="child"
-        [question]="question.secondary!.questions[0]!"
+        [question]="question.children[0]!"
         [operation]="operation"
     ></qx-question>
 </div>

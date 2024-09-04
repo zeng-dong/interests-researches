@@ -12,10 +12,13 @@ export class AnswerConfiguration {
 }
 
 export enum AnswerDataType {
-    boolean, /// boolean is for checkbox,
+    //boolean, /// boolean is for checkbox,
+    exclusiveChoices,
     longText,
     shortText,
-    multipleText,
+    //multipleText,
+
+    inclusiveChoices,
 
     /// for yes/no radio group, type: yesOrNo
 }
@@ -44,4 +47,6 @@ export abstract class AnswerConstants {
     static readonly negativeNo = 'No';
     static readonly trueString = 'Y';
     static readonly falseString = 'N';
+    static readonly required = true;
+    static readonly explain = 'Please explain';
 }

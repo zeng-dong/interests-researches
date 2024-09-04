@@ -1,9 +1,9 @@
-import { QuestionV1 } from './question.model';
+import { Question } from './question.model';
 
 export class QuestionnaireSection {
     displayOrder: number;
     name: string;
-    questions: QuestionV1[];
+    questions: Question[];
 
     constructor(displayOrder: number, name: string) {
         this.displayOrder = displayOrder;

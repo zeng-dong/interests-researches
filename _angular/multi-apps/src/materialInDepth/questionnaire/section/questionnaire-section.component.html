@@ -6,8 +6,8 @@
 
 <form #myform="ngForm">
     <div *ngFor="let q of section.questions">
-        <mat-card class="question-card mat-elevation-z8">
-            <mat-card-content>
+        <mat-card class="question-card mat-elevation-z8" >
+            <mat-card-content >
                 <qx-question
                     [question]="q"
                     [setNo]="noToAll"
