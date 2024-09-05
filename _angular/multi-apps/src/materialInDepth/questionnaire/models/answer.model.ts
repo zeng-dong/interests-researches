@@ -12,14 +12,11 @@ export class AnswerConfiguration {
 }
 
 export enum AnswerDataType {
-    //boolean, /// boolean is for checkbox,
     exclusiveChoices,
     longText,
     shortText,
     //multipleText,
-
     inclusiveChoices,
-
     /// for yes/no radio group, type: yesOrNo
 }
 

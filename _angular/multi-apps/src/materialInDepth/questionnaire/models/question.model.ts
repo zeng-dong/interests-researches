@@ -50,9 +50,7 @@ export class Question {
 export enum QuestionType {
     single,
     composite,
-    //single,
     group,
-
     //// question/single (with id), group (of questions, each with an id) , composite (one question with id, however without direct answer, with a group of questions , each with an id)
 }
 
@@ -60,4 +58,21 @@ export interface QuestionnaireConfig {
     isCanngen: boolean;
     isMissourri: boolean;
     isEvenMoreSpecial: boolean;
+}
+
+export interface QuestionDefinition {
+    id: string | undefined;
+    label: string | undefined;
+    text: string;
+    relationship?: ParentChildRelationship;
+    child?: QuestionDefinition;
+}
+
+export enum ParentChildRelationship {
+    yesNoWithExplain,
+    yesNoWithYesNo,
+    yesNoWithEntity,
+    yesNoWithGroup,
+    groupWithExplain,
+    other, // ???
 }
