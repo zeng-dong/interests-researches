@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { QuestionType, Question, QuestionnaireConfig } from './question.model';
+import { QuestionnaireConfig } from './question.model';
 import { Questionnair } from './questionnaire.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
 import { QuestionnaireSection } from './questionnaire.model';
-import { Answer, AnswerConstants } from './answer.model';
-import { AnswerDataType } from './answer.model';
-import { AnswerConfiguration } from './answer.model';
+import { createStandardQuestion } from './factory';
 
 @Injectable({
     providedIn: 'root',
@@ -80,56 +78,6 @@ export class QuestionnaireService {
 
     createIdlingOperation = (): QuestionnairOperation =>
         new QuestionnairOperation(QuestionnairOperationType.none);
-}
-
-function createStandardQuestion(
-    id: string,
-    number: string,
-    text: string,
-    childId: string,
-    childText: string
-) {
-    return new Question(
-        id,
-        number,
-        text,
-        [createStandardExplainationQuestion(childId, childText)],
-        QuestionType.single,
-        createStandardYesNoAnswer()
-    );
-}
-
-function createStandardExplainationQuestion(
-    id: string,
-    text: string
-): Question {
-    return new Question(
-        id,
-        undefined,
-        text,
-        [],
-        QuestionType.single,
-        createStandardExplanationAnswer()
-    );
-}
-
-function createStandardYesNoAnswer(): Answer {
-    const yesNo = new AnswerConfiguration(
-        AnswerDataType.exclusiveChoices,
-        AnswerConstants.required
-    );
-    const answer = new Answer(yesNo);
-    return answer;
-}
-
-function createStandardExplanationAnswer(): Answer {
-    const explain = new AnswerConfiguration(
-        AnswerDataType.longText,
-        AnswerConstants.required,
-        AnswerConstants.longTextMaxLength
-    );
-    const answer = new Answer(explain);
-    return answer;
 }
 
 function createQuestionnaireSectionOne(): QuestionnaireSection {

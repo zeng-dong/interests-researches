@@ -4,15 +4,35 @@ import {
     QuestionDefinition,
 } from './question.model';
 
+export type SectionRulesFunc = (section: QuestionnaireSection) => void;
+
 export class QuestionnaireSection {
     displayOrder: number;
     name: string;
     questions: Question[];
+    rulesFunc: SectionRulesFunc = () => {};
 
     constructor(displayOrder: number, name: string) {
         this.displayOrder = displayOrder;
         this.name = name;
         this.questions = [];
+    }
+
+    setRulesFunc = (rulesFunc: SectionRulesFunc) =>
+        (this.rulesFunc = rulesFunc);
+    getQuestionById(id: string): Question | undefined {
+        return this.questions.find((q) => q.id === id);
+    }
+
+    makeQuestionUnapplicableByQuestionPositiveAnswer(
+        sourceId: string,
+        targetId: string
+    ) {
+        const source = this.getQuestionById(sourceId);
+        if (!source || !source.answer.hasAffirmativeValue()) return;
+        const target = this.getQuestionById(targetId);
+        if (!target) return;
+        target.applicable = false;
     }
 }
 
