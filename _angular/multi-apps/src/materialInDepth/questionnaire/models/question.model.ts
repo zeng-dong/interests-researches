@@ -4,7 +4,7 @@ export type ChildQuestionTriggeredFunc = (question: Question) => boolean;
 
 export class Question {
     id: string | undefined;
-    number: string | undefined;
+    label: string | undefined;
     text: string | undefined;
     children: Question[];
     type: QuestionType;
@@ -18,14 +18,14 @@ export class Question {
 
     constructor(
         id: string | undefined,
-        number: string | undefined,
+        label: string | undefined,
         text: string,
         questions: Question[],
         type: QuestionType,
         answer: Answer
     ) {
         this.id = id;
-        this.number = number;
+        this.label = label;
         this.text = text;
         this.children = questions;
         this.type = type;
