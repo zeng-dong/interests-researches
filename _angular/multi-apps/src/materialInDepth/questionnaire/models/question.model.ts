@@ -1,4 +1,4 @@
-import { Answer } from './answer.model';
+import { Answer, AnswerDataType } from './answer.model';
 
 export type ChildQuestionTriggeredFunc = (question: Question) => boolean;
 
@@ -64,7 +64,7 @@ export interface QuestionDefinition {
     id: string | undefined;
     label: string | undefined;
     text: string;
-    relationship?: ParentChildRelationship;
+    answerDataType: AnswerDataType;
     child?: QuestionDefinition;
 }
 

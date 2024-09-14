@@ -1,7 +1,9 @@
+import { AnswerDataType } from './answer.model';
 import {
     ParentChildRelationship,
     Question,
     QuestionDefinition,
+    QuestionType,
 } from './question.model';
 
 export type SectionRulesFunc = (section: QuestionnaireSection) => void;
@@ -83,22 +85,24 @@ export const sections: SectionDefinition[] = [
                 id: 'cCompany',
                 label: '1',
                 text: 'Is your company doing well',
-                relationship: ParentChildRelationship.yesNoWithExplain,
+                answerDataType: AnswerDataType.exclusiveChoices,
                 child: {
                     id: 'cCompany_Explain',
                     label: undefined,
                     text: 'Please explain',
+                    answerDataType: AnswerDataType.longText,
                 },
             },
             {
                 id: 'cQuestionnaire1',
                 label: '2',
                 text: 'Is your company doing well and even better',
-                relationship: ParentChildRelationship.yesNoWithExplain,
+                answerDataType: AnswerDataType.exclusiveChoices,
                 child: {
                     id: 'cQuestionnaire1_Explain',
                     label: undefined,
                     text: 'Please explain',
+                    answerDataType: AnswerDataType.longText
                 },
             },
         ],
