@@ -8,7 +8,9 @@ export class QuestionnaireSection {
     label: string;
     name: string;
     questions: Question[];
-    rulesFunc: SectionRulesFunc = (s: QuestionnaireSection) => {};
+    manageSiblingQuestionInteractions: SectionRulesFunc = (
+        s: QuestionnaireSection
+    ) => {};
 
     constructor(displayOrder: number, name: string, label: string) {
         this.displayOrder = displayOrder;
@@ -18,20 +20,10 @@ export class QuestionnaireSection {
     }
 
     setRulesFunc = (rulesFunc: SectionRulesFunc) =>
-        (this.rulesFunc = rulesFunc);
+        (this.manageSiblingQuestionInteractions = rulesFunc);
+
     getQuestionById(id: string): Question | undefined {
         return this.questions.find((q) => q.id === id);
-    }
-
-    makeQuestionUnapplicableByQuestionPositiveAnswer(
-        sourceId: string,
-        targetId: string
-    ) {
-        const source = this.getQuestionById(sourceId);
-        if (!source || !source.answer.hasAffirmativeValue()) return;
-        const target = this.getQuestionById(targetId);
-        if (!target) return;
-        target.applicable = false;
     }
 }
 
@@ -71,6 +63,7 @@ export interface SectionDefinition {
     displayOrder: number;
     questions: QuestionDefinition[];
     name: string;
+    rules: SectionRulesFunc | null;
 }
 
 //// definition of sections
@@ -79,6 +72,18 @@ export const sections: SectionDefinition[] = [
         label: 'Questions 1-8',
         displayOrder: 0,
         name: 'acord125',
+        rules: (section: QuestionnaireSection) => {
+            const source = section.getQuestionById('cCompany');
+            const target = section.getQuestionById('cQuestionnaire1');
+            if (source && target) {
+                if (source.answer.hasAffirmativeValue()) {
+                    target.applicable = false;
+                    target.answer.value = '';
+                } else {
+                    target.applicable = true;
+                }
+            }
+        },
         questions: [
             {
                 id: 'cCompany',
@@ -111,6 +116,7 @@ export const sections: SectionDefinition[] = [
         label: 'Questions 9-17',
         displayOrder: 1,
         name: 'acord130 part 1',
+        rules: null,
         questions: [],
     },
 
@@ -118,6 +124,7 @@ export const sections: SectionDefinition[] = [
         label: 'Questions 18-28',
         displayOrder: 2,
         name: 'acord130 part 2',
+        rules: null,
         questions: [],
     },
 
@@ -125,6 +132,7 @@ export const sections: SectionDefinition[] = [
         label: 'Questions Supplemental 140-288',
         displayOrder: 2,
         name: 'supplemental',
+        rules: null,
         questions: [],
     },
 ];

@@ -27,7 +27,8 @@ export class QuestionnaireSectionComponent implements OnInit, AfterViewInit {
     constructor() {}
     ngAfterViewInit(): void {
         this.myform?.valueChanges?.subscribe({
-            next: () => this.section.rulesFunc(this.section),
+            next: () =>
+                this.section.manageSiblingQuestionInteractions(this.section),
         });
     }
 

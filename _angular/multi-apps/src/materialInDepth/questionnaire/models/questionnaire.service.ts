@@ -8,8 +8,7 @@ import {
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
 import { QuestionnaireSection } from './questionnaire.model';
-import { createQuestion, createStandardQuestion } from './factory';
-import { withNoHttpTransferCache } from '@angular/platform-browser';
+import { createQuestion } from './factory';
 
 @Injectable({
     providedIn: 'root',
@@ -38,21 +37,7 @@ export class QuestionnaireService {
             if (question) section.questions.push(question);
         });
 
-        //// example to setup section level(inter sibling questions) rules
-        if (section.name.toLowerCase() === 'acord125') {
-            console.log('setting section rule to section: ', section.name);
-
-            section.setRulesFunc((x: QuestionnaireSection) => {
-                const source = x.getQuestionById('cCompany');
-                const target = x.getQuestionById('cQuestionnaire1');
-
-                if (source && target) {
-                    target.applicable = source.answer.hasAffirmativeValue()
-                        ? false
-                        : true;
-                }
-            });
-        }
+        if (definition.rules) section.setRulesFunc(definition.rules);
 
         return section;
     }
