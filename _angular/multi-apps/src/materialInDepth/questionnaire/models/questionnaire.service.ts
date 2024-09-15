@@ -29,7 +29,7 @@ export class QuestionnaireService {
     ): QuestionnaireSection {
         const section = new QuestionnaireSection(
             definition.displayOrder,
-            definition.label,
+            definition.name,
             definition.label
         );
 
@@ -37,6 +37,22 @@ export class QuestionnaireService {
             const question = createQuestion(q);
             if (question) section.questions.push(question);
         });
+
+        //// example to setup section level(inter sibling questions) rules
+        if (section.name.toLowerCase() === 'acord125') {
+            console.log('setting section rule to section: ', section.name);
+
+            section.setRulesFunc((x: QuestionnaireSection) => {
+                const source = x.getQuestionById('cCompany');
+                const target = x.getQuestionById('cQuestionnaire1');
+
+                if (source && target) {
+                    target.applicable = source.answer.hasAffirmativeValue()
+                        ? false
+                        : true;
+                }
+            });
+        }
 
         return section;
     }
@@ -88,7 +104,6 @@ export class QuestionnaireService {
     }
 
     disableQuestions(sections: QuestionnaireSection[], ids: string[]): void {
-        console.log('these ids: ', ids);
         sections.forEach((s) => {
             s.questions.forEach((q) => {
                 if (ids.some((x) => x === q.id)) q.applicable = false;

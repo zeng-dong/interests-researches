@@ -8,7 +8,7 @@ export class QuestionnaireSection {
     label: string;
     name: string;
     questions: Question[];
-    rulesFunc: SectionRulesFunc = () => {};
+    rulesFunc: SectionRulesFunc = (s: QuestionnaireSection) => {};
 
     constructor(displayOrder: number, name: string, label: string) {
         this.displayOrder = displayOrder;
