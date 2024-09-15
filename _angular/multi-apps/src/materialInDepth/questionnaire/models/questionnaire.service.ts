@@ -40,16 +40,6 @@ export class QuestionnaireService {
         return section;
     }
 
-    // getQuestionnaire_Old(config: QuestionnaireConfig): Questionnair {
-    //     const qx = this.createDefaultQuestionnaire('Programmable');
-    //     if (config.isCanngen) {
-    //         qx.add(supplemental);
-    //     }
-
-    //     this.manageQuestionapplicability(qx.sections, config, notApplicables);
-    //     return qx;
-    // }
-
     createDefaultQuestionnaire(
         name: string,
         config: QuestionnaireConfig
@@ -115,46 +105,6 @@ export class QuestionnaireService {
     createIdlingOperation = (): QuestionnairOperation =>
         new QuestionnairOperation(QuestionnairOperationType.none);
 }
-
-// function createQuestionnaireSectionOne(): QuestionnaireSection {
-//     const section: QuestionnaireSection = new QuestionnaireSection(
-//         0,
-//         'General Questions'
-//     );
-
-//     const q1 = createStandardQuestion(
-//         'quss1',
-//         '1',
-//         'Is your company in Texas?',
-//         'qus1_explain',
-//         'Please explain'
-//     );
-//     q1.trigger = (q) => q.answer.hasAffirmativeValue();
-//     section.questions.push(q1);
-
-//     const q2 = createStandardQuestion(
-//         'quss2',
-//         '2',
-//         'Is your company in Texas and doing well?',
-//         'qus2_explain',
-//         'Please explain'
-//     );
-//     section.questions.push(q2);
-
-//     return section;
-// }
-
-// const acord130 = createQuestionnaireSectionOne();
-
-// const acord125: QuestionnaireSection = new QuestionnaireSection(
-//     1,
-//     'Special Questions'
-// );
-
-// const supplemental: QuestionnaireSection = new QuestionnaireSection(
-//     2,
-//     'Supplemental Questions'
-// );
 
 export const notApplicables: any = {
     idsOfQuestionsNotApplicableForCanngen: ['quss2', 'qus24'],
