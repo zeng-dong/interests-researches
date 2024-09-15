@@ -1,21 +1,18 @@
 import { AnswerDataType } from './answer.model';
-import {
-    ParentChildRelationship,
-    Question,
-    QuestionDefinition,
-    QuestionType,
-} from './question.model';
+import { Question, QuestionDefinition } from './question.model';
 
 export type SectionRulesFunc = (section: QuestionnaireSection) => void;
 
 export class QuestionnaireSection {
     displayOrder: number;
+    label: string;
     name: string;
     questions: Question[];
     rulesFunc: SectionRulesFunc = () => {};
 
-    constructor(displayOrder: number, name: string) {
+    constructor(displayOrder: number, name: string, label: string) {
         this.displayOrder = displayOrder;
+        this.label = label;
         this.name = name;
         this.questions = [];
     }
@@ -73,6 +70,7 @@ export interface SectionDefinition {
     label: string;
     displayOrder: number;
     questions: QuestionDefinition[];
+    name: string;
 }
 
 //// definition of sections
@@ -80,6 +78,7 @@ export const sections: SectionDefinition[] = [
     {
         label: 'Questions 1-8',
         displayOrder: 0,
+        name: 'acord125',
         questions: [
             {
                 id: 'cCompany',
@@ -102,7 +101,7 @@ export const sections: SectionDefinition[] = [
                     id: 'cQuestionnaire1_Explain',
                     label: undefined,
                     text: 'Please explain',
-                    answerDataType: AnswerDataType.longText
+                    answerDataType: AnswerDataType.longText,
                 },
             },
         ],
@@ -111,18 +110,21 @@ export const sections: SectionDefinition[] = [
     {
         label: 'Questions 9-17',
         displayOrder: 1,
+        name: 'acord130 part 1',
         questions: [],
     },
 
     {
         label: 'Questions 18-28',
         displayOrder: 2,
+        name: 'acord130 part 2',
         questions: [],
     },
 
     {
         label: 'Questions Supplemental 140-288',
         displayOrder: 2,
+        name: 'supplemental',
         questions: [],
     },
 ];

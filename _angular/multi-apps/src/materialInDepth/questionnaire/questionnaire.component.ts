@@ -38,5 +38,5 @@ export class QuestionnaireComponent implements OnInit {
     reload = () => (this.qx = this.load(this.config));
 
     load = (config: QuestionnaireConfig): Questionnair =>
-        this.qxService.getQuestionnaire(config);
+        this.qxService.getQuestionnaire('Acord Sample', config);
 }

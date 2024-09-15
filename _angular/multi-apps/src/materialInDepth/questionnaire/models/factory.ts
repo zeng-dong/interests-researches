@@ -5,14 +5,16 @@ import {
     AnswerConstants,
 } from './answer.model';
 import {
-    ParentChildRelationship,
     Question,
     QuestionDefinition,
     QuestionType,
 } from './question.model';
 
 export function createQuestion(def: QuestionDefinition): Question | undefined {
-    if (ParentChildRelationship.yesNoWithExplain === def.relationship)
+    if (
+        AnswerDataType.exclusiveChoices === def.answerDataType &&
+        AnswerDataType.longText === def.child?.answerDataType
+    )
         return createStandardQuestion(
             def.id!,
             def.label!,
@@ -26,14 +28,14 @@ export function createQuestion(def: QuestionDefinition): Question | undefined {
 
 export function createStandardQuestion(
     id: string,
-    number: string,
+    label: string,
     text: string,
     childId: string,
     childText: string
 ) {
     return new Question(
         id,
-        number,
+        label,
         text,
         [createStandardExplainationQuestion(childId, childText)],
         QuestionType.single,
@@ -65,11 +67,11 @@ function createStandardYesNoAnswer(): Answer {
 }
 
 function createStandardExplanationAnswer(): Answer {
-    const explain = new AnswerConfiguration(
-        AnswerDataType.longText,
-        AnswerConstants.required,
-        AnswerConstants.longTextMaxLength
+    return new Answer(
+        new AnswerConfiguration(
+            AnswerDataType.longText,
+            AnswerConstants.required,
+            AnswerConstants.longTextMaxLength
+        )
     );
-    const answer = new Answer(explain);
-    return answer;
 }
