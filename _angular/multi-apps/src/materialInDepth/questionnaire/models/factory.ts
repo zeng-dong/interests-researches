@@ -4,11 +4,7 @@ import {
     AnswerDataType,
     AnswerConstants,
 } from './answer.model';
-import {
-    Question,
-    QuestionDefinition,
-    QuestionType,
-} from './question.model';
+import { Question, QuestionDefinition, QuestionType } from './question.model';
 
 export function createQuestion(def: QuestionDefinition): Question | undefined {
     if (
@@ -33,7 +29,7 @@ export function createStandardQuestion(
     childId: string,
     childText: string
 ) {
-    return new Question(
+    const q = new Question(
         id,
         label,
         text,
@@ -41,6 +37,8 @@ export function createStandardQuestion(
         QuestionType.single,
         createStandardYesNoAnswer()
     );
+    q.trigger = (q) => q.answer.hasAffirmativeValue();
+    return q;
 }
 
 function createStandardExplainationQuestion(

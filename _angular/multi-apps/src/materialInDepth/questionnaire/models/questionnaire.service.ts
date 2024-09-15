@@ -9,6 +9,7 @@ import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
 import { QuestionnaireSection } from './questionnaire.model';
 import { createQuestion, createStandardQuestion } from './factory';
+import { withNoHttpTransferCache } from '@angular/platform-browser';
 
 @Injectable({
     providedIn: 'root',
@@ -46,10 +47,10 @@ export class QuestionnaireService {
     ): Questionnair {
         const qx = new Questionnair(name);
         sections.forEach((s) => {
-            if (s.name === 'Supplemental' && config.isCanngen) {
+            if (s.name.toLowerCase() != 'supplemental') {
                 qx.add(this.getQuestionnaireSection(s));
             } else {
-                qx.add(this.getQuestionnaireSection(s));
+                if (config.isCanngen) qx.add(this.getQuestionnaireSection(s));
             }
         });
         return qx;
@@ -60,18 +61,23 @@ export class QuestionnaireService {
         config: QuestionnaireConfig,
         notApplicables: any
     ): void {
+        console.log(
+            'manage non applicables with these id array: ',
+            notApplicables
+        );
+
         this.enableQuestions(sections);
 
         if (config.isCanngen)
             this.disableQuestions(
                 sections,
-                notApplicables.questionIdsNotApplicableForCanngen
+                notApplicables.idsOfQuestionsNotApplicableForCanngen
             );
 
         if (config.isMissourri)
             this.disableQuestions(
                 sections,
-                notApplicables.questionIdsNotApplicableForMissourri
+                notApplicables.idsOfQuestionsNotApplicableForMissourri
             );
     }
 
@@ -82,6 +88,7 @@ export class QuestionnaireService {
     }
 
     disableQuestions(sections: QuestionnaireSection[], ids: string[]): void {
+        console.log('these ids: ', ids);
         sections.forEach((s) => {
             s.questions.forEach((q) => {
                 if (ids.some((x) => x === q.id)) q.applicable = false;

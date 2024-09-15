@@ -19,7 +19,9 @@ export class QuestionComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log('this.question: ', this.question);
+    }
 
     ngOnChanges(changes: SimpleChanges) {
         for (const propName in changes) {
