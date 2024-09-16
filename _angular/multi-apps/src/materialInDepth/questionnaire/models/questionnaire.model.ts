@@ -1,4 +1,4 @@
-import { AnswerDataType } from './answer.model';
+import { AnswerConstants, AnswerDataType } from './answer.model';
 import { Question, QuestionDefinition } from './question.model';
 
 export type SectionRulesFunc = (section: QuestionnaireSection) => void;
@@ -8,9 +8,7 @@ export class QuestionnaireSection {
     label: string;
     name: string;
     questions: Question[];
-    manageSiblingQuestionInteractions: SectionRulesFunc = (
-        s: QuestionnaireSection
-    ) => {};
+    manageSiblingQuestionInteractions: SectionRulesFunc = (s: QuestionnaireSection) => {};
 
     constructor(displayOrder: number, name: string, label: string) {
         this.displayOrder = displayOrder;
@@ -19,12 +17,9 @@ export class QuestionnaireSection {
         this.questions = [];
     }
 
-    setRulesFunc = (rulesFunc: SectionRulesFunc) =>
-        (this.manageSiblingQuestionInteractions = rulesFunc);
+    setRulesFunc = (rulesFunc: SectionRulesFunc) => (this.manageSiblingQuestionInteractions = rulesFunc);
 
-    getQuestionById(id: string): Question | undefined {
-        return this.questions.find((q) => q.id === id);
-    }
+    getQuestionById = (id: string): Question | undefined => this.questions.find((q) => q.id === id);
 }
 
 export class QuestionnairOperation {
@@ -34,8 +29,7 @@ export class QuestionnairOperation {
         this.type = type;
     }
 
-    isChangeToNextGroup = (): boolean =>
-        this.type === QuestionnairOperationType.changeToNextGroup;
+    isChangeToNextGroup = (): boolean => this.type === QuestionnairOperationType.changeToNextGroup;
 }
 
 export enum QuestionnairOperationType {
@@ -78,7 +72,7 @@ export const sections: SectionDefinition[] = [
             if (source && target) {
                 if (source.answer.hasAffirmativeValue()) {
                     target.applicable = false;
-                    target.answer.value = '';
+                    target.answer.value = AnswerConstants.empty;
                 } else {
                     target.applicable = true;
                 }

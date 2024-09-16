@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QuestionnaireConfig } from './question.model';
-import {
-    Questionnair,
-    SectionDefinition,
-    sections,
-} from './questionnaire.model';
+import { Questionnair, SectionDefinition, sections } from './questionnaire.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
 import { QuestionnaireSection } from './questionnaire.model';
@@ -23,14 +19,8 @@ export class QuestionnaireService {
         return qx;
     }
 
-    getQuestionnaireSection(
-        definition: SectionDefinition
-    ): QuestionnaireSection {
-        const section = new QuestionnaireSection(
-            definition.displayOrder,
-            definition.name,
-            definition.label
-        );
+    getQuestionnaireSection(definition: SectionDefinition): QuestionnaireSection {
+        const section = new QuestionnaireSection(definition.displayOrder, definition.name, definition.label);
 
         definition.questions.forEach((q) => {
             const question = createQuestion(q);
@@ -42,10 +32,7 @@ export class QuestionnaireService {
         return section;
     }
 
-    createDefaultQuestionnaire(
-        name: string,
-        config: QuestionnaireConfig
-    ): Questionnair {
+    createDefaultQuestionnaire(name: string, config: QuestionnaireConfig): Questionnair {
         const qx = new Questionnair(name);
         sections.forEach((s) => {
             if (s.name.toLowerCase() != 'supplemental') {
@@ -57,35 +44,16 @@ export class QuestionnaireService {
         return qx;
     }
 
-    manageQuestionapplicability(
-        sections: QuestionnaireSection[],
-        config: QuestionnaireConfig,
-        notApplicables: any
-    ): void {
-        console.log(
-            'manage non applicables with these id array: ',
-            notApplicables
-        );
-
+    manageQuestionapplicability(sections: QuestionnaireSection[], config: QuestionnaireConfig, notApplicables: any): void {
         this.enableQuestions(sections);
 
-        if (config.isCanngen)
-            this.disableQuestions(
-                sections,
-                notApplicables.idsOfQuestionsNotApplicableForCanngen
-            );
+        if (config.isCanngen) this.disableQuestions(sections, notApplicables.idsOfQuestionsNotApplicableForCanngen);
 
-        if (config.isMissourri)
-            this.disableQuestions(
-                sections,
-                notApplicables.idsOfQuestionsNotApplicableForMissourri
-            );
+        if (config.isMissourri) this.disableQuestions(sections, notApplicables.idsOfQuestionsNotApplicableForMissourri);
     }
 
     enableQuestions(sections: QuestionnaireSection[]): void {
-        sections.forEach((s) => {
-            s.questions.forEach((q) => (q.applicable = true));
-        });
+        sections.forEach((s) => s.questions.forEach((q) => (q.applicable = true)));
     }
 
     disableQuestions(sections: QuestionnaireSection[], ids: string[]): void {
@@ -106,11 +74,9 @@ export class QuestionnaireService {
         return flattened;
     }
 
-    createChangeToNextGroupOperation = (): QuestionnairOperation =>
-        new QuestionnairOperation(QuestionnairOperationType.changeToNextGroup);
+    createChangeToNextGroupOperation = (): QuestionnairOperation => new QuestionnairOperation(QuestionnairOperationType.changeToNextGroup);
 
-    createIdlingOperation = (): QuestionnairOperation =>
-        new QuestionnairOperation(QuestionnairOperationType.none);
+    createIdlingOperation = (): QuestionnairOperation => new QuestionnairOperation(QuestionnairOperationType.none);
 }
 
 export const notApplicables: any = {
