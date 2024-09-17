@@ -1,24 +1,9 @@
 <h3>{{ qx.name }} Questionnaire</h3>
 
 <section class="config-section">
-    <mat-checkbox
-        class="config-item-margin"
-        [(ngModel)]="config.isCanngen"
-        (change)="reload()"
-        >I am Canngen</mat-checkbox
-    >
-    <mat-checkbox
-        class="config-item-margin"
-        [(ngModel)]="config.isMissourri"
-        (change)="reload()"
-        >I am sole MO</mat-checkbox
-    >
-    <mat-checkbox
-        class="config-item-margin"
-        [(ngModel)]="config.isEvenMoreSpecial"
-        (change)="reload()"
-        >I am even more special</mat-checkbox
-    >
+    <mat-checkbox class="config-item-margin" [(ngModel)]="config.isCanngen" (change)="reload()">I am Canngen</mat-checkbox>
+    <mat-checkbox class="config-item-margin" [(ngModel)]="config.isMissourri" (change)="reload()">I am sole MO</mat-checkbox>
+    <mat-checkbox class="config-item-margin" [(ngModel)]="config.isEvenMoreSpecial" (change)="reload()">I am even more special</mat-checkbox>
     <p>
         {{ config | json }}
     </p>
@@ -37,9 +22,7 @@
 </p>
 
 <h3>Questionnair api contract</h3>
-<button mat-button color="primary" (click)="displayPayload()">
-    Show API payload
-</button>
+<button mat-button color="primary" (click)="displayPayload()">Show API payload</button>
 <div>
     {{ payload | json }}
 </div>

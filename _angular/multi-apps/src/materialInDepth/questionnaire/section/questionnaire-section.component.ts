@@ -1,15 +1,6 @@
-import {
-    AfterViewInit,
-    Component,
-    Input,
-    OnInit,
-    SimpleChanges,
-    ViewChild,
-} from '@angular/core';
-import {
-    QuestionnaireSection,
-    QuestionnairOperation,
-} from '../models/questionnaire.model';
+import { AfterViewInit, Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { QuestionnairOperation } from '../models/questionnaire.model';
+import { QuestionnaireSection } from '../models/questionnaire-section.model';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -27,8 +18,7 @@ export class QuestionnaireSectionComponent implements OnInit, AfterViewInit {
     constructor() {}
     ngAfterViewInit(): void {
         this.myform?.valueChanges?.subscribe({
-            next: () =>
-                this.section.manageSiblingQuestionInteractions(this.section),
+            next: () => this.section.manageSiblingQuestionInteractions(this.section),
         });
     }
 

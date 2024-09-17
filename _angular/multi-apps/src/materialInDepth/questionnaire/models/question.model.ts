@@ -11,19 +11,10 @@ export class Question {
     answer: Answer;
     sharedIds: string[] = []; /// or akas. some question answer pair in api contract are duplicated with different keys
     applicable = true;
-
+    trigger: ChildQuestionTriggeredFunc = (q: Question) => false; // default func returns false
     /// "no to all" can be recorded in the api contract as a key value.
 
-    trigger: ChildQuestionTriggeredFunc = (q: Question) => false; // default func returns false
-
-    constructor(
-        id: string | undefined,
-        label: string | undefined,
-        text: string,
-        questions: Question[],
-        type: QuestionType,
-        answer: Answer
-    ) {
+    constructor(id: string | undefined, label: string | undefined, text: string, questions: Question[], type: QuestionType, answer: Answer) {
         this.id = id;
         this.label = label;
         this.text = text;
@@ -39,8 +30,7 @@ export class Question {
         //// set children
     }
 
-    hasChildQuestions = () =>
-        this.children != undefined && this.children.length > 0;
+    hasChildQuestions = () => this.children != undefined && this.children.length > 0;
 
     hasAnswer = (): boolean => this.answer.hasValue(); //// and child questions
 
@@ -65,6 +55,7 @@ export interface QuestionDefinition {
     label: string | undefined;
     text: string;
     answerDataType: AnswerDataType;
+    childTrigger: ChildQuestionTriggeredFunc | null;
     child?: QuestionDefinition;
 }
 

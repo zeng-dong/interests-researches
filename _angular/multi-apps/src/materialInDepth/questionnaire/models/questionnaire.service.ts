@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { QuestionnaireConfig } from './question.model';
-import { Questionnair, SectionDefinition, sections } from './questionnaire.model';
+import { Questionnair, picBizQx } from './questionnaire.model';
+import { SectionDefinition } from './questionnaire-section.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
-import { QuestionnaireSection } from './questionnaire.model';
+import { QuestionnaireSection } from './questionnaire-section.model';
 import { createQuestion } from './factory';
 
 @Injectable({
@@ -34,7 +35,7 @@ export class QuestionnaireService {
 
     createDefaultQuestionnaire(name: string, config: QuestionnaireConfig): Questionnair {
         const qx = new Questionnair(name);
-        sections.forEach((s) => {
+        picBizQx.forEach((s) => {
             if (s.name.toLowerCase() != 'supplemental') {
                 qx.add(this.getQuestionnaireSection(s));
             } else {
