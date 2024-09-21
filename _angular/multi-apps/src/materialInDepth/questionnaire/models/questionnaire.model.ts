@@ -1,6 +1,6 @@
 import { AnswerConstants, AnswerDataType } from './answer.model';
 import { Question } from './question.model';
-import { QuestionnaireSection, SectionDefinition } from './questionnaire-section.model';
+import { ChildQuestionTriggeredFuncs, QuestionnaireSection, SectionDefinition } from './questionnaire-section.model';
 
 export class QuestionnairOperation {
     type: QuestionnairOperationType;
@@ -56,56 +56,93 @@ export const picBizQx: SectionDefinition[] = [
                 label: '1',
                 text: 'Is your company doing well',
                 answerDataType: AnswerDataType.exclusiveChoices,
-                childTrigger: (q: Question) => q.answer.hasAffirmativeValue(),
-                child: {
-                    id: 'cCompany_Explain',
-                    label: undefined,
-                    text: 'Please explain',
-                    answerDataType: AnswerDataType.longText,
-                    childTrigger: null,
-                },
+                childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
+                children: [
+                    {
+                        id: 'cCompany_Explain',
+                        label: undefined,
+                        text: 'Please explain',
+                        answerDataType: AnswerDataType.longText,
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
             },
             {
                 id: 'cQuestionnaire1',
                 label: '2',
                 text: 'Is your company doing well and even better',
                 answerDataType: AnswerDataType.exclusiveChoices,
-                childTrigger: (q: Question) => !q.answer.hasAffirmativeValue(),
-                child: {
-                    id: 'cQuestionnaire1_Explain',
-                    label: undefined,
-                    text: 'Please explain',
-                    answerDataType: AnswerDataType.longText,
-                    childTrigger: null,
-                },
+                childTrigger: ChildQuestionTriggeredFuncs.hasNegativeAnser,
+                children: [
+                    {
+                        id: 'cQuestionnaire1_Explain',
+                        label: undefined,
+                        text: 'Please explain',
+                        answerDataType: AnswerDataType.longText,
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
             },
             {
                 id: 'cQuestionnaire2',
                 label: '3',
                 text: 'This question is standard yes/no selection and trigger a child short text',
                 answerDataType: AnswerDataType.exclusiveChoices,
-                childTrigger: (q: Question) => q.answer.hasAffirmativeValue(),
-                child: {
-                    id: 'cQuestionnaire2_Explain',
-                    label: undefined,
-                    text: 'Percentage',
-                    answerDataType: AnswerDataType.shortText,
-                    childTrigger: null,
-                },
+                childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
+                children: [
+                    {
+                        id: 'cQuestionnaire2_Explain',
+                        label: undefined,
+                        text: 'Percentage',
+                        answerDataType: AnswerDataType.shortText,
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
             },
             {
                 id: '-999',
                 label: '4',
                 text: 'This question is a container hosting a group of choices child questions',
-                answerDataType: AnswerDataType.exclusiveChoices,
-                childTrigger: (q: Question) => q.answer.hasAffirmativeValue(),
-                child: {
-                    id: 'cQuestionnaire2_Explain',
-                    label: undefined,
-                    text: 'Percentage',
-                    answerDataType: AnswerDataType.shortText,
-                    childTrigger: null,
-                },
+                answerDataType: AnswerDataType.none,
+                childTrigger: ChildQuestionTriggeredFuncs.none,
+                children: [
+                    {
+                        id: 'cTruckType_flatbed',
+                        label: 'Flatbed',
+                        text: 'Flatbed',
+                        answerDataType: AnswerDataType.inclusiveChoices,
+                        childTrigger: null,
+                        children: [],
+                    },
+                    {
+                        id: 'cTruckType_tanker',
+                        label: 'Tanker',
+                        text: 'Tanker',
+                        answerDataType: AnswerDataType.inclusiveChoices,
+                        childTrigger: null,
+                        children: [],
+                    },
+                    {
+                        id: 'cTruckType_other',
+                        label: 'Other',
+                        text: 'Other',
+                        answerDataType: AnswerDataType.inclusiveChoices,
+                        childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
+                        children: [
+                            {
+                                id: 'cTruckType_other_Explain',
+                                label: undefined,
+                                text: 'Please explain',
+                                answerDataType: AnswerDataType.longText,
+                                childTrigger: null,
+                                children: [],
+                            },
+                        ],
+                    },
+                ],
             },
         ],
     },

@@ -2,8 +2,8 @@ import { Answer, AnswerConfiguration, AnswerDataType, AnswerConstants } from './
 import { ChildQuestionTriggeredFunc, Question, QuestionDefinition, QuestionType } from './question.model';
 
 export function createQuestion(def: QuestionDefinition): Question | undefined {
-    if (AnswerDataType.exclusiveChoices === def.answerDataType && AnswerDataType.longText === def.child?.answerDataType)
-        return createYesNoParentExplanationChildQuestion(def.id!, def.label!, def.text, def.child?.id!, def.child?.text!, def.childTrigger);
+    if (AnswerDataType.exclusiveChoices === def.answerDataType && def.children.length === 1 && AnswerDataType.longText === def.children[0].answerDataType)
+        return createYesNoParentExplanationChildQuestion(def.id!, def.label!, def.text, def.children[0].id!, def.children[0].text!, def.childTrigger);
 
     /// next: yes no with composite
     /// createYesNoParentCompositeChildQuestion

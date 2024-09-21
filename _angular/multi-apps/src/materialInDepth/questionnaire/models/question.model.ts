@@ -28,7 +28,7 @@ export class Question {
             Reflect.set(report, this.id, this.answer.value);
         }
         //// set children
-        this.children.forEach(c => c.reportAnswer(report));
+        this.children.forEach((c) => c.reportAnswer(report));
     }
 
     hasChildQuestions = () => this.children != undefined && this.children.length > 0;
@@ -36,7 +36,6 @@ export class Question {
     hasAnswer = (): boolean => this.answer.hasValue(); //// and child questions
 
     ////isChildQuestionsTriggered = (): boolean => this.hasChildQuestions() && this.answer.hasAffirmativeValue();
-
 }
 
 export enum QuestionType {
@@ -58,7 +57,7 @@ export interface QuestionDefinition {
     text: string;
     answerDataType: AnswerDataType;
     childTrigger: ChildQuestionTriggeredFunc | null;
-    child?: QuestionDefinition;
+    children: QuestionDefinition[];
 }
 
 export enum ParentChildRelationship {

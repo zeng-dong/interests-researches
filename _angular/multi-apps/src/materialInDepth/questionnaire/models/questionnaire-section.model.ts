@@ -1,4 +1,4 @@
-import { Question, QuestionDefinition } from './question.model';
+import { ChildQuestionTriggeredFunc, Question, QuestionDefinition } from './question.model';
 
 export type SectionRulesFunc = (section: QuestionnaireSection) => void;
 
@@ -27,4 +27,10 @@ export interface SectionDefinition {
     questions: QuestionDefinition[];
     name: string;
     rules: SectionRulesFunc | null;
+}
+
+export abstract class ChildQuestionTriggeredFuncs {
+    static readonly none = null;
+    static readonly hasAffirmativeAnser: ChildQuestionTriggeredFunc = (q: Question) => q.answer.hasAffirmativeValue();
+    static readonly hasNegativeAnser: ChildQuestionTriggeredFunc = (q: Question) => !q.answer.hasAffirmativeValue();
 }

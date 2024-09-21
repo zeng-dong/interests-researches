@@ -23,7 +23,7 @@ export class QuestionnaireService {
     getQuestionnaireSection(definition: SectionDefinition): QuestionnaireSection {
         const section = new QuestionnaireSection(definition.displayOrder, definition.name, definition.label);
 
-        definition.questions.forEach((q) => {
+        definition.questions.forEach((q) => {            
             const question = createQuestion(q);
             if (question) section.questions.push(question);
         });
