@@ -1,37 +1,5 @@
 <ng-container [ngSwitch]="question.answer.config.type">
-    <div *ngSwitchCase="1">
-        <mat-form-field>
-            <mat-label>Please explain</mat-label>
-            <textarea
-                matInput
-                name="{{ question.id }}"
-                [(ngModel)]="question.answer.value"
-                (ngModelChange)="valueChanged($event)"
-                required="{{ question.answer.config.isRequired }}"
-            ></textarea>
-        </mat-form-field>
-        <mat-error *ngIf="collecting && !question.answer.value"
-            >Required</mat-error
-        >
-    </div>
-
-    <div *ngSwitchCase="2">
-        <mat-form-field>
-            <mat-label>Prompt goes here</mat-label>
-            <input
-                name="{{ question.id }}"
-                matInput
-                [(ngModel)]="question.answer.value"
-                required="{{ question.answer.config.isRequired }}"
-            />
-        </mat-form-field>
-
-        <mat-error *ngIf="collecting && !question.answer.value"
-            >Required</mat-error
-        >
-    </div>
-
-    <div *ngSwitchDefault>
+    <div *ngSwitchCase="0">
         <mat-radio-group
             [disabled]="!question.applicable"
             name="{{ question.id }}"
@@ -43,8 +11,33 @@
             <mat-radio-button value="N">No</mat-radio-button>
         </mat-radio-group>
 
-        <p color="accent" *ngIf="collecting && !question.answer.value">
-            Required
-        </p>
+        <p color="accent" *ngIf="collecting && !question.answer.value">Required</p>
+    </div>
+
+    <div *ngSwitchCase="1">
+        <mat-form-field>
+            <mat-label>{{ question.text }}</mat-label>
+            <textarea
+                matInput
+                name="{{ question.id }}"
+                [(ngModel)]="question.answer.value"
+                (ngModelChange)="valueChanged($event)"
+                required="{{ question.answer.config.isRequired }}"
+            ></textarea>
+        </mat-form-field>
+        <mat-error *ngIf="collecting && !question.answer.value">Required</mat-error>
+    </div>
+
+    <div *ngSwitchCase="2">
+        <mat-form-field>
+            <mat-label>Prompt goes here</mat-label>
+            <input name="{{ question.id }}" matInput [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
+        </mat-form-field>
+
+        <mat-error *ngIf="collecting && !question.answer.value">Required</mat-error>
+    </div>
+
+    <div *ngSwitchDefault>
+        <p color="accent">This question does not define answer type</p>
     </div>
 </ng-container>

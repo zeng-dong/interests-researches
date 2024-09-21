@@ -39,6 +39,7 @@ export class AnswerComponent implements OnInit {
         }
     }
 
+    //// I can use this to execute validation or formatting
     valueChanged($event: any) {
         console.log('in Answer value changed: ', $event);
     }

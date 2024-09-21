@@ -58,6 +58,7 @@ export interface QuestionDefinition {
     answerDataType: AnswerDataType;
     childTrigger: ChildQuestionTriggeredFunc | null;
     children: QuestionDefinition[];
+    type: QuestionType;
 }
 
 export enum ParentChildRelationship {
@@ -67,4 +68,8 @@ export enum ParentChildRelationship {
     yesNoWithGroup,
     groupWithExplain,
     other, // ???
+}
+
+export abstract class QuestionConstants {
+    static readonly emptyId = '-999';
 }

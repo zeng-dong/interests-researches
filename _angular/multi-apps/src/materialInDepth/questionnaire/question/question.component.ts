@@ -36,6 +36,12 @@ export class QuestionComponent implements OnInit {
         }
     }
 
+    getLabel() {
+        if (this.question.label) return `${this.question.label} . ${this.question.text}`;
+        //return this.question.text;
+        return null;
+    }
+
     get triggered(): boolean {
         const trigger = this.question.trigger;
         if (!trigger) return false;
@@ -45,10 +51,6 @@ export class QuestionComponent implements OnInit {
 
     testTrigger(): void {
         const trigger = this.question.trigger;
-        if (trigger)
-            console.log(
-                'invoking trigger func and the result: ',
-                trigger(this.question)
-            );
+        if (trigger) console.log('invoking trigger func and the result: ', trigger(this.question));
     }
 }

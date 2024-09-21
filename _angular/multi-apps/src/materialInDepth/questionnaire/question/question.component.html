@@ -1,20 +1,12 @@
-<p *ngIf="question.label">{{ question.label }}. {{ question.text }}</p>
+<p>{{ getLabel() }}</p>
 
 <mat-grid-list cols="4" rowHeight="100px">
     <mat-grid-tile [colspan]="3">
-        <qx-answer
-            [collectAnswer]="collectAnswer"
-            [question]="question"
-            [operation]="operation"
-        ></qx-answer>
+        <qx-answer [collectAnswer]="collectAnswer" [question]="question" [operation]="operation"></qx-answer>
     </mat-grid-tile>
 
     <mat-grid-tile>
-        <mat-slide-toggle
-            [disabled]="true"
-            [checked]="question.hasAnswer()"
-            [labelPosition]="question.hasAnswer() ? 'after' : 'before'"
-        >
+        <mat-slide-toggle [disabled]="true" [checked]="question.hasAnswer()" [labelPosition]="question.hasAnswer() ? 'after' : 'before'">
             <!-- <span *ngIf="question.hasAnswer()">Answered</span>
             <span *ngIf="!question.hasAnswer()">Need answer</span> -->
         </mat-slide-toggle>
@@ -22,10 +14,5 @@
 </mat-grid-list>
 
 <div *ngIf="triggered" class="child">
-    <p>{{ question.children[0]!.text }}</p>
-    <qx-question
-        class="child"
-        [question]="question.children[0]!"
-        [operation]="operation"
-    ></qx-question>
+    <qx-question class="child" [question]="question.children[0]!" [operation]="operation"></qx-question>
 </div>

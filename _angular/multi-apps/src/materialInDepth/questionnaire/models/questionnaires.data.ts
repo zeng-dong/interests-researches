@@ -1,4 +1,5 @@
 import { AnswerConstants, AnswerDataType } from './answer.model';
+import { QuestionConstants, QuestionType } from './question.model';
 import { SectionDefinition, QuestionnaireSection, ChildQuestionTriggeredFuncs } from './questionnaire-section.model';
 
 //// definition of questionnaire
@@ -25,6 +26,7 @@ export const picBizQx: SectionDefinition[] = [
                 id: 'cCompany',
                 label: '1',
                 text: 'Is your company doing well',
+                type: QuestionType.single,
                 answerDataType: AnswerDataType.exclusiveChoices,
                 childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                 children: [
@@ -32,6 +34,7 @@ export const picBizQx: SectionDefinition[] = [
                         id: 'cCompany_Explain',
                         label: undefined,
                         text: 'Please explain',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.longText,
                         childTrigger: null,
                         children: [],
@@ -42,6 +45,7 @@ export const picBizQx: SectionDefinition[] = [
                 id: 'cQuestionnaire1',
                 label: '2',
                 text: 'Is your company doing well and even better',
+                type: QuestionType.single,
                 answerDataType: AnswerDataType.exclusiveChoices,
                 childTrigger: ChildQuestionTriggeredFuncs.hasNegativeAnser,
                 children: [
@@ -49,6 +53,7 @@ export const picBizQx: SectionDefinition[] = [
                         id: 'cQuestionnaire1_Explain',
                         label: undefined,
                         text: 'Please explain',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.longText,
                         childTrigger: null,
                         children: [],
@@ -60,12 +65,14 @@ export const picBizQx: SectionDefinition[] = [
                 label: '3',
                 text: 'This question is standard yes/no selection and trigger a child short text',
                 answerDataType: AnswerDataType.exclusiveChoices,
+                type: QuestionType.single,
                 childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                 children: [
                     {
                         id: 'cQuestionnaire2_Explain',
                         label: undefined,
                         text: 'Percentage',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.shortText,
                         childTrigger: null,
                         children: [],
@@ -73,32 +80,36 @@ export const picBizQx: SectionDefinition[] = [
                 ],
             },
             {
-                id: '-999',
+                id: QuestionConstants.emptyId,
                 label: '4',
                 text: 'This question is a container hosting a group of choices child questions',
+                type: QuestionType.group,
                 answerDataType: AnswerDataType.none,
                 childTrigger: ChildQuestionTriggeredFuncs.none,
                 children: [
                     {
                         id: 'cTruckType_flatbed',
-                        label: 'Flatbed',
+                        label: undefined,
                         text: 'Flatbed',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.inclusiveChoices,
                         childTrigger: null,
                         children: [],
                     },
                     {
                         id: 'cTruckType_tanker',
-                        label: 'Tanker',
+                        label: undefined,
                         text: 'Tanker',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.inclusiveChoices,
                         childTrigger: null,
                         children: [],
                     },
                     {
                         id: 'cTruckType_other',
-                        label: 'Other',
+                        label: undefined,
                         text: 'Other',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.inclusiveChoices,
                         childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                         children: [
@@ -106,6 +117,7 @@ export const picBizQx: SectionDefinition[] = [
                                 id: 'cTruckType_other_Explain',
                                 label: undefined,
                                 text: 'Please explain',
+                                type: QuestionType.single,
                                 answerDataType: AnswerDataType.longText,
                                 childTrigger: null,
                                 children: [],
@@ -164,6 +176,7 @@ export const foodQx: SectionDefinition[] = [
                 id: 'noodles-lover',
                 label: '1',
                 text: 'Do you like noodles',
+                type: QuestionType.single,
                 answerDataType: AnswerDataType.exclusiveChoices,
                 childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                 children: [
@@ -171,12 +184,13 @@ export const foodQx: SectionDefinition[] = [
                         id: 'cCompany_Explain',
                         label: undefined,
                         text: 'Please explain',
+                        type: QuestionType.single,
                         answerDataType: AnswerDataType.longText,
                         childTrigger: null,
                         children: [],
                     },
                 ],
-            }
+            },
         ],
     },
 
@@ -186,5 +200,5 @@ export const foodQx: SectionDefinition[] = [
         name: 'all about burgers',
         rules: null,
         questions: [],
-    }
+    },
 ];

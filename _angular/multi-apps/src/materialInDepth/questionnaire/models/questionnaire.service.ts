@@ -26,6 +26,7 @@ export class QuestionnaireService {
 
         definition.questions.forEach((q) => {
             const question = createQuestion(q);
+            console.log('got this question from factory: ', question);
             if (question) section.questions.push(question);
         });
 
