@@ -18,6 +18,8 @@ export enum AnswerDataType {
     //multipleText,
     inclusiveChoices,
     /// for yes/no radio group, type: yesOrNo
+    numeric,
+    none,
 }
 
 export class Answer {
@@ -29,9 +31,7 @@ export class Answer {
         this.value = undefined;
     }
 
-    hasValue = (): boolean =>
-        this.value != undefined &&
-        this.value.toString().trim() !== AnswerConstants.empty;
+    hasValue = (): boolean => this.value != undefined && this.value.toString().trim() !== AnswerConstants.empty;
 
     hasAffirmativeValue = (): boolean => 'Y' === this.value;
 }

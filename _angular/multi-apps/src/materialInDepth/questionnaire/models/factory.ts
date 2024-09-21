@@ -3,28 +3,34 @@ import { ChildQuestionTriggeredFunc, Question, QuestionDefinition, QuestionType 
 
 export function createQuestion(def: QuestionDefinition): Question | undefined {
     if (AnswerDataType.exclusiveChoices === def.answerDataType && AnswerDataType.longText === def.child?.answerDataType)
-        return createStandardQuestion(def.id!, def.label!, def.text, def.child?.id!, def.child?.text!, def.childTrigger);
+        return createYesNoParentExplanationChildQuestion(def.id!, def.label!, def.text, def.child?.id!, def.child?.text!, def.childTrigger);
+
+    /// next: yes no with composite
+    /// createYesNoParentCompositeChildQuestion
+
+    // if (AnswerDataType.exclusiveChoices === def.answerDataType && AnswerDataType.shortText === def.child?.answerDataType)
+    //     return createStandardQuestion(def.id!, def.label!, def.text, def.child?.id!, def.child?.text!, def.childTrigger);
+    //  how to create the question?
+
+    ///
 
     return undefined;
 }
 
-export function createStandardQuestion(id: string, label: string, text: string, childId: string, childText: string, childTrigger: ChildQuestionTriggeredFunc | null) {
-    const q = new Question(id, label, text, [createStandardExplainationQuestion(childId, childText)], QuestionType.single, createStandardYesNoAnswer());
+function createYesNoParentExplanationChildQuestion(id: string, label: string, text: string, childId: string, childText: string, childTrigger: ChildQuestionTriggeredFunc | null) {
+    const q = new Question(id, label, text, [createExplanationQuestion(childId, childText)], QuestionType.single, createYesNoAnswer());
     if (childTrigger) q.trigger = childTrigger;
-    // q.trigger = (q) => q.answer.hasAffirmativeValue();
     return q;
 }
 
-function createStandardExplainationQuestion(id: string, text: string): Question {
-    return new Question(id, undefined, text, [], QuestionType.single, createStandardExplanationAnswer());
+function createExplanationQuestion(id: string, text: string): Question {
+    return new Question(id, undefined, text, [], QuestionType.single, createExplanationAnswer());
 }
 
-function createStandardYesNoAnswer(): Answer {
-    const yesNo = new AnswerConfiguration(AnswerDataType.exclusiveChoices, AnswerConstants.required);
-    const answer = new Answer(yesNo);
-    return answer;
+function createYesNoAnswer(): Answer {
+    return new Answer(new AnswerConfiguration(AnswerDataType.exclusiveChoices, AnswerConstants.required));
 }
 
-function createStandardExplanationAnswer(): Answer {
+function createExplanationAnswer(): Answer {
     return new Answer(new AnswerConfiguration(AnswerDataType.longText, AnswerConstants.required, AnswerConstants.longTextMaxLength));
 }
