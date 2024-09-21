@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuestionnaireConfig } from './question.model';
-import { Questionnair, picBizQx } from './questionnaire.model';
+import { Questionnair } from './questionnaire.model';
+import { picBizQx } from './questionnaires.data';
 import { SectionDefinition } from './questionnaire-section.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
@@ -23,7 +24,7 @@ export class QuestionnaireService {
     getQuestionnaireSection(definition: SectionDefinition): QuestionnaireSection {
         const section = new QuestionnaireSection(definition.displayOrder, definition.name, definition.label);
 
-        definition.questions.forEach((q) => {            
+        definition.questions.forEach((q) => {
             const question = createQuestion(q);
             if (question) section.questions.push(question);
         });
