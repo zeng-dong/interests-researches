@@ -19,6 +19,7 @@
             <mat-label>{{ question.text }}</mat-label>
             <textarea
                 matInput
+                type="text"
                 name="{{ question.id }}"
                 [(ngModel)]="question.answer.value"
                 (ngModelChange)="valueChanged($event)"
@@ -30,8 +31,8 @@
 
     <div *ngSwitchCase="2">
         <mat-form-field>
-            <mat-label>Prompt goes here</mat-label>
-            <input name="{{ question.id }}" matInput [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
+            <mat-label>{{ question.text }}</mat-label>
+            <input name="{{ question.id }}" matInput type="number" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
         </mat-form-field>
 
         <mat-error *ngIf="collecting && !question.answer.value">Required</mat-error>
