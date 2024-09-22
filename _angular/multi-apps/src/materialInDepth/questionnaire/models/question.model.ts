@@ -38,6 +38,16 @@ export class Question {
     ////isChildQuestionsTriggered = (): boolean => this.hasChildQuestions() && this.answer.hasAffirmativeValue();
 }
 
+export interface QuestionDefinition {
+    id: string | undefined;
+    label: string | undefined;
+    text: string;
+    type: QuestionType;
+    children: QuestionDefinition[];
+    answerDataType: AnswerDataType;
+    childTrigger: ChildQuestionTriggeredFunc | null;
+}
+
 export enum QuestionType {
     single,
     composite,
@@ -49,16 +59,6 @@ export interface QuestionnaireConfig {
     isCanngen: boolean;
     isMissourri: boolean;
     isEvenMoreSpecial: boolean;
-}
-
-export interface QuestionDefinition {
-    id: string | undefined;
-    label: string | undefined;
-    text: string;
-    answerDataType: AnswerDataType;
-    childTrigger: ChildQuestionTriggeredFunc | null;
-    children: QuestionDefinition[];
-    type: QuestionType;
 }
 
 export enum ParentChildRelationship {
