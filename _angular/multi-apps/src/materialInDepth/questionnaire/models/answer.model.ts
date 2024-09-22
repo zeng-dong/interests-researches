@@ -3,6 +3,8 @@ export class AnswerConfiguration {
     maxLength: number | undefined;
     isRequired: boolean;
     ////validators = 'req email xyz';
+    max?: number | undefined;
+    min?: number | undefined;
 
     constructor(type: AnswerDataType, isRequired: boolean, maxLength?: number) {
         this.type = type;
@@ -15,10 +17,9 @@ export enum AnswerDataType {
     exclusiveChoices,
     longText,
     shortText,
-    //multipleText,
     inclusiveChoices,
-    /// for yes/no radio group, type: yesOrNo
-    numeric,
+    number,
+    date,
     none,
 }
 
