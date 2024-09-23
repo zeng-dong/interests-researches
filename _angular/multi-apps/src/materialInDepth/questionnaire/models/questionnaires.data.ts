@@ -27,7 +27,10 @@ export const picBizQx: SectionDefinition[] = [
                 label: '1',
                 text: 'Is your company doing well',
                 type: QuestionType.single,
-                answerDataType: AnswerDataType.exclusiveChoices,
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
                 childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                 children: [
                     {
@@ -35,7 +38,11 @@ export const picBizQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Please explain',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.longText,
+                        answerConfig: {
+                            type: AnswerDataType.longText,
+                            maxLength: AnswerConstants.longTextMaxLength,
+                            isRequired: true,
+                        },
                         childTrigger: null,
                         children: [],
                     },
@@ -46,7 +53,10 @@ export const picBizQx: SectionDefinition[] = [
                 label: '2',
                 text: 'Is your company doing well and even better',
                 type: QuestionType.single,
-                answerDataType: AnswerDataType.exclusiveChoices,
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
                 childTrigger: ChildQuestionTriggeredFuncs.hasNegativeAnser,
                 children: [
                     {
@@ -54,7 +64,11 @@ export const picBizQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Please explain',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.longText,
+                        answerConfig: {
+                            type: AnswerDataType.longText,
+                            maxLength: AnswerConstants.longTextMaxLength,
+                            isRequired: true,
+                        },
                         childTrigger: null,
                         children: [],
                     },
@@ -64,7 +78,10 @@ export const picBizQx: SectionDefinition[] = [
                 id: 'cQuestionnaire2',
                 label: '3',
                 text: 'This question is standard yes/no selection and trigger a child short text',
-                answerDataType: AnswerDataType.exclusiveChoices,
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
                 type: QuestionType.single,
                 childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                 children: [
@@ -73,7 +90,11 @@ export const picBizQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Percentage',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.shortText,
+                        answerConfig: {
+                            type: AnswerDataType.shortText,
+                            maxLength: AnswerConstants.shortTextMaxLength,
+                            isRequired: true,
+                        },
                         childTrigger: null,
                         children: [],
                     },
@@ -84,7 +105,10 @@ export const picBizQx: SectionDefinition[] = [
                 label: '4',
                 text: 'This question is a container hosting a group of choices child questions',
                 type: QuestionType.group,
-                answerDataType: AnswerDataType.none,
+                answerConfig: {
+                    type: AnswerDataType.none,
+                    isRequired: true,
+                },
                 childTrigger: ChildQuestionTriggeredFuncs.none,
                 children: [
                     {
@@ -92,7 +116,10 @@ export const picBizQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Flatbed',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.inclusiveChoices,
+                        answerConfig: {
+                            type: AnswerDataType.inclusiveChoices,
+                            isRequired: false,
+                        },
                         childTrigger: null,
                         children: [],
                     },
@@ -101,7 +128,10 @@ export const picBizQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Tanker',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.inclusiveChoices,
+                        answerConfig: {
+                            type: AnswerDataType.inclusiveChoices,
+                            isRequired: false,
+                        },
                         childTrigger: null,
                         children: [],
                     },
@@ -110,7 +140,10 @@ export const picBizQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Other',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.inclusiveChoices,
+                        answerConfig: {
+                            type: AnswerDataType.inclusiveChoices,
+                            isRequired: false,
+                        },
                         childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                         children: [
                             {
@@ -118,7 +151,11 @@ export const picBizQx: SectionDefinition[] = [
                                 label: undefined,
                                 text: 'Please explain',
                                 type: QuestionType.single,
-                                answerDataType: AnswerDataType.longText,
+                                answerConfig: {
+                                    type: AnswerDataType.longText,
+                                    maxLength: AnswerConstants.longTextMaxLength,
+                                    isRequired: false,
+                                },
                                 childTrigger: null,
                                 children: [],
                             },
@@ -177,7 +214,10 @@ export const foodQx: SectionDefinition[] = [
                 label: '1',
                 text: 'Do you like noodles',
                 type: QuestionType.single,
-                answerDataType: AnswerDataType.exclusiveChoices,
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
                 childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
                 children: [
                     {
@@ -185,7 +225,11 @@ export const foodQx: SectionDefinition[] = [
                         label: undefined,
                         text: 'Please explain',
                         type: QuestionType.single,
-                        answerDataType: AnswerDataType.longText,
+                        answerConfig: {
+                            type: AnswerDataType.longText,
+                            maxLength: AnswerConstants.longTextMaxLength,
+                            isRequired: false,
+                        },
                         childTrigger: null,
                         children: [],
                     },

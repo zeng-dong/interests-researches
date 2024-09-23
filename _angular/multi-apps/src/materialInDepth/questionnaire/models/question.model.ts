@@ -1,4 +1,4 @@
-import { Answer, AnswerDataType } from './answer.model';
+import { Answer, AnswerConfiguration, AnswerDataType } from './answer.model';
 
 export type ChildQuestionTriggeredFunc = (question: Question) => boolean;
 
@@ -6,8 +6,8 @@ export class Question {
     id: string | undefined;
     label: string | undefined;
     text: string | undefined;
-    children: Question[];
     type: QuestionType;
+    children: Question[];
     answer: Answer;
     sharedIds: string[] = []; /// or akas. some question answer pair in api contract are duplicated with different keys
     applicable = true;
@@ -44,7 +44,8 @@ export interface QuestionDefinition {
     text: string;
     type: QuestionType;
     children: QuestionDefinition[];
-    answerDataType: AnswerDataType;
+    //answerDataType: AnswerDataType;
+    answerConfig: AnswerConfiguration;
     childTrigger: ChildQuestionTriggeredFunc | null;
 }
 

@@ -1,6 +1,7 @@
 export class AnswerConfiguration {
     type: AnswerDataType;
-    maxLength: number | undefined;
+
+    maxLength?: number | undefined;
     isRequired: boolean;
     ////validators = 'req email xyz';
     max?: number | undefined;
@@ -34,7 +35,7 @@ export class Answer {
 
     hasValue = (): boolean => this.value != undefined && this.value.toString().trim() !== AnswerConstants.empty;
 
-    hasAffirmativeValue = (): boolean => 'Y' === this.value;
+    hasAffirmativeValue = (): boolean => 'Y' === this.value || true === this.value;
 }
 
 export abstract class AnswerConstants {
