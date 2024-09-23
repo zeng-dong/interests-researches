@@ -1,3 +1,17 @@
+<p>
+    I would like to take: 
+    <mat-radio-group aria-label="Select a questionnaire" 
+        (change)="takeQuestionnaire($event)"
+        [(ngModel)]="qxName"
+        >
+        @for (qx of availables; track qx) {
+            <mat-radio-button class="qx-radio-button" [value]="qx.name">{{qx.name}}</mat-radio-button>
+        }
+    </mat-radio-group>
+</p>
+
+<mat-divider></mat-divider>
+
 <h3>{{ qx.name }} Questionnaire</h3>
 
 <section class="config-section">

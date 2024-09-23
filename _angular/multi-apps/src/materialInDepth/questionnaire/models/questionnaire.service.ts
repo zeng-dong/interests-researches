@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { QuestionnaireConfig } from './question.model';
+import { QuestionnaireConfig } from './questionnaire.model';
 import { Questionnair } from './questionnaire.model';
-import { picBizQx } from './questionnaires.data';
+import { offerrings, picBizQx, QuestionnaireDefinition } from './questionnaires.data';
 import { SectionDefinition } from './questionnaire-section.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
@@ -15,10 +15,18 @@ export class QuestionnaireService {
     constructor() {}
 
     getQuestionnaire(name: string, config: QuestionnaireConfig): Questionnair {
-        const qx = this.createDefaultQuestionnaire(name, config);
+        return this.getQuestionnaireImpl(name, config);
+    }
 
-        this.manageQuestionapplicability(qx.sections, config, notApplicables);
-        return qx;
+    getQuestionnaireImpl(name: string, config: QuestionnaireConfig): Questionnair {
+        const def = offerrings.find((o) => o.name === name);
+        if (name === 'truck questionnaire') {
+            const qx = this.createTruckQuestionnaire(def!, config);
+            this.manageQuestionapplicability(qx.sections, config, notApplicables);
+            return qx;
+        }
+
+        return this.createQuestionnaire(def!);
     }
 
     getQuestionnaireSection(definition: SectionDefinition): QuestionnaireSection {
@@ -33,6 +41,24 @@ export class QuestionnaireService {
         if (definition.rules) section.setRulesFunc(definition.rules);
 
         return section;
+    }
+
+    createTruckQuestionnaire(def: QuestionnaireDefinition, config: QuestionnaireConfig): Questionnair {
+        const qx = new Questionnair(def.name);
+        def.sections.forEach((s) => {
+            if (s.name.toLowerCase() != 'supplemental') {
+                qx.add(this.getQuestionnaireSection(s));
+            } else {
+                if (config.isCanngen) qx.add(this.getQuestionnaireSection(s));
+            }
+        });
+        return qx;
+    }
+
+    createQuestionnaire(def: QuestionnaireDefinition): Questionnair {
+        const qx = new Questionnair(def.name);
+        def.sections.forEach((s) => qx.add(this.getQuestionnaireSection(s)));
+        return qx;
     }
 
     createDefaultQuestionnaire(name: string, config: QuestionnaireConfig): Questionnair {

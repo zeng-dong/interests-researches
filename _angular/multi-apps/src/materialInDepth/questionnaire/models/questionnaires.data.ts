@@ -2,7 +2,15 @@ import { AnswerConstants, AnswerDataType } from './answer.model';
 import { QuestionConstants, QuestionType } from './question.model';
 import { SectionDefinition, QuestionnaireSection, ChildQuestionTriggeredFuncs } from './questionnaire-section.model';
 
-//// definition of questionnaire
+export interface QuestionnaireDefinition {
+    name: string;
+    config?: {
+        [index: string]: any;
+    };
+    sections: SectionDefinition[];
+}
+
+//// definition of questionnaire sections
 
 export const picBizQx: SectionDefinition[] = [
     {
@@ -244,5 +252,24 @@ export const foodQx: SectionDefinition[] = [
         name: 'all about burgers',
         rules: null,
         questions: [],
+    },
+];
+
+export const offerrings: QuestionnaireDefinition[] = [
+    {
+        name: 'truck questionnaire',
+        sections: picBizQx,
+    },
+    {
+        name: 'Food Survey',
+        sections: foodQx,
+    },
+    {
+        name: 'Music Questionnaire',
+        sections: [],
+    },
+    {
+        name: 'Sports Questionnaire',
+        sections: [],
     },
 ];

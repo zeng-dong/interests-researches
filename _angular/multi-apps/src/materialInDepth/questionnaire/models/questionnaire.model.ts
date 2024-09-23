@@ -27,3 +27,9 @@ export enum QuestionnairOperationType {
     changeToNextGroup,
     changeToPreviousGroup,
 }
+
+export interface QuestionnaireConfig {
+    isCanngen: boolean;
+    isMissourri: boolean;
+    isEvenMoreSpecial: boolean;
+}
