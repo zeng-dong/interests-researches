@@ -179,7 +179,60 @@ export const picBizQx: SectionDefinition[] = [
         displayOrder: 1,
         name: 'acord130 part 1',
         rules: null,
-        questions: [],
+        questions: [
+            {
+                id: 'qus17',
+                label: '17',
+                text: 'This question is not for Missouri. Are you missouri?',
+                type: QuestionType.single,
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
+                childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
+                children: [
+                    {
+                        id: 'qus17_Explain',
+                        label: undefined,
+                        text: 'Please explain',
+                        type: QuestionType.single,
+                        answerConfig: {
+                            type: AnswerDataType.longText,
+                            maxLength: AnswerConstants.longTextMaxLength,
+                            isRequired: true,
+                        },
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
+            },
+            {
+                id: 'qus24',
+                label: '24',
+                text: 'This question is not for canngen, are you canngen?',
+                type: QuestionType.single,
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
+                childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnser,
+                children: [
+                    {
+                        id: 'qus24_Explain',
+                        label: undefined,
+                        text: 'Please explain',
+                        type: QuestionType.single,
+                        answerConfig: {
+                            type: AnswerDataType.longText,
+                            maxLength: AnswerConstants.longTextMaxLength,
+                            isRequired: true,
+                        },
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
+            },
+        ],
     },
 
     {

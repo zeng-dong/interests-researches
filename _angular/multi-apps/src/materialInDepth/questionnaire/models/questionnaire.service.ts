@@ -74,15 +74,8 @@ export class QuestionnaireService {
     }
 
     manageQuestionapplicability(sections: QuestionnaireSection[], config: QuestionnaireConfig, notApplicables: any): void {
-        this.enableQuestions(sections);
-
         if (config.isCanngen) this.disableQuestions(sections, notApplicables.idsOfQuestionsNotApplicableForCanngen);
-
         if (config.isMissourri) this.disableQuestions(sections, notApplicables.idsOfQuestionsNotApplicableForMissourri);
-    }
-
-    enableQuestions(sections: QuestionnaireSection[]): void {
-        sections.forEach((s) => s.questions.forEach((q) => (q.applicable = true)));
     }
 
     disableQuestions(sections: QuestionnaireSection[], ids: string[]): void {
