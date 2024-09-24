@@ -18,7 +18,7 @@ export class QuestionnaireService {
         return this.getQuestionnaireImpl(name, config);
     }
 
-    getQuestionnaireImpl(name: string, config: QuestionnaireConfig): Questionnair {
+    private getQuestionnaireImpl(name: string, config: QuestionnaireConfig): Questionnair {
         const def = offerrings.find((o) => o.name === name);
         if (name === 'truck questionnaire') {
             const qx = this.createTruckQuestionnaire(def!, config);
@@ -34,7 +34,6 @@ export class QuestionnaireService {
 
         definition.questions.forEach((q) => {
             const question = createQuestion(q);
-            console.log('got this question from factory: ', question);
             if (question) section.questions.push(question);
         });
 
@@ -58,18 +57,6 @@ export class QuestionnaireService {
     createQuestionnaire(def: QuestionnaireDefinition): Questionnair {
         const qx = new Questionnair(def.name);
         def.sections.forEach((s) => qx.add(this.getQuestionnaireSection(s)));
-        return qx;
-    }
-
-    createDefaultQuestionnaire(name: string, config: QuestionnaireConfig): Questionnair {
-        const qx = new Questionnair(name);
-        picBizQx.forEach((s) => {
-            if (s.name.toLowerCase() != 'supplemental') {
-                qx.add(this.getQuestionnaireSection(s));
-            } else {
-                if (config.isCanngen) qx.add(this.getQuestionnaireSection(s));
-            }
-        });
         return qx;
     }
 

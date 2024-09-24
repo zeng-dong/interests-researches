@@ -1,5 +1,4 @@
 import { Component, input, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Answer } from '../models/answer.model';
 import { MatRadioChange } from '@angular/material/radio';
 import { Question } from '../models/question.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
@@ -23,9 +22,9 @@ export class AnswerComponent implements OnInit {
     ngOnInit() {}
 
     selected($event: MatRadioChange) {
-        console.log($event.value);
-
-        if (this.question.answer) this.question.answer.value = $event.value;
+        //// two way binding so I don't have to do it
+        //console.log($event.value);
+        //if (this.question.answer) this.question.answer.value = $event.value;
     }
 
     ngOnChanges(changes: SimpleChanges) {
