@@ -31,6 +31,6 @@ export interface SectionDefinition {
 
 export abstract class ChildQuestionTriggeredFuncs {
     static readonly none = null;
-    static readonly hasAffirmativeAnser: ChildQuestionTriggeredFunc = (q: Question) => q.answer.hasAffirmativeValue();
-    static readonly hasNegativeAnser: ChildQuestionTriggeredFunc = (q: Question) => !q.answer.hasAffirmativeValue();
+    static readonly hasAffirmativeAnswer: ChildQuestionTriggeredFunc = (q: Question) => q.answer.hasAffirmativeValue();
+    static readonly hasNegativeAnswer: ChildQuestionTriggeredFunc = (q: Question) => !q.answer.hasAffirmativeValue();
 }

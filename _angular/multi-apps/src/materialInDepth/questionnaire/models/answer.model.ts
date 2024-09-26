@@ -35,7 +35,9 @@ export class Answer {
 
     hasValue = (): boolean => this.value != undefined && this.value.toString().trim() !== AnswerConstants.empty;
 
-    hasAffirmativeValue = (): boolean => 'Y' === this.value || true === this.value;
+    hasAffirmativeValue = (): boolean => AnswerConstants.trueString === this.value || true === this.value;
+
+    hasNegativeValue = (): boolean => this.hasValue() && (AnswerConstants.falseString === this.value || false === this.value);
 }
 
 export abstract class AnswerConstants {
