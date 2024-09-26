@@ -21,4 +21,5 @@
 <div *ngFor="let child of question.children" class="child">
     <qx-question class="child" [question]="child" [operation]="operation"></qx-question>
 </div>
+<mat-error *ngIf="collectAnswer && this.question.answer.config.isRequired && !hasAnswer">Required</mat-error>
 }

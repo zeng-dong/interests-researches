@@ -33,9 +33,10 @@ export class Question {
 
     hasChildQuestions = () => this.children != undefined && this.children.length > 0;
 
-    hasAnswer = (): boolean => this.answer.hasValue(); //// and child questions
-
-    ////isChildQuestionsTriggered = (): boolean => this.hasChildQuestions() && this.answer.hasAffirmativeValue();
+    hasAnswer = (): boolean => {
+        if (this.type === QuestionType.group) return this.children.some((c) => c.hasAnswer());
+        return this.answer.hasValue();
+    };
 }
 
 export interface QuestionDefinition {

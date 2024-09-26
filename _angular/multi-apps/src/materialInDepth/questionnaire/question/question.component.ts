@@ -47,6 +47,10 @@ export class QuestionComponent implements OnInit {
         return trigger(this.question);
     }
 
+    get hasAnswer(): boolean {
+        return this.question.hasAnswer();
+    }
+
     testTrigger(): void {
         const trigger = this.question.trigger;
         if (trigger) console.log('invoking trigger func and the result: ', trigger(this.question));

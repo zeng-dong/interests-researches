@@ -68,7 +68,7 @@ export const picBizQx: SectionDefinition[] = [
             {
                 id: 'cQuestionnaire1',
                 label: '2',
-                text: 'So your company is doing well?',
+                text: 'Do you know why your company is doing well?',
                 type: QuestionType.single,
                 answerConfig: {
                     type: AnswerDataType.exclusiveChoices,
@@ -95,7 +95,7 @@ export const picBizQx: SectionDefinition[] = [
             {
                 id: 'cCompany_not_well',
                 label: '3',
-                text: 'So your company is not doing well?',
+                text: 'Do you know why your company is not doing well?',
                 type: QuestionType.single,
                 answerConfig: {
                     type: AnswerDataType.exclusiveChoices,

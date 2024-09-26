@@ -41,7 +41,7 @@
     <div *ngSwitchCase="3">
         <mat-checkbox name="{{ question.id }}" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}">{{ question.text }} </mat-checkbox>
 
-        <mat-error *ngIf="collecting && !question.answer.value">Required</mat-error>
+        <mat-error *ngIf="collecting && question.answer.config.isRequired && question.hasAnswer()">Required</mat-error>
     </div>
 
     <div *ngSwitchDefault>
