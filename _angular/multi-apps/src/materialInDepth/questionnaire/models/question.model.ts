@@ -24,10 +24,7 @@ export class Question {
     }
 
     reportAnswer(report: any) {
-        if (this.id) {
-            Reflect.set(report, this.id, this.answer.value);
-        }
-        //// set children
+        if (this.id) Reflect.set(report, this.id, this.answer.value);
         this.children.forEach((c) => c.reportAnswer(report));
     }
 
@@ -45,7 +42,6 @@ export interface QuestionDefinition {
     text: string;
     type: QuestionType;
     children: QuestionDefinition[];
-    //answerDataType: AnswerDataType;
     answerConfig: AnswerConfiguration;
     childTrigger: ChildQuestionTriggeredFunc | null;
 }

@@ -26,7 +26,7 @@
                 required="{{ question.answer.config.isRequired }}"
             ></textarea>
         </mat-form-field>
-        <mat-error *ngIf="collecting && !question.answer.value">Required</mat-error>
+        <mat-error *ngIf="collecting && !question.answer.hasValue()">Required</mat-error>
     </div>
 
     <div *ngSwitchCase="2">

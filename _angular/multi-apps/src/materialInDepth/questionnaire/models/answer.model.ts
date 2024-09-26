@@ -35,10 +35,8 @@ export class Answer {
 
     hasValue = (): boolean => {
         if (this.value == undefined) return false;
-
-        if (this.config.type === AnswerDataType.inclusiveChoices) return this.value != false && this.value.toString().trim() !== AnswerConstants.empty;
-
-        return this.value.toString().trim() !== AnswerConstants.empty;
+        if (typeof this.value === 'boolean' && this.value == false) return false;
+        return this.value.toString().trim() != AnswerConstants.empty;
     };
 
     hasAffirmativeValue = (): boolean => AnswerConstants.trueString === this.value || true === this.value;
