@@ -1,4 +1,4 @@
-import { Answer, AnswerConfiguration, AnswerDataType } from './answer.model';
+import { Answer } from './answer.model';
 import { Question, QuestionDefinition } from './question.model';
 
 export function createQuestion(def: QuestionDefinition): Question | undefined {
@@ -14,21 +14,4 @@ function createQuestionImpl(def: QuestionDefinition): Question | undefined {
     });
 
     return q;
-}
-
-function createAnswer(config: AnswerConfiguration): Answer {
-    return new Answer(config);
-}
-
-// function createAnswerConfiguration(type: AnswerDataType, required: boolean = true): AnswerConfiguration {
-//     return new AnswerConfiguration(type, required);
-// }
-
-function createAnswerConfiguration(config: AnswerConfiguration): AnswerConfiguration {
-    const c = new AnswerConfiguration(config.type, config.isRequired);
-    if (config.max) c.max = config.max;
-    if (config.maxLength) c.maxLength = config.maxLength;
-    if (config.min) c.min = config.min;
-
-    return c;
 }

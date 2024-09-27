@@ -12,7 +12,7 @@ export interface QuestionnaireDefinition {
 
 //// definition of questionnaire sections
 
-export const picBizQx: SectionDefinition[] = [
+const picBizQx: SectionDefinition[] = [
     {
         label: 'Questions 1-8',
         displayOrder: 0,
@@ -342,7 +342,7 @@ export const picBizQx: SectionDefinition[] = [
     },
 ];
 
-export const foodQx: SectionDefinition[] = [
+const foodQx: SectionDefinition[] = [
     {
         label: 'Noodles',
         displayOrder: 0,

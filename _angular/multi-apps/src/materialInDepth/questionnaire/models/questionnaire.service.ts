@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuestionnaireConfig } from './questionnaire.model';
 import { Questionnair } from './questionnaire.model';
-import { offerrings, picBizQx, QuestionnaireDefinition } from './questionnaires.data';
+import { offerrings, QuestionnaireDefinition } from './questionnaires.data';
 import { SectionDefinition } from './questionnaire-section.model';
 import { QuestionnairOperationType } from './questionnaire.model';
 import { QuestionnairOperation } from './questionnaire.model';
