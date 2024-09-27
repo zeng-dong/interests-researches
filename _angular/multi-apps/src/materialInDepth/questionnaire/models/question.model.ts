@@ -53,15 +53,6 @@ export enum QuestionType {
     //// question/single (with id), group (of questions, each with an id) , composite (one question with id, however without direct answer, with a group of questions , each with an id)
 }
 
-export enum ParentChildRelationship {
-    yesNoWithExplain,
-    yesNoWithYesNo,
-    yesNoWithEntity,
-    yesNoWithGroup,
-    groupWithExplain,
-    other, // ???
-}
-
 export abstract class QuestionConstants {
     static readonly emptyId = '-999';
 }
