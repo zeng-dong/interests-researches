@@ -133,10 +133,10 @@ export const picBizQx: SectionDefinition[] = [
                     {
                         id: 'cQuestionnaire2_Explain',
                         label: undefined,
-                        text: 'Percentage',
+                        text: 'Your name',
                         type: QuestionType.single,
                         answerConfig: {
-                            type: AnswerDataType.shortText,
+                            type: AnswerDataType.text,
                             maxLength: AnswerConstants.shortTextMaxLength,
                             isRequired: true,
                         },
@@ -145,9 +145,62 @@ export const picBizQx: SectionDefinition[] = [
                     },
                 ],
             },
+
+            {
+                id: 'cQuestionnaireNumberSample',
+                label: '5',
+                text: 'This question is standard yes/no selection and trigger a child number',
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
+                type: QuestionType.single,
+                childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnswer,
+                children: [
+                    {
+                        id: 'cQuestionnaireNumberSample_Explain',
+                        label: undefined,
+                        text: 'Percentage',
+                        type: QuestionType.single,
+                        answerConfig: {
+                            type: AnswerDataType.number,
+                            isRequired: true,
+                        },
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
+            },
+
+            {
+                id: 'cQuestionnaireDateSample',
+                label: '6',
+                text: 'This question is standard yes/no selection and trigger a child date',
+                answerConfig: {
+                    type: AnswerDataType.exclusiveChoices,
+                    isRequired: true,
+                },
+                type: QuestionType.single,
+                childTrigger: ChildQuestionTriggeredFuncs.hasAffirmativeAnswer,
+                children: [
+                    {
+                        id: 'cQuestionnaireDateSample_Explain',
+                        label: undefined,
+                        text: 'Your Birth Date',
+                        type: QuestionType.single,
+                        answerConfig: {
+                            type: AnswerDataType.date,
+                            isRequired: true,
+                        },
+                        childTrigger: null,
+                        children: [],
+                    },
+                ],
+            },
+
             {
                 id: QuestionConstants.emptyId,
-                label: '5',
+                label: '7',
                 text: 'This question is a container hosting a group of choices child questions',
                 type: QuestionType.group,
                 answerConfig: {
@@ -199,7 +252,7 @@ export const picBizQx: SectionDefinition[] = [
                                 answerConfig: {
                                     type: AnswerDataType.longText,
                                     maxLength: AnswerConstants.longTextMaxLength,
-                                    isRequired: false,
+                                    isRequired: true,
                                 },
                                 childTrigger: null,
                                 children: [],

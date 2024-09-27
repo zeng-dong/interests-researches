@@ -24,7 +24,7 @@ export class AnswerComponent implements OnInit {
     selected($event: MatRadioChange) {
         //// two way binding so I don't have to do it
         //console.log($event.value);
-        if (this.question.answer) this.question.answer.value = $event.value;
+        ////if (this.question.answer) this.question.answer.value = $event.value;
     }
 
     ngOnChanges(changes: SimpleChanges) {

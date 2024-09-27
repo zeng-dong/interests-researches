@@ -25,11 +25,9 @@ export class QuestionComponent implements OnInit {
         for (const propName in changes) {
             if (propName === 'operation') {
                 const change = changes[propName];
-
                 if (change.currentValue.isChangeToNextGroup()) {
                     this.collectAnswer = true;
                 }
-                this.testTrigger();
             }
         }
     }
@@ -45,14 +43,5 @@ export class QuestionComponent implements OnInit {
         if (!trigger) return false;
 
         return trigger(this.question);
-    }
-
-    get hasAnswer(): boolean {
-        return this.question.hasAnswer();
-    }
-
-    testTrigger(): void {
-        const trigger = this.question.trigger;
-        if (trigger) console.log('invoking trigger func and the result: ', trigger(this.question));
     }
 }

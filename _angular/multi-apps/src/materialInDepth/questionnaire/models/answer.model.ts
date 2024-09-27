@@ -17,7 +17,7 @@ export class AnswerConfiguration {
 export enum AnswerDataType {
     exclusiveChoices,
     longText,
-    shortText,
+    text,
     inclusiveChoices,
     number,
     date,

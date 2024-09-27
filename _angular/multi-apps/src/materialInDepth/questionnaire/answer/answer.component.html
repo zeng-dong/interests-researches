@@ -1,50 +1,50 @@
-<ng-container [ngSwitch]="question.answer.config.type">
-    <div *ngSwitchCase="0">
-        <mat-radio-group
-            [disabled]="!question.applicable"
-            name="{{ question.id }}"
-            (change)="selected($event)"
-            [(ngModel)]="question.answer.value"
-            required="{{ question.answer.config.isRequired }}"
-        >
-            <mat-radio-button value="Y">Yes</mat-radio-button>
-            <mat-radio-button value="N">No</mat-radio-button>
-        </mat-radio-group>
+@if (question.answer.config.type === 0) {
+<mat-radio-group [disabled]="!question.applicable" name="{{ question.id }}" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}">
+    <mat-radio-button value="Y">Yes</mat-radio-button>
+    <mat-radio-button value="N">No</mat-radio-button>
+</mat-radio-group>
+<p color="accent" *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</p>
 
-        <p color="accent" *ngIf="collecting && !question.answer.value">Required</p>
-    </div>
+} @else if (question.answer.config.type === 1) {
+<mat-form-field>
+    <mat-label>{{ question.text }}</mat-label>
+    <textarea
+        matInput
+        type="text"
+        name="{{ question.id }}"
+        [(ngModel)]="question.answer.value"
+        (ngModelChange)="valueChanged($event)"
+        required="{{ question.answer.config.isRequired }}"
+    ></textarea>
+</mat-form-field>
+<mat-error *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</mat-error>
+} @else if (question.answer.config.type === 2 ) {
+<mat-form-field>
+    <mat-label>{{ question.text }}</mat-label>
+    <input name="{{ question.id }}" matInput type="text" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
+</mat-form-field>
 
-    <div *ngSwitchCase="1">
-        <mat-form-field>
-            <mat-label>{{ question.text }}</mat-label>
-            <textarea
-                matInput
-                type="text"
-                name="{{ question.id }}"
-                [(ngModel)]="question.answer.value"
-                (ngModelChange)="valueChanged($event)"
-                required="{{ question.answer.config.isRequired }}"
-            ></textarea>
-        </mat-form-field>
-        <mat-error *ngIf="collecting && !question.answer.hasValue()">Required</mat-error>
-    </div>
+<mat-error *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</mat-error>
+} @else if ( question.answer.config.type === 4) {
+<mat-form-field>
+    <mat-label>{{ question.text }}</mat-label>
+    <input name="{{ question.id }}" matInput type="number" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
+</mat-form-field>
 
-    <div *ngSwitchCase="2">
-        <mat-form-field>
-            <mat-label>{{ question.text }}</mat-label>
-            <input name="{{ question.id }}" matInput type="number" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
-        </mat-form-field>
+<mat-error *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</mat-error>
+} @else if (question.answer.config.type === 5) {
+<mat-form-field>
+    <mat-label>{{ question.text }}</mat-label>
+    <input name="{{ question.id }}" matInput type="date" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}" />
+</mat-form-field>
 
-        <mat-error *ngIf="collecting && !question.answer.value">Required</mat-error>
-    </div>
+<mat-error *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</mat-error>
+} @else if (question.answer.config.type === 3) {
+<mat-checkbox name="{{ question.id }}" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}">{{ question.text }} </mat-checkbox>
 
-    <div *ngSwitchCase="3">
-        <mat-checkbox name="{{ question.id }}" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}">{{ question.text }} </mat-checkbox>
-
-        <mat-error *ngIf="collecting && question.answer.config.isRequired && question.hasAnswer()">Required</mat-error>
-    </div>
-
-    <div *ngSwitchDefault>
-        <p color="accent">This question does not define answer type</p>
-    </div>
-</ng-container>
+<mat-error *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</mat-error>
+} @else if (question.answer.config.type === 6) {
+<mat-error *ngIf="collecting && !question.hasAnswer()">Required</mat-error>
+} @else {
+<p color="accent">Anser type '{{ question.answer.config.type }}' is not supported.</p>
+}
