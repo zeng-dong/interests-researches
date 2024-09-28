@@ -21,12 +21,12 @@
     </mat-grid-tile>
 </mat-grid-list>
 
-@if( question.type === 0){
-<div *ngIf="triggered" class="child">
-    <qx-question class="child" [question]="question.children[0]!" [operation]="operation"></qx-question>
-</div>
-} @else if (question.type === 2) {
-<div *ngFor="let child of question.children" class="child">
-    <qx-question class="child" [question]="child" [operation]="operation"></qx-question>
-</div>
+@if( question.type === 0 || question.type === 2 ){
+<ng-container *ngIf="triggered">
+    <div *ngFor="let child of question.children" class="child">
+        <qx-question class="child" [question]="child" [operation]="operation"></qx-question>
+    </div>
+</ng-container>
+} @else () {
+<p>Question of type '{{ question.type }}' is not supported</p>
 }

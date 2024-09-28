@@ -21,7 +21,7 @@ export enum AnswerDataType {
     inclusiveChoices,
     number,
     date,
-    none,
+    empty,
 }
 
 export class Answer {

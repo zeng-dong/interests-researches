@@ -14,11 +14,12 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { QuestionComponent } from './questionnaire/question/question.component';
 import { AnswerComponent } from './questionnaire/answer/answer.component';
 import { QuestionnaireSectionComponent } from './questionnaire/section/questionnaire-section.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, AboutComponent, QuestionnaireComponent, QuestionnaireSectionComponent, QuestionComponent, AnswerComponent],
     bootstrap: [AppComponent],
     imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, MaterialModule, ReactiveFormsModule, FormsModule],
-    providers: [provideHttpClient(withInterceptorsFromDi())],
+    providers: [provideHttpClient(withInterceptorsFromDi()), { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }],
 })
 export class AppModule {}
