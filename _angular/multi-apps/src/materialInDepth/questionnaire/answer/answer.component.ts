@@ -3,6 +3,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { Question } from '../models/question.model';
 import { QuestionnairOperation } from '../models/questionnaire.model';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { AnswerDataType } from '../models/answer.model';
 
 @Component({
     selector: 'qx-answer',
@@ -16,6 +17,7 @@ export class AnswerComponent implements OnInit {
     @Input() question!: Question;
     @Input() operation!: QuestionnairOperation;
     collecting = false;
+    types = AnswerDataType;
 
     constructor() {}
 
