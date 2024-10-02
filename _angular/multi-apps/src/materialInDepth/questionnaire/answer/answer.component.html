@@ -3,7 +3,7 @@
     <mat-radio-button value="Y">Yes</mat-radio-button>
     <mat-radio-button value="N">No</mat-radio-button>
 </mat-radio-group>
-<div class="field-message" *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</div>
+<div class="field-message" *ngIf="collecting && question.applicable && question.answer.config.isRequired && !question.hasAnswer()">Required</div>
 
 } @else if (question.answer.config.type === types.longText ) {
 <mat-form-field>
