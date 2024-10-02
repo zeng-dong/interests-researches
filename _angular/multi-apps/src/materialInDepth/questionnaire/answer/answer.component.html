@@ -3,7 +3,7 @@
     <mat-radio-button value="Y">Yes</mat-radio-button>
     <mat-radio-button value="N">No</mat-radio-button>
 </mat-radio-group>
-<p color="accent" *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</p>
+<div class="field-message" *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</div>
 
 } @else if (question.answer.config.type === types.longText ) {
 <mat-form-field>
@@ -43,8 +43,8 @@
 <mat-checkbox name="{{ question.id }}" [(ngModel)]="question.answer.value" required="{{ question.answer.config.isRequired }}">{{ question.text }} </mat-checkbox>
 
 <mat-error *ngIf="collecting && question.answer.config.isRequired && !question.hasAnswer()">Required</mat-error>
-} @else if (question.answer.config.type === 6) {
-<mat-error *ngIf="collecting && !question.hasAnswer()">Required</mat-error>
+} @else if (question.answer.config.type === types.empty) {
+<div class="field-message" *ngIf="collecting && !question.hasAnswer()">Required</div>
 } @else {
 <p color="accent">Anser type '{{ question.answer.config.type }}' is not supported.</p>
 }
