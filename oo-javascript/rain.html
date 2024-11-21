@@ -101,7 +101,7 @@
 
 			function getCharactors() {
 				//chinese characters - taken from the unicode charset
-				var chinese = "Michael Zeng"; //"天王盖地虎宝塔镇河妖"; // // //"田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
+				var chinese = "天王盖地虎宝塔镇河妖"; //"Michael Zeng"; // // // //"田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";
 				//var chinese = "ABCDEFGabcdefgHIJKLMN";
 
 				return chinese.split("");
@@ -176,9 +176,12 @@
 					ctx.font = font_size + "px arial";
 
 					for (var i = 0; i < drops.length; i++) {
-						var text = "Michael Zeng"; //getCharactor();
-						//if ( chinese )
-						//    text = chinese[Math.floor(Math.random()*chinese.length)];
+						var text = getCharactor(); //"Michael Zeng"; //
+						if (chinese)
+							text =
+								chinese[
+									Math.floor(Math.random() * chinese.length)
+								];
 						ctx.fillText(text, drops[i] * font_size, i * font_size);
 						if (
 							drops[i] * font_size > c.width &&
@@ -349,7 +352,8 @@
 				upper,
 				window.innerHeight / 2 + 20,
 				window.innerWidth / 3 - 10,
-				null,
+				//null,
+				getCharactors(),
 				"rgba(0, 0, 0, 0.05)",
 				"#F00"
 			);
@@ -359,7 +363,8 @@
 				bottom,
 				window.innerHeight / 2,
 				window.innerWidth / 3 - 10,
-				null,
+				//null,
+				getCharactors(),
 				"rgba(0, 0, 0, 0.05)",
 				"#FAFA33"
 			);
@@ -369,7 +374,8 @@
 				right,
 				window.innerHeight,
 				window.innerWidth / 3,
-				null,
+				getCharactors(),
+				//null,
 				"rgba(0, 0, 0, 0.05)",
 				"#00FFFF"
 			);
