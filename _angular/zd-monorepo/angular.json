@@ -73,6 +73,74 @@
           "builder": "@angular/build:unit-test"
         }
       }
+    },
+    "ngrx-fundamentals-to-ngrx": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngrx-fundamentals-to-ngrx",
+      "sourceRoot": "projects/ngrx-fundamentals-to-ngrx/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/ngrx-fundamentals-to-ngrx/src/main.ts",
+            "tsConfig": "projects/ngrx-fundamentals-to-ngrx/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ngrx-fundamentals-to-ngrx/public"
+              }
+            ],
+            "styles": [
+              "projects/ngrx-fundamentals-to-ngrx/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ngrx-fundamentals-to-ngrx:build:production"
+            },
+            "development": {
+              "buildTarget": "ngrx-fundamentals-to-ngrx:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
     }
   }
 }

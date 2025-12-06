@@ -28,6 +28,12 @@
     },
     {
       "path": "./projects/ngrx-fundamentals/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ngrx-fundamentals-to-ngrx/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/ngrx-fundamentals-to-ngrx/tsconfig.spec.json"
     }
   ]
 }

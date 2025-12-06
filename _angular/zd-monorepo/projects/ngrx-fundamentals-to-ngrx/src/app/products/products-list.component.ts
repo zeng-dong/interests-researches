@@ -8,7 +8,7 @@ import { ProductsService } from './products.service';
     imports: [CommonModule],
     template: `
         <div>
-            <h1>Products - by plain multi-concerns product list component</h1>
+            <h1>Products - Brought to you by NgRx</h1>
 
             @if (status().type === 'loading') {
             <div>Loading products...</div>
