@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Product, ProductStatus } from './product.model';
 import { Store } from '@ngrx/store';
 import { productsPageOpened } from './state/products.actions';
+import {
+    selectProducts,
+    selectProductsCount,
+    selectProductsStatus,
+} from './state/products.selectors';
 
 @Component({
     selector: 'app-products-list',
@@ -28,15 +33,14 @@ import { productsPageOpened } from './state/products.actions';
     `,
 })
 export class ProductsListComponent implements OnInit {
-    
     private store = inject(Store);
-    products = signal<Product[]>([]);
-    productsCount = computed(() => this.products().length);
-    status = signal<ProductStatus>({ type: 'idle' });
+    products = this.store.selectSignal(selectProducts);
+    productsCount = this.store.selectSignal(selectProductsCount);
+    status = this.store.selectSignal(selectProductsStatus);
 
     ngOnInit(): void {
         this.store.dispatch(productsPageOpened());
 
-        this.store.select(state => state).subscribe(s => console.log('App State: ', s));
+        this.store.select((state) => state).subscribe((s) => console.log('App State: ', s));
     }
 }
