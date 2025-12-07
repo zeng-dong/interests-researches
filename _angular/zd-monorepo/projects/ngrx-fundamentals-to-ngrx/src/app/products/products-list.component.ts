@@ -1,7 +1,8 @@
 import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product, ProductStatus } from './product.model';
-import { ProductsService } from './products.service';
+import { Store } from '@ngrx/store';
+import { productsPageOpened } from './state/products.actions';
 
 @Component({
     selector: 'app-products-list',
@@ -27,21 +28,15 @@ import { ProductsService } from './products.service';
     `,
 })
 export class ProductsListComponent implements OnInit {
-    private productsService = inject(ProductsService);
+    
+    private store = inject(Store);
     products = signal<Product[]>([]);
     productsCount = computed(() => this.products().length);
     status = signal<ProductStatus>({ type: 'idle' });
 
     ngOnInit(): void {
-        this.status.set({ type: 'loading' });
-        this.productsService.getProducts().subscribe({
-            next: (products) => {
-                this.products.set(products);
-                this.status.set({ type: 'loaded' });
-            },
-            error: (error) => {
-                this.status.set({ type: 'error', message: error.message });
-            },
-        });
+        this.store.dispatch(productsPageOpened());
+
+        this.store.select(state => state).subscribe(s => console.log('App State: ', s));
     }
 }
