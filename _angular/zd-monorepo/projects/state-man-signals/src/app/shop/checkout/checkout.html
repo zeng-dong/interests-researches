@@ -1,0 +1,33 @@
+<div class="checkout-container">
+  <h1>Checkout</h1>
+
+  <section class="address-section">
+    <h2>Shipping Address</h2>
+    <acct-address-selector></acct-address-selector>
+  </section>
+
+  <section class="order-summary">
+    <h2>Order Summary</h2>
+    <!-- Example order summary, replace with real data as needed -->
+    <ul>
+      @for(product of cartService.cart(); track product.id) {
+      <li>{{product.name}} - {{ product.price * (1 - product.discount) | currency }}</li>
+      }
+    </ul>
+    <div class="total">
+      <strong>Total:</strong> {{cartService.total() | currency}}
+    </div>
+  </section>
+
+  <section class="payment-section">
+    <h2>Payment</h2>
+    <label for="card-number">Card Number</label>
+    <input id="card-number" type="text" placeholder="1234 5678 9012 3456" />
+    <label for="expiry">Expiry</label>
+    <input id="expiry" type="text" placeholder="MM/YY" />
+    <label for="cvc">CVC</label>
+    <input id="cvc" type="text" placeholder="123" />
+  </section>
+
+  <button class="checkout-btn">Place Order</button>
+</div>

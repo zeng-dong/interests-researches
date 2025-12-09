@@ -1,0 +1,11 @@
+<h1 class="header">Your Cart</h1>
+<ul class="cart">
+  @for (product of cartItems(); track product.id) {
+  <li>
+    <bot-product-details [product]="product">
+      <button class="remove" (click)="removeFromCart(product)">Remove</button>
+    </bot-product-details>
+  </li>
+  }
+</ul>
+<bot-cart-summary />

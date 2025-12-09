@@ -1,0 +1,9 @@
+<h2>Select shipping address:</h2>
+<ul>
+  @for (address of addresses; track address.id) {
+  <li>
+    <input type="radio" name="shippingAddress" /> <strong>{{ address.name }}</strong>:
+    {{ address.address }}, {{ address.city }}, {{ address.state }} {{ address.postalCode }}
+  </li>
+  }
+</ul>
